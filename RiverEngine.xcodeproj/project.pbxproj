@@ -14,18 +14,18 @@
 		D61109171EC6B5A100B89DFE /* RiverEngine.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D61109151EC6B5A100B89DFE /* RiverEngine.xcdatamodeld */; };
 		D61109191EC6B5A100B89DFE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D61109181EC6B5A100B89DFE /* Assets.xcassets */; };
 		D611091C1EC6B5A100B89DFE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D611091A1EC6B5A100B89DFE /* LaunchScreen.storyboard */; };
-		D61109471EC6BB8000B89DFE /* GLES20View.m in Sources */ = {isa = PBXBuildFile; fileRef = D61109461EC6BB8000B89DFE /* GLES20View.m */; };
 		D611094A1EC6BBBA00B89DFE /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D61109491EC6BBBA00B89DFE /* UIKit.framework */; };
 		D611094C1EC6BBC300B89DFE /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D611094B1EC6BBC300B89DFE /* OpenGLES.framework */; };
-		D64C4AA31EC80B3F00C09E16 /* Director.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D64C4AA11EC80B3F00C09E16 /* Director.cpp */; };
-		D64C4AA61EC80CCA00C09E16 /* Scene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D64C4AA41EC80CCA00C09E16 /* Scene.cpp */; };
+		D64208A41ED68FC3009833A2 /* Application.mm in Sources */ = {isa = PBXBuildFile; fileRef = D64208931ED68FC3009833A2 /* Application.mm */; };
+		D64208A51ED68FC3009833A2 /* Director.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D64208941ED68FC3009833A2 /* Director.cpp */; };
+		D64208A61ED68FC3009833A2 /* Scene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D64208961ED68FC3009833A2 /* Scene.cpp */; };
+		D64208A71ED68FC3009833A2 /* GLES20View.m in Sources */ = {isa = PBXBuildFile; fileRef = D642089A1ED68FC3009833A2 /* GLES20View.m */; };
+		D64208A81ED68FC3009833A2 /* GLProgram.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D642089B1ED68FC3009833A2 /* GLProgram.cpp */; };
+		D64208A91ED68FC3009833A2 /* GLProgramState.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D642089D1ED68FC3009833A2 /* GLProgramState.cpp */; };
+		D64208AA1ED68FC3009833A2 /* support_gl.mm in Sources */ = {isa = PBXBuildFile; fileRef = D64208A01ED68FC3009833A2 /* support_gl.mm */; };
+		D64208AB1ED68FC3009833A2 /* FileUtils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D64208A21ED68FC3009833A2 /* FileUtils.cpp */; };
 		D64C4AA91EC813AE00C09E16 /* SimpleShader.vsh in Resources */ = {isa = PBXBuildFile; fileRef = D64C4AA81EC813AE00C09E16 /* SimpleShader.vsh */; };
 		D64C4AAB1EC8140500C09E16 /* SimpleShader.fsh in Resources */ = {isa = PBXBuildFile; fileRef = D64C4AAA1EC8140500C09E16 /* SimpleShader.fsh */; };
-		D64C4AAE1EC8177300C09E16 /* GLProgram.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D64C4AAC1EC8177300C09E16 /* GLProgram.cpp */; };
-		D64E43091ED5B2290064D12A /* FileUtils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D64E43071ED5B2290064D12A /* FileUtils.cpp */; };
-		D6573DA21ECB69EE009F4DB8 /* GLProgramState.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6573DA01ECB69EE009F4DB8 /* GLProgramState.cpp */; };
-		D668E43B1EC702E2004E8EFF /* support_gl.mm in Sources */ = {isa = PBXBuildFile; fileRef = D668E43A1EC702E2004E8EFF /* support_gl.mm */; };
-		D668E43E1EC703C5004E8EFF /* Application.mm in Sources */ = {isa = PBXBuildFile; fileRef = D668E43D1EC703C5004E8EFF /* Application.mm */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,26 +59,26 @@
 		D611091D1EC6B5A100B89DFE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D61109221EC6B5A100B89DFE /* RiverEngineTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RiverEngineTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D611092D1EC6B5A100B89DFE /* RiverEngineUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RiverEngineUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		D61109451EC6BB8000B89DFE /* GLES20View.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLES20View.h; sourceTree = "<group>"; };
-		D61109461EC6BB8000B89DFE /* GLES20View.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLES20View.m; sourceTree = "<group>"; };
 		D61109491EC6BBBA00B89DFE /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		D611094B1EC6BBC300B89DFE /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
-		D64C4AA11EC80B3F00C09E16 /* Director.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Director.cpp; sourceTree = "<group>"; };
-		D64C4AA21EC80B3F00C09E16 /* Director.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Director.hpp; sourceTree = "<group>"; };
-		D64C4AA41EC80CCA00C09E16 /* Scene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Scene.cpp; sourceTree = "<group>"; };
-		D64C4AA51EC80CCA00C09E16 /* Scene.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Scene.hpp; sourceTree = "<group>"; };
+		D64208921ED68FC3009833A2 /* Application.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Application.h; sourceTree = "<group>"; };
+		D64208931ED68FC3009833A2 /* Application.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Application.mm; sourceTree = "<group>"; };
+		D64208941ED68FC3009833A2 /* Director.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Director.cpp; sourceTree = "<group>"; };
+		D64208951ED68FC3009833A2 /* Director.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Director.hpp; sourceTree = "<group>"; };
+		D64208961ED68FC3009833A2 /* Scene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Scene.cpp; sourceTree = "<group>"; };
+		D64208971ED68FC3009833A2 /* Scene.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Scene.hpp; sourceTree = "<group>"; };
+		D64208991ED68FC3009833A2 /* GLES20View.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLES20View.h; sourceTree = "<group>"; };
+		D642089A1ED68FC3009833A2 /* GLES20View.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLES20View.m; sourceTree = "<group>"; };
+		D642089B1ED68FC3009833A2 /* GLProgram.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GLProgram.cpp; sourceTree = "<group>"; };
+		D642089C1ED68FC3009833A2 /* GLProgram.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = GLProgram.hpp; sourceTree = "<group>"; };
+		D642089D1ED68FC3009833A2 /* GLProgramState.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GLProgramState.cpp; sourceTree = "<group>"; };
+		D642089E1ED68FC3009833A2 /* GLProgramState.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = GLProgramState.hpp; sourceTree = "<group>"; };
+		D642089F1ED68FC3009833A2 /* support_gl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = support_gl.h; sourceTree = "<group>"; };
+		D64208A01ED68FC3009833A2 /* support_gl.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = support_gl.mm; sourceTree = "<group>"; };
+		D64208A21ED68FC3009833A2 /* FileUtils.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FileUtils.cpp; sourceTree = "<group>"; };
+		D64208A31ED68FC3009833A2 /* FileUtils.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = FileUtils.hpp; sourceTree = "<group>"; };
 		D64C4AA81EC813AE00C09E16 /* SimpleShader.vsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = SimpleShader.vsh; sourceTree = "<group>"; };
 		D64C4AAA1EC8140500C09E16 /* SimpleShader.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = SimpleShader.fsh; sourceTree = "<group>"; };
-		D64C4AAC1EC8177300C09E16 /* GLProgram.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GLProgram.cpp; sourceTree = "<group>"; };
-		D64C4AAD1EC8177300C09E16 /* GLProgram.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = GLProgram.hpp; sourceTree = "<group>"; };
-		D64E43071ED5B2290064D12A /* FileUtils.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FileUtils.cpp; sourceTree = "<group>"; };
-		D64E43081ED5B2290064D12A /* FileUtils.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = FileUtils.hpp; sourceTree = "<group>"; };
-		D6573DA01ECB69EE009F4DB8 /* GLProgramState.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GLProgramState.cpp; sourceTree = "<group>"; };
-		D6573DA11ECB69EE009F4DB8 /* GLProgramState.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = GLProgramState.hpp; sourceTree = "<group>"; };
-		D668E4391EC702E2004E8EFF /* support_gl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = support_gl.h; sourceTree = "<group>"; };
-		D668E43A1EC702E2004E8EFF /* support_gl.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = support_gl.mm; sourceTree = "<group>"; };
-		D668E43C1EC703C5004E8EFF /* Application.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Application.h; sourceTree = "<group>"; };
-		D668E43D1EC703C5004E8EFF /* Application.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Application.mm; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -130,6 +130,7 @@
 		D61109081EC6B5A000B89DFE /* RiverEngine */ = {
 			isa = PBXGroup;
 			children = (
+				D64208901ED68FC3009833A2 /* RiverLibs */,
 				D64C4AA71EC8136F00C09E16 /* Shaders */,
 				D611090C1EC6B5A000B89DFE /* AppDelegate.h */,
 				D611090D1EC6B5A000B89DFE /* AppDelegate.m */,
@@ -141,22 +142,6 @@
 				D611091D1EC6B5A100B89DFE /* Info.plist */,
 				D61109151EC6B5A100B89DFE /* RiverEngine.xcdatamodeld */,
 				D61109091EC6B5A000B89DFE /* Supporting Files */,
-				D61109451EC6BB8000B89DFE /* GLES20View.h */,
-				D61109461EC6BB8000B89DFE /* GLES20View.m */,
-				D668E4391EC702E2004E8EFF /* support_gl.h */,
-				D668E43A1EC702E2004E8EFF /* support_gl.mm */,
-				D668E43C1EC703C5004E8EFF /* Application.h */,
-				D668E43D1EC703C5004E8EFF /* Application.mm */,
-				D64C4AA11EC80B3F00C09E16 /* Director.cpp */,
-				D64C4AA21EC80B3F00C09E16 /* Director.hpp */,
-				D64C4AA41EC80CCA00C09E16 /* Scene.cpp */,
-				D64C4AA51EC80CCA00C09E16 /* Scene.hpp */,
-				D64C4AAC1EC8177300C09E16 /* GLProgram.cpp */,
-				D64C4AAD1EC8177300C09E16 /* GLProgram.hpp */,
-				D6573DA01ECB69EE009F4DB8 /* GLProgramState.cpp */,
-				D6573DA11ECB69EE009F4DB8 /* GLProgramState.hpp */,
-				D64E43071ED5B2290064D12A /* FileUtils.cpp */,
-				D64E43081ED5B2290064D12A /* FileUtils.hpp */,
 			);
 			path = RiverEngine;
 			sourceTree = "<group>";
@@ -176,6 +161,53 @@
 				D61109491EC6BBBA00B89DFE /* UIKit.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		D64208901ED68FC3009833A2 /* RiverLibs */ = {
+			isa = PBXGroup;
+			children = (
+				D64208911ED68FC3009833A2 /* Base */,
+				D64208981ED68FC3009833A2 /* Renderer */,
+				D64208A11ED68FC3009833A2 /* Utils */,
+			);
+			path = RiverLibs;
+			sourceTree = "<group>";
+		};
+		D64208911ED68FC3009833A2 /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				D64208921ED68FC3009833A2 /* Application.h */,
+				D64208931ED68FC3009833A2 /* Application.mm */,
+				D64208941ED68FC3009833A2 /* Director.cpp */,
+				D64208951ED68FC3009833A2 /* Director.hpp */,
+				D64208961ED68FC3009833A2 /* Scene.cpp */,
+				D64208971ED68FC3009833A2 /* Scene.hpp */,
+			);
+			path = Base;
+			sourceTree = "<group>";
+		};
+		D64208981ED68FC3009833A2 /* Renderer */ = {
+			isa = PBXGroup;
+			children = (
+				D64208991ED68FC3009833A2 /* GLES20View.h */,
+				D642089A1ED68FC3009833A2 /* GLES20View.m */,
+				D642089B1ED68FC3009833A2 /* GLProgram.cpp */,
+				D642089C1ED68FC3009833A2 /* GLProgram.hpp */,
+				D642089D1ED68FC3009833A2 /* GLProgramState.cpp */,
+				D642089E1ED68FC3009833A2 /* GLProgramState.hpp */,
+				D642089F1ED68FC3009833A2 /* support_gl.h */,
+				D64208A01ED68FC3009833A2 /* support_gl.mm */,
+			);
+			path = Renderer;
+			sourceTree = "<group>";
+		};
+		D64208A11ED68FC3009833A2 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				D64208A21ED68FC3009833A2 /* FileUtils.cpp */,
+				D64208A31ED68FC3009833A2 /* FileUtils.hpp */,
+			);
+			path = Utils;
 			sourceTree = "<group>";
 		};
 		D64C4AA71EC8136F00C09E16 /* Shaders */ = {
@@ -326,17 +358,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				D61109111EC6B5A100B89DFE /* ViewController.mm in Sources */,
-				D64C4AA31EC80B3F00C09E16 /* Director.cpp in Sources */,
-				D6573DA21ECB69EE009F4DB8 /* GLProgramState.cpp in Sources */,
-				D61109471EC6BB8000B89DFE /* GLES20View.m in Sources */,
-				D668E43E1EC703C5004E8EFF /* Application.mm in Sources */,
+				D64208A61ED68FC3009833A2 /* Scene.cpp in Sources */,
+				D64208AA1ED68FC3009833A2 /* support_gl.mm in Sources */,
 				D611090E1EC6B5A000B89DFE /* AppDelegate.m in Sources */,
-				D64C4AAE1EC8177300C09E16 /* GLProgram.cpp in Sources */,
+				D64208A91ED68FC3009833A2 /* GLProgramState.cpp in Sources */,
 				D61109171EC6B5A100B89DFE /* RiverEngine.xcdatamodeld in Sources */,
-				D64C4AA61EC80CCA00C09E16 /* Scene.cpp in Sources */,
-				D668E43B1EC702E2004E8EFF /* support_gl.mm in Sources */,
+				D64208A41ED68FC3009833A2 /* Application.mm in Sources */,
 				D611090B1EC6B5A000B89DFE /* main.m in Sources */,
-				D64E43091ED5B2290064D12A /* FileUtils.cpp in Sources */,
+				D64208A51ED68FC3009833A2 /* Director.cpp in Sources */,
+				D64208A71ED68FC3009833A2 /* GLES20View.m in Sources */,
+				D64208A81ED68FC3009833A2 /* GLProgram.cpp in Sources */,
+				D64208AB1ED68FC3009833A2 /* FileUtils.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

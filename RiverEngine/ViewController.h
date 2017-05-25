@@ -7,9 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "GLES20View.h"
-#import "Application.h"
-#import "support_gl.h"
+#import "RiverLibs/Renderer/GLES20View.h"
+#import "RiverLibs/Base/Application.h"
+#import "RiverLibs/Renderer/support_gl.h"
 
 @interface ViewController : UIViewController
 {
