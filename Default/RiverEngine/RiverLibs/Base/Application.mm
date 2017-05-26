@@ -9,6 +9,7 @@
 #include "support_gl.h"
 #include "Director.hpp"
 #include "Scene.hpp"
+#include "FileUtils.hpp"
 
 Application* Application::_application = nullptr;
 
@@ -27,16 +28,23 @@ Application* Application::getInstance()
 
 void Application::initialize()
 {
-    const GLchar *vertex_shader_source =
-    "attribute mediump vec4 attr_pos;"
-    "void main(){"
-    "   gl_Position = attr_pos;"
-    "}";
+    auto fileUtils = FileUtils::getInstance();
     
-    const GLchar *fragment_shader_source =
-    "void main(){"
-    "   gl_FragColor = vec4(1.0,0.0,0.0,1.0);"
-    "}";
+    std::string vstr = fileUtils->getStringFromFile("Shaders/SimpleShader", "vsh").c_str();
+    std::string fstr = fileUtils->getStringFromFile("Shaders/SimpleShader", "fsh").c_str();
+    
+    GLchar *vertex_shader_source = new GLchar[vstr.size() + 1];
+//    "attribute mediump vec4 attr_pos;"
+//    "void main(){"
+//    "   gl_Position = attr_pos;"
+//    "}";
+    
+    GLchar *fragment_shader_source = new GLchar[fstr.size() + 1];
+    //    "void main(){"
+    //    "   gl_FragColor = vec4(1.0,0.0,0.0,1.0);"
+    //    "}";
+    std::strcpy(vertex_shader_source, vstr.c_str());
+    std::strcpy(fragment_shader_source, fstr.c_str());
     
     _program = GLProgram::createWithByteArray(vertex_shader_source, fragment_shader_source);
     

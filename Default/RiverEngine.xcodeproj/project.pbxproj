@@ -23,9 +23,8 @@
 		D64208A81ED68FC3009833A2 /* GLProgram.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D642089B1ED68FC3009833A2 /* GLProgram.cpp */; };
 		D64208A91ED68FC3009833A2 /* GLProgramState.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D642089D1ED68FC3009833A2 /* GLProgramState.cpp */; };
 		D64208AA1ED68FC3009833A2 /* support_gl.mm in Sources */ = {isa = PBXBuildFile; fileRef = D64208A01ED68FC3009833A2 /* support_gl.mm */; };
-		D64208AB1ED68FC3009833A2 /* FileUtils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D64208A21ED68FC3009833A2 /* FileUtils.cpp */; };
-		D64C4AA91EC813AE00C09E16 /* SimpleShader.vsh in Resources */ = {isa = PBXBuildFile; fileRef = D64C4AA81EC813AE00C09E16 /* SimpleShader.vsh */; };
-		D64C4AAB1EC8140500C09E16 /* SimpleShader.fsh in Resources */ = {isa = PBXBuildFile; fileRef = D64C4AAA1EC8140500C09E16 /* SimpleShader.fsh */; };
+		D6D6458F1ED7205100FDA749 /* FileUtils.mm in Sources */ = {isa = PBXBuildFile; fileRef = D6D6458D1ED7205100FDA749 /* FileUtils.mm */; };
+		D6D645911ED72E6800FDA749 /* Shaders in Resources */ = {isa = PBXBuildFile; fileRef = D6D645901ED72E6800FDA749 /* Shaders */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -75,10 +74,9 @@
 		D642089E1ED68FC3009833A2 /* GLProgramState.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = GLProgramState.hpp; sourceTree = "<group>"; };
 		D642089F1ED68FC3009833A2 /* support_gl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = support_gl.h; sourceTree = "<group>"; };
 		D64208A01ED68FC3009833A2 /* support_gl.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = support_gl.mm; sourceTree = "<group>"; };
-		D64208A21ED68FC3009833A2 /* FileUtils.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FileUtils.cpp; sourceTree = "<group>"; };
-		D64208A31ED68FC3009833A2 /* FileUtils.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = FileUtils.hpp; sourceTree = "<group>"; };
-		D64C4AA81EC813AE00C09E16 /* SimpleShader.vsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = SimpleShader.vsh; sourceTree = "<group>"; };
-		D64C4AAA1EC8140500C09E16 /* SimpleShader.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = SimpleShader.fsh; sourceTree = "<group>"; };
+		D6D6458D1ED7205100FDA749 /* FileUtils.mm */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; fileEncoding = 4; path = FileUtils.mm; sourceTree = "<group>"; };
+		D6D6458E1ED7205100FDA749 /* FileUtils.hpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.h; fileEncoding = 4; path = FileUtils.hpp; sourceTree = "<group>"; };
+		D6D645901ED72E6800FDA749 /* Shaders */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Shaders; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -130,8 +128,8 @@
 		D61109081EC6B5A000B89DFE /* RiverEngine */ = {
 			isa = PBXGroup;
 			children = (
+				D6D645901ED72E6800FDA749 /* Shaders */,
 				D64208901ED68FC3009833A2 /* RiverLibs */,
-				D64C4AA71EC8136F00C09E16 /* Shaders */,
 				D611090C1EC6B5A000B89DFE /* AppDelegate.h */,
 				D611090D1EC6B5A000B89DFE /* AppDelegate.m */,
 				D611090F1EC6B5A000B89DFE /* ViewController.h */,
@@ -204,19 +202,10 @@
 		D64208A11ED68FC3009833A2 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
-				D64208A21ED68FC3009833A2 /* FileUtils.cpp */,
-				D64208A31ED68FC3009833A2 /* FileUtils.hpp */,
+				D6D6458D1ED7205100FDA749 /* FileUtils.mm */,
+				D6D6458E1ED7205100FDA749 /* FileUtils.hpp */,
 			);
 			path = Utils;
-			sourceTree = "<group>";
-		};
-		D64C4AA71EC8136F00C09E16 /* Shaders */ = {
-			isa = PBXGroup;
-			children = (
-				D64C4AA81EC813AE00C09E16 /* SimpleShader.vsh */,
-				D64C4AAA1EC8140500C09E16 /* SimpleShader.fsh */,
-			);
-			name = Shaders;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -328,10 +317,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D64C4AA91EC813AE00C09E16 /* SimpleShader.vsh in Resources */,
 				D611091C1EC6B5A100B89DFE /* LaunchScreen.storyboard in Resources */,
+				D6D645911ED72E6800FDA749 /* Shaders in Resources */,
 				D61109191EC6B5A100B89DFE /* Assets.xcassets in Resources */,
-				D64C4AAB1EC8140500C09E16 /* SimpleShader.fsh in Resources */,
 				D61109141EC6B5A100B89DFE /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -368,7 +356,7 @@
 				D64208A51ED68FC3009833A2 /* Director.cpp in Sources */,
 				D64208A71ED68FC3009833A2 /* GLES20View.m in Sources */,
 				D64208A81ED68FC3009833A2 /* GLProgram.cpp in Sources */,
-				D64208AB1ED68FC3009833A2 /* FileUtils.cpp in Sources */,
+				D6D6458F1ED7205100FDA749 /* FileUtils.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -518,6 +506,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 5NPG5R2A3R;
+				"HEADER_SEARCH_PATHS[arch=*]" = "$(SRCROOT)/RiverEngine/RiverLibs";
 				INFOPLIST_FILE = RiverEngine/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -531,6 +520,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 5NPG5R2A3R;
+				"HEADER_SEARCH_PATHS[arch=*]" = "$(SRCROOT)/RiverEngine/RiverLibs";
 				INFOPLIST_FILE = RiverEngine/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

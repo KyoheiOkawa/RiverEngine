@@ -22,6 +22,10 @@ private:
     
 public:
     static FileUtils* getInstance();
+    
+    std::string pathForResource(std::string fileName,std::string fileType);
+    
+    std::string getStringFromFile(std::string fileName,std::string fileType);
 };
 
 #endif /* FileUtils_hpp */
