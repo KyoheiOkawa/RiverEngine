@@ -10,6 +10,9 @@
 #include <thread>
 #include <chrono>
 
+#include "Director.hpp"
+#include "HelloWorldScene.hpp"
+
 @interface ViewController ()
 
 @end
@@ -115,6 +118,10 @@
     
     [self performSelectorInBackground:@selector(es20worker:) withObject:self];
     
+    //ここで開始時のシーンを設定する
+    auto director = Director::getInstance();
+    director->setScene(HelloWorldScene::createScene());
+    
     std::chrono::steady_clock::time_point start,end;
     while(!deleted)
     {
@@ -134,9 +141,11 @@
             app->update();
             app->rendering();
             
-            end = std::chrono::steady_clock::now();
+            [NSThread sleepForTimeInterval:0.0025f];
             
+            end = std::chrono::steady_clock::now();
             auto delta = std::chrono::duration_cast<std::chrono::milliseconds>(end - start).count();
+            
             app->setDeltaTIme(delta / 1000.0f);
         }
     }

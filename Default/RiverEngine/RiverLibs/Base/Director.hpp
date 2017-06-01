@@ -19,6 +19,7 @@ private:
     Scene* _scene;
 public:
     static Director* getInstance();
+    void updateScene();
     void drawScene();
     void setScene(Scene* scene){
         _scene = scene;

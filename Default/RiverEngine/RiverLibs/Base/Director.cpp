@@ -20,6 +20,11 @@ Director* Director::getInstance()
     return _director;
 }
 
+void Director::updateScene()
+{
+    _scene->update();
+}
+
 void Director::drawScene()
 {
     _scene->draw();

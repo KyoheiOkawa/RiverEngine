@@ -96,10 +96,7 @@ GLProgram* GLProgram::createWithFile(const std::string& vShaderFileName, const s
 {
     auto ret = new (std::nothrow) GLProgram();
     if(ret)
-    {
-        
-        
-        
+    { 
         return ret;
     }
     

@@ -61,10 +61,6 @@ public:
     GLuint getProgram(){
         return _program;
     }
-    
-    void applyAttrib(GLvoid* position){
-        glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 0, (GLvoid*)position);
-    }
 };
 
 #endif /* GLProgram_hpp */

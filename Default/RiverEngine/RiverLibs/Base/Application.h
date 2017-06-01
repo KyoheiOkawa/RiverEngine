@@ -28,7 +28,8 @@ private:
     float _deltaTime;
     
     GLProgram* _program;
-    GLProgramState* _programState;
+
+    GLfloat* _position;
  
 public:
     static Application* getInstance();

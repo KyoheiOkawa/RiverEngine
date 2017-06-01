@@ -8,7 +8,28 @@
 
 #include "Scene.hpp"
 
-void Scene::draw()
+Scene::Scene()
 {
     
+}
+
+Scene::~Scene()
+{
+    
+}
+
+Scene* Scene::create()
+{
+    auto ret = new Scene();
+    if(ret && ret->init())
+    {
+        return ret;
+    }
+    
+    return nullptr;
+}
+
+bool Scene::init()
+{
+    return true;
 }

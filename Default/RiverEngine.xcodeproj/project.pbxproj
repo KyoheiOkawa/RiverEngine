@@ -23,6 +23,8 @@
 		D64208A81ED68FC3009833A2 /* GLProgram.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D642089B1ED68FC3009833A2 /* GLProgram.cpp */; };
 		D64208A91ED68FC3009833A2 /* GLProgramState.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D642089D1ED68FC3009833A2 /* GLProgramState.cpp */; };
 		D64208AA1ED68FC3009833A2 /* support_gl.mm in Sources */ = {isa = PBXBuildFile; fileRef = D64208A01ED68FC3009833A2 /* support_gl.mm */; };
+		D6535F801EDFC43F00632E0B /* GameObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6535F7E1EDFC43F00632E0B /* GameObject.cpp */; };
+		D6535F841EDFC84D00632E0B /* HelloWorldScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6535F821EDFC84D00632E0B /* HelloWorldScene.cpp */; };
 		D6D6458F1ED7205100FDA749 /* FileUtils.mm in Sources */ = {isa = PBXBuildFile; fileRef = D6D6458D1ED7205100FDA749 /* FileUtils.mm */; };
 		D6D645911ED72E6800FDA749 /* Shaders in Resources */ = {isa = PBXBuildFile; fileRef = D6D645901ED72E6800FDA749 /* Shaders */; };
 /* End PBXBuildFile section */
@@ -74,6 +76,11 @@
 		D642089E1ED68FC3009833A2 /* GLProgramState.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = GLProgramState.hpp; sourceTree = "<group>"; };
 		D642089F1ED68FC3009833A2 /* support_gl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = support_gl.h; sourceTree = "<group>"; };
 		D64208A01ED68FC3009833A2 /* support_gl.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = support_gl.mm; sourceTree = "<group>"; };
+		D6535F7E1EDFC43F00632E0B /* GameObject.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameObject.cpp; sourceTree = "<group>"; };
+		D6535F7F1EDFC43F00632E0B /* GameObject.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = GameObject.hpp; sourceTree = "<group>"; };
+		D6535F821EDFC84D00632E0B /* HelloWorldScene.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; path = HelloWorldScene.cpp; sourceTree = "<group>"; };
+		D6535F831EDFC84D00632E0B /* HelloWorldScene.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = HelloWorldScene.hpp; sourceTree = "<group>"; };
+		D6535F861EDFC8B100632E0B /* river.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = river.h; sourceTree = "<group>"; };
 		D6D6458D1ED7205100FDA749 /* FileUtils.mm */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; fileEncoding = 4; path = FileUtils.mm; sourceTree = "<group>"; };
 		D6D6458E1ED7205100FDA749 /* FileUtils.hpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.h; fileEncoding = 4; path = FileUtils.hpp; sourceTree = "<group>"; };
 		D6D645901ED72E6800FDA749 /* Shaders */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Shaders; sourceTree = "<group>"; };
@@ -128,6 +135,7 @@
 		D61109081EC6B5A000B89DFE /* RiverEngine */ = {
 			isa = PBXGroup;
 			children = (
+				D6535F811EDFC5EF00632E0B /* GameSources */,
 				D6D645901ED72E6800FDA749 /* Shaders */,
 				D64208901ED68FC3009833A2 /* RiverLibs */,
 				D611090C1EC6B5A000B89DFE /* AppDelegate.h */,
@@ -164,6 +172,8 @@
 		D64208901ED68FC3009833A2 /* RiverLibs */ = {
 			isa = PBXGroup;
 			children = (
+				D6535F851EDFC87F00632E0B /* Include */,
+				D6535F7D1EDFC3E300632E0B /* GameObject */,
 				D64208911ED68FC3009833A2 /* Base */,
 				D64208981ED68FC3009833A2 /* Renderer */,
 				D64208A11ED68FC3009833A2 /* Utils */,
@@ -206,6 +216,32 @@
 				D6D6458E1ED7205100FDA749 /* FileUtils.hpp */,
 			);
 			path = Utils;
+			sourceTree = "<group>";
+		};
+		D6535F7D1EDFC3E300632E0B /* GameObject */ = {
+			isa = PBXGroup;
+			children = (
+				D6535F7E1EDFC43F00632E0B /* GameObject.cpp */,
+				D6535F7F1EDFC43F00632E0B /* GameObject.hpp */,
+			);
+			path = GameObject;
+			sourceTree = "<group>";
+		};
+		D6535F811EDFC5EF00632E0B /* GameSources */ = {
+			isa = PBXGroup;
+			children = (
+				D6535F821EDFC84D00632E0B /* HelloWorldScene.cpp */,
+				D6535F831EDFC84D00632E0B /* HelloWorldScene.hpp */,
+			);
+			path = GameSources;
+			sourceTree = "<group>";
+		};
+		D6535F851EDFC87F00632E0B /* Include */ = {
+			isa = PBXGroup;
+			children = (
+				D6535F861EDFC8B100632E0B /* river.h */,
+			);
+			path = Include;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -347,6 +383,8 @@
 			files = (
 				D61109111EC6B5A100B89DFE /* ViewController.mm in Sources */,
 				D64208A61ED68FC3009833A2 /* Scene.cpp in Sources */,
+				D6535F841EDFC84D00632E0B /* HelloWorldScene.cpp in Sources */,
+				D6535F801EDFC43F00632E0B /* GameObject.cpp in Sources */,
 				D64208AA1ED68FC3009833A2 /* support_gl.mm in Sources */,
 				D611090E1EC6B5A000B89DFE /* AppDelegate.m in Sources */,
 				D64208A91ED68FC3009833A2 /* GLProgramState.cpp in Sources */,

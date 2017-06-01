@@ -12,8 +12,17 @@
 #include <stdio.h>
 
 class Scene{
+protected:
+    Scene();
+    virtual ~Scene();
 public:
-    virtual void draw();
+    static Scene* create();
+    
+    virtual bool init();
+    
+    virtual void update(){}
+    
+    virtual void draw(){}
 };
 
 #endif /* Scene_hpp */
