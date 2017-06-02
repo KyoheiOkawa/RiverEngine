@@ -35,22 +35,24 @@ bool HelloWorldScene::init()
     if(!Scene::init())
         return false;
     
-    auto fileUtils = FileUtils::getInstance();
+//    auto fileUtils = FileUtils::getInstance();
+//    
+//    std::string vstr = fileUtils->getStringFromFile("Shaders/SimpleShader", "vsh").c_str();
+//    std::string fstr = fileUtils->getStringFromFile("Shaders/SimpleShader", "fsh").c_str();
+//    
+//    GLchar *vertex_shader_source = new GLchar[vstr.size() + 1];
+//    
+//    GLchar *fragment_shader_source = new GLchar[fstr.size() + 1];
+//    
+//    std::strcpy(vertex_shader_source, vstr.c_str());
+//    std::strcpy(fragment_shader_source, fstr.c_str());
+//    
+//    _program = GLProgram::createWithByteArray(vertex_shader_source, fragment_shader_source);
+//    
+//    delete[] vertex_shader_source;
+//    delete[] fragment_shader_source;
     
-    std::string vstr = fileUtils->getStringFromFile("Shaders/SimpleShader", "vsh").c_str();
-    std::string fstr = fileUtils->getStringFromFile("Shaders/SimpleShader", "fsh").c_str();
-    
-    GLchar *vertex_shader_source = new GLchar[vstr.size() + 1];
-    
-    GLchar *fragment_shader_source = new GLchar[fstr.size() + 1];
-    
-    std::strcpy(vertex_shader_source, vstr.c_str());
-    std::strcpy(fragment_shader_source, fstr.c_str());
-    
-    _program = GLProgram::createWithByteArray(vertex_shader_source, fragment_shader_source);
-    
-    delete[] vertex_shader_source;
-    delete[] fragment_shader_source;
+    _program = GLProgram::createWithFile("Shaders/SimpleShader", "Shaders/SimpleShader");
     
     _program->use();
     

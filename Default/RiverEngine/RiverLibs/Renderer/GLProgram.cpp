@@ -7,6 +7,7 @@
 //
 
 #include "GLProgram.hpp"
+#include "FileUtils.hpp"
 #include <assert.h>
 
 const char* GLProgram::ATTRIBUTE_NAME_POSITION = "attr_pos";
@@ -94,7 +95,23 @@ GLProgram* GLProgram::createWithByteArray(const char* vertex_shader_source, cons
 
 GLProgram* GLProgram::createWithFile(const std::string& vShaderFileName, const std::string& fShaderFileName)
 {
-    auto ret = new (std::nothrow) GLProgram();
+    auto fileUtils = FileUtils::getInstance();
+    
+    std::string vstr = fileUtils->getStringFromFile(vShaderFileName, "vsh").c_str();
+    std::string fstr = fileUtils->getStringFromFile(fShaderFileName, "fsh").c_str();
+    
+    GLchar *vertex_shader_source = new GLchar[vstr.size() + 1];
+    
+    GLchar *fragment_shader_source = new GLchar[fstr.size() + 1];
+    
+    std::strcpy(vertex_shader_source, vstr.c_str());
+    std::strcpy(fragment_shader_source, fstr.c_str());
+    
+    auto ret = GLProgram::createWithByteArray(vertex_shader_source, fragment_shader_source);
+    
+    delete[] vertex_shader_source;
+    delete[] fragment_shader_source;
+    
     if(ret)
     { 
         return ret;
