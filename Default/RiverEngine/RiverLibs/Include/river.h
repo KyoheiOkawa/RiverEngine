@@ -18,5 +18,6 @@
 #include "Director.hpp"
 
 #include <vector>
+#include <math.h>
 
 #endif /* river_h */
