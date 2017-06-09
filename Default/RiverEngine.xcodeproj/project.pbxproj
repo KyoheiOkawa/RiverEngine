@@ -16,6 +16,7 @@
 		D611091C1EC6B5A100B89DFE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D611091A1EC6B5A100B89DFE /* LaunchScreen.storyboard */; };
 		D611094A1EC6BBBA00B89DFE /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D61109491EC6BBBA00B89DFE /* UIKit.framework */; };
 		D611094C1EC6BBC300B89DFE /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D611094B1EC6BBC300B89DFE /* OpenGLES.framework */; };
+		D6180CE11EEA50D600F9F60B /* Sprite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6180CDF1EEA50D600F9F60B /* Sprite.cpp */; };
 		D64208A41ED68FC3009833A2 /* Application.mm in Sources */ = {isa = PBXBuildFile; fileRef = D64208931ED68FC3009833A2 /* Application.mm */; };
 		D64208A51ED68FC3009833A2 /* Director.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D64208941ED68FC3009833A2 /* Director.cpp */; };
 		D64208A61ED68FC3009833A2 /* Scene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D64208961ED68FC3009833A2 /* Scene.cpp */; };
@@ -62,6 +63,8 @@
 		D611092D1EC6B5A100B89DFE /* RiverEngineUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RiverEngineUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D61109491EC6BBBA00B89DFE /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		D611094B1EC6BBC300B89DFE /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
+		D6180CDF1EEA50D600F9F60B /* Sprite.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Sprite.cpp; sourceTree = "<group>"; };
+		D6180CE01EEA50D600F9F60B /* Sprite.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Sprite.hpp; sourceTree = "<group>"; };
 		D64208921ED68FC3009833A2 /* Application.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Application.h; sourceTree = "<group>"; };
 		D64208931ED68FC3009833A2 /* Application.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Application.mm; sourceTree = "<group>"; };
 		D64208941ED68FC3009833A2 /* Director.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Director.cpp; sourceTree = "<group>"; };
@@ -223,6 +226,8 @@
 			children = (
 				D6535F7E1EDFC43F00632E0B /* GameObject.cpp */,
 				D6535F7F1EDFC43F00632E0B /* GameObject.hpp */,
+				D6180CDF1EEA50D600F9F60B /* Sprite.cpp */,
+				D6180CE01EEA50D600F9F60B /* Sprite.hpp */,
 			);
 			path = GameObject;
 			sourceTree = "<group>";
@@ -383,6 +388,7 @@
 			files = (
 				D61109111EC6B5A100B89DFE /* ViewController.mm in Sources */,
 				D64208A61ED68FC3009833A2 /* Scene.cpp in Sources */,
+				D6180CE11EEA50D600F9F60B /* Sprite.cpp in Sources */,
 				D6535F841EDFC84D00632E0B /* HelloWorldScene.cpp in Sources */,
 				D6535F801EDFC43F00632E0B /* GameObject.cpp in Sources */,
 				D64208AA1ED68FC3009833A2 /* support_gl.mm in Sources */,

@@ -33,3 +33,12 @@ bool Scene::init()
 {
     return true;
 }
+
+void Scene::draw()
+{
+    for(auto object : _gameObjects)
+    {
+        object->update();
+        object->draw();
+    }
+}

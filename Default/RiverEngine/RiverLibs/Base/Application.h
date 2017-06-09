@@ -50,6 +50,10 @@ public:
         return _viewController;
     }
     
+    float getDeltaTime(){
+        return _deltaTime;
+    }
+    
     void setSurfaceWidth(int width){
         _surface_width = width;
     }

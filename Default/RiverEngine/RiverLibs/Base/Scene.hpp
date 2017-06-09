@@ -10,11 +10,15 @@
 #define Scene_hpp
 
 #include <stdio.h>
+#include <vector>
+#include "GameObject.hpp"
 
 class Scene{
 protected:
     Scene();
     virtual ~Scene();
+    std::vector<GameObject*> _gameObjects;
+    
 public:
     static Scene* create();
     
@@ -22,7 +26,11 @@ public:
     
     virtual void update(){}
     
-    virtual void draw(){}
+    virtual void draw();
+    
+    virtual void addGameObject(GameObject* gameObject){
+        _gameObjects.push_back(gameObject);
+    }
 };
 
 #endif /* Scene_hpp */

@@ -9,10 +9,14 @@
 #ifndef river_h
 #define river_h
 
+#include "Application.h"
 #include "GameObject.hpp"
+#include "Sprite.hpp"
 #include "Scene.hpp"
 #include "GLProgram.hpp"
 #include "FileUtils.hpp"
 #include "Director.hpp"
+
+#include <vector>
 
 #endif /* river_h */
