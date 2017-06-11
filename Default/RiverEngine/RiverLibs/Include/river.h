@@ -10,14 +10,17 @@
 #define river_h
 
 #include "Application.h"
+#include "Director.hpp"
+#include "Scene.hpp"
+#include "Helper.hpp"
 #include "GameObject.hpp"
 #include "Sprite.hpp"
-#include "Scene.hpp"
 #include "GLProgram.hpp"
 #include "FileUtils.hpp"
-#include "Director.hpp"
 
+#include <assert.h>
 #include <vector>
 #include <math.h>
+#include <memory>
 
 #endif /* river_h */

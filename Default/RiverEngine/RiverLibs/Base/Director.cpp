@@ -6,7 +6,7 @@
 //  Copyright © 2017年 BiGRiVER. All rights reserved.
 //
 
-#include "Director.hpp"
+#include "river.h"
 
 Director* Director::_director = nullptr;
 

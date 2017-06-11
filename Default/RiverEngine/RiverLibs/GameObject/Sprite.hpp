@@ -10,14 +10,10 @@
 #define Sprite_hpp
 
 #include <stdio.h>
-#include "GLProgram.hpp"
+#include <memory>
 
 class Sprite : public GameObject
 {
-protected:
-    Sprite();
-    virtual ~Sprite();
-    
     int pixel_x = 50;
     int pixel_y = 100;
     int pixel_width = 200;
@@ -26,11 +22,15 @@ protected:
     GLProgram* _useProgram;
     
 public:
+    Sprite();
+    virtual ~Sprite();
+    
+    
     virtual void setUseProgram(GLProgram* program){
         _useProgram = program;
     }
     
-    static Sprite* create();
+    static std::shared_ptr<Sprite> create();
     
     virtual bool init();
     

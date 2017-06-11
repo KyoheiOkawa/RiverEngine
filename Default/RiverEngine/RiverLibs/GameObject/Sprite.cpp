@@ -18,9 +18,9 @@ Sprite::~Sprite()
     
 }
 
-Sprite* Sprite::create()
+std::shared_ptr<Sprite> Sprite::create()
 {
-    auto ret = new (std::nothrow) Sprite();
+    auto ret = std::shared_ptr<Sprite>(new Sprite());
     
     if(ret && ret->init())
     {

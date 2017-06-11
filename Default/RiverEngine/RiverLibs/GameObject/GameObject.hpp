@@ -11,15 +11,16 @@
 
 #include <stdio.h>
 #include <new>
+#include <memory>
 
-class GameObject
+class GameObject : public ObjectInterface,public ShapeInterface
 {
-protected:
-    GameObject();
-    virtual ~GameObject();
-    
 public:
-    static GameObject* create();
+    GameObject();
+    
+    virtual ~GameObject();
+
+    static std::shared_ptr<GameObject> create();
     
     virtual bool init(){ return true;};
     
@@ -27,5 +28,7 @@ public:
     
     virtual void draw(){};
 };
+
+
 
 #endif /* GameObject_hpp */

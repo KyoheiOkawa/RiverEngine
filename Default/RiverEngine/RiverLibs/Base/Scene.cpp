@@ -6,7 +6,7 @@
 //  Copyright © 2017年 BiGRiVER. All rights reserved.
 //
 
-#include "Scene.hpp"
+#include "river.h"
 
 Scene::Scene()
 {

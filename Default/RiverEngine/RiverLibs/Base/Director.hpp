@@ -10,7 +10,8 @@
 #define Director_hpp
 
 #include <stdio.h>
-#include "Scene.hpp"
+
+class Scene;
 
 class Director{
 private:

@@ -6,7 +6,7 @@
 //  Copyright © 2017年 BiGRiVER. All rights reserved.
 //
 
-#include "GameObject.hpp"
+#include "river.h"
 
 GameObject::GameObject()
 {
@@ -18,9 +18,10 @@ GameObject::~GameObject()
     
 }
 
-GameObject* GameObject::create()
+std::shared_ptr<GameObject> GameObject::create()
 {
-    auto ret = new (std::nothrow) GameObject();
+    auto gameObject = new GameObject();
+    auto ret = gameObject->getThis<GameObject>();
     
     if(ret && ret->init())
     {

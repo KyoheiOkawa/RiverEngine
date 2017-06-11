@@ -10,14 +10,15 @@
 #define Scene_hpp
 
 #include <stdio.h>
-#include <vector>
-#include "GameObject.hpp"
+#include <memory>
+
+class GameObject;
 
 class Scene{
 protected:
     Scene();
     virtual ~Scene();
-    std::vector<GameObject*> _gameObjects;
+    std::vector<std::shared_ptr<GameObject>> _gameObjects;
     
 public:
     static Scene* create();
@@ -28,7 +29,7 @@ public:
     
     virtual void draw();
     
-    virtual void addGameObject(GameObject* gameObject){
+    virtual void addGameObject(std::shared_ptr<GameObject> gameObject){
         _gameObjects.push_back(gameObject);
     }
 };
