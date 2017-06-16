@@ -18,10 +18,29 @@ GameObject::~GameObject()
     
 }
 
+std::shared_ptr<Component> GameObject::searchComponent(std::type_index typeId)const
+{
+    auto it = _compMap.find(typeId);
+    if(it != _compMap.end()){
+        return it->second;
+    }
+    
+    return nullptr;
+}
+
+void GameObject::addMakedComponent(std::type_index typeId, const std::shared_ptr<Component>& ptr)
+{
+    if(!searchComponent(typeId)){
+        _compOrder.push_back(typeId);
+    }
+    
+    _compMap[typeId] = ptr;
+    ptr->attachGameObject(getThis<GameObject>());
+}
+
 std::shared_ptr<GameObject> GameObject::create()
 {
-    auto gameObject = new GameObject();
-    auto ret = gameObject->getThis<GameObject>();
+    auto ret = std::shared_ptr<GameObject>(new GameObject());
     
     if(ret && ret->init())
     {

@@ -17,6 +17,7 @@
 #include "Sprite.hpp"
 #include "GLProgram.hpp"
 #include "FileUtils.hpp"
+#include "Component.hpp"
 
 #include <assert.h>
 #include <vector>

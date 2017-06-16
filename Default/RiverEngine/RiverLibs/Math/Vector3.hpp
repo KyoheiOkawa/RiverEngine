@@ -10,6 +10,7 @@
 #define Vector3_hpp
 
 #include <stdio.h>
+#include <math.h>
 
 class Vector3
 {

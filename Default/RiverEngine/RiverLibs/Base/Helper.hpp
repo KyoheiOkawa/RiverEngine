@@ -61,4 +61,17 @@ private:
     ShapeInterface& operator=(const ShapeInterface&&) = delete;
 };
 
+class ObjectFactory
+{
+public:
+    template<typename T,typename... Ts>
+    static std::shared_ptr<T> create(Ts&&... params){
+        std::shared_ptr<T> ptr = std::shared_ptr<T>(new T(params...));
+        
+        ptr->init();
+        
+        return ptr;
+    }
+};
+
 #endif /* Helper_hpp */

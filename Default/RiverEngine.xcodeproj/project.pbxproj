@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D610B6001EF4227000AB5048 /* Matrix4x4.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D610B5FE1EF4227000AB5048 /* Matrix4x4.cpp */; };
 		D611090B1EC6B5A000B89DFE /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D611090A1EC6B5A000B89DFE /* main.m */; };
 		D611090E1EC6B5A000B89DFE /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D611090D1EC6B5A000B89DFE /* AppDelegate.m */; };
 		D61109111EC6B5A100B89DFE /* ViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = D61109101EC6B5A100B89DFE /* ViewController.mm */; };
@@ -27,7 +28,7 @@
 		D6535F801EDFC43F00632E0B /* GameObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6535F7E1EDFC43F00632E0B /* GameObject.cpp */; };
 		D6535F841EDFC84D00632E0B /* HelloWorldScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6535F821EDFC84D00632E0B /* HelloWorldScene.cpp */; };
 		D6910E921EED8F2100550403 /* Helper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6910E901EED8F2100550403 /* Helper.cpp */; };
-		D6CA24201EEACFF900EEC572 /* Vector3.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6CA241E1EEACFF900EEC572 /* Vector3.cpp */; };
+		D6A713FC1EF42E8500AD651F /* Vector3.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6A713FA1EF42E8500AD651F /* Vector3.cpp */; };
 		D6CA24241EECE64400EEC572 /* Component.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6CA24221EECE64400EEC572 /* Component.cpp */; };
 		D6D6458F1ED7205100FDA749 /* FileUtils.mm in Sources */ = {isa = PBXBuildFile; fileRef = D6D6458D1ED7205100FDA749 /* FileUtils.mm */; };
 		D6D645911ED72E6800FDA749 /* Shaders in Resources */ = {isa = PBXBuildFile; fileRef = D6D645901ED72E6800FDA749 /* Shaders */; };
@@ -51,6 +52,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		D610B5FE1EF4227000AB5048 /* Matrix4x4.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Matrix4x4.cpp; sourceTree = "<group>"; };
+		D610B5FF1EF4227000AB5048 /* Matrix4x4.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Matrix4x4.hpp; sourceTree = "<group>"; };
+		D610B6011EF42D0500AB5048 /* MathMacro.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MathMacro.h; sourceTree = "<group>"; };
 		D61109061EC6B5A000B89DFE /* RiverEngine.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RiverEngine.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D611090A1EC6B5A000B89DFE /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		D611090C1EC6B5A000B89DFE /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -89,8 +93,8 @@
 		D6535F861EDFC8B100632E0B /* river.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = river.h; sourceTree = "<group>"; };
 		D6910E901EED8F2100550403 /* Helper.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Helper.cpp; sourceTree = "<group>"; };
 		D6910E911EED8F2100550403 /* Helper.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Helper.hpp; sourceTree = "<group>"; };
-		D6CA241E1EEACFF900EEC572 /* Vector3.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Vector3.cpp; sourceTree = "<group>"; };
-		D6CA241F1EEACFF900EEC572 /* Vector3.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Vector3.hpp; sourceTree = "<group>"; };
+		D6A713FA1EF42E8500AD651F /* Vector3.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Vector3.cpp; sourceTree = "<group>"; };
+		D6A713FB1EF42E8500AD651F /* Vector3.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Vector3.hpp; sourceTree = "<group>"; };
 		D6CA24221EECE64400EEC572 /* Component.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Component.cpp; sourceTree = "<group>"; };
 		D6CA24231EECE64400EEC572 /* Component.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Component.hpp; sourceTree = "<group>"; };
 		D6D6458D1ED7205100FDA749 /* FileUtils.mm */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; fileEncoding = 4; path = FileUtils.mm; sourceTree = "<group>"; };
@@ -125,6 +129,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		D610B5FD1EF4221200AB5048 /* Math */ = {
+			isa = PBXGroup;
+			children = (
+				D6A713FA1EF42E8500AD651F /* Vector3.cpp */,
+				D6A713FB1EF42E8500AD651F /* Vector3.hpp */,
+				D610B5FE1EF4227000AB5048 /* Matrix4x4.cpp */,
+				D610B5FF1EF4227000AB5048 /* Matrix4x4.hpp */,
+				D610B6011EF42D0500AB5048 /* MathMacro.h */,
+			);
+			path = Math;
+			sourceTree = "<group>";
+		};
 		D61108FD1EC6B5A000B89DFE = {
 			isa = PBXGroup;
 			children = (
@@ -184,6 +200,7 @@
 		D64208901ED68FC3009833A2 /* RiverLibs */ = {
 			isa = PBXGroup;
 			children = (
+				D610B5FD1EF4221200AB5048 /* Math */,
 				D6CA24211EECE5FD00EEC572 /* Component */,
 				D6535F851EDFC87F00632E0B /* Include */,
 				D6535F7D1EDFC3E300632E0B /* GameObject */,
@@ -203,8 +220,6 @@
 				D64208951ED68FC3009833A2 /* Director.hpp */,
 				D64208961ED68FC3009833A2 /* Scene.cpp */,
 				D64208971ED68FC3009833A2 /* Scene.hpp */,
-				D6CA241E1EEACFF900EEC572 /* Vector3.cpp */,
-				D6CA241F1EEACFF900EEC572 /* Vector3.hpp */,
 				D6910E901EED8F2100550403 /* Helper.cpp */,
 				D6910E911EED8F2100550403 /* Helper.hpp */,
 			);
@@ -411,9 +426,10 @@
 			files = (
 				D61109111EC6B5A100B89DFE /* ViewController.mm in Sources */,
 				D64208A61ED68FC3009833A2 /* Scene.cpp in Sources */,
-				D6CA24201EEACFF900EEC572 /* Vector3.cpp in Sources */,
 				D6180CE11EEA50D600F9F60B /* Sprite.cpp in Sources */,
+				D610B6001EF4227000AB5048 /* Matrix4x4.cpp in Sources */,
 				D6535F841EDFC84D00632E0B /* HelloWorldScene.cpp in Sources */,
+				D6A713FC1EF42E8500AD651F /* Vector3.cpp in Sources */,
 				D6535F801EDFC43F00632E0B /* GameObject.cpp in Sources */,
 				D64208AA1ED68FC3009833A2 /* support_gl.mm in Sources */,
 				D611090E1EC6B5A000B89DFE /* AppDelegate.m in Sources */,

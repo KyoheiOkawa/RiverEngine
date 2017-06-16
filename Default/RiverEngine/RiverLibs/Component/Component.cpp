@@ -7,3 +7,14 @@
 //
 
 #include "Component.hpp"
+
+Component::Component(const std::shared_ptr<GameObject>& GameObjectPtr):
+_gameObject(GameObjectPtr)
+{
+    
+}
+
+Component::~Component()
+{
+    
+}

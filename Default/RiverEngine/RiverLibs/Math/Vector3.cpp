@@ -7,7 +7,6 @@
 //
 
 #include "Vector3.hpp"
-#include <math.h>
 
 inline Vector3::Vector3()
 {
