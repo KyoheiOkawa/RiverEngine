@@ -23,11 +23,11 @@ public:
     Vector3();
     Vector3(float xi, float yi, float zi);
     
-    static Vector3 ZERO(){return Vector3(0,0,0);}
-    static Vector3 ONE(){return Vector3(1,1,1);}
-    static Vector3 RIGHT(){return Vector3(1,0,0);}
-    static Vector3 UP(){return Vector3(0,1,0);}
-    static Vector3 FORWARD(){return Vector3(0,0,1);}
+    static Vector3 ZERO();
+    static Vector3 ONE();
+    static Vector3 RIGHT();
+    static Vector3 UP();
+    static Vector3 FORWARD();
     
     float magnitude();
     void normalize();
@@ -36,15 +36,19 @@ public:
     float dot(const Vector3 &v) const;
     Vector3 cross(const Vector3 &v) const;
     
+    Vector3& operator=(const Vector3& other);
     Vector3& operator+=(Vector3 u);
     Vector3& operator-=(Vector3 u);
     Vector3& operator*=(float s);
     Vector3& operator/=(float s);
     Vector3 operator-();
-    Vector3 operator+(Vector3 u);
-    Vector3 operator-(Vector3 u);
-    Vector3 operator^(Vector3 u);
+    Vector3 operator+(const Vector3& u);
+    Vector3 operator-(const Vector3& u);
+    Vector3 operator*(float f);
+    Vector3 operator^(const Vector3& u);
     
 };
+
+
 
 #endif /* Vector3_hpp */

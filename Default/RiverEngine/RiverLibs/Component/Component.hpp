@@ -10,7 +10,8 @@
 #define Component_hpp
 
 #include <stdio.h>
-#include "river.h"
+
+class GameObject;
 
 class Component : public ObjectInterface,public ShapeInterface
 {

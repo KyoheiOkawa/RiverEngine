@@ -8,26 +8,26 @@
 
 #include "Vector3.hpp"
 
-inline Vector3::Vector3()
+Vector3::Vector3()
 {
     x = 0;
     y = 0;
     z = 0;
 }
 
-inline Vector3::Vector3(float xi, float yi, float zi)
+Vector3::Vector3(float xi, float yi, float zi)
 {
     x = xi;
     y = yi;
     z = zi;
 }
 
-inline float Vector3::magnitude()
+float Vector3::magnitude()
 {
     return sqrtf(x*x + y*y + z*z);
 }
 
-inline void Vector3::normalize()
+void Vector3::normalize()
 {
     float m = sqrtf(x*x + y*y + z*z);
     if(m <= tol) m = 1;
@@ -40,7 +40,7 @@ inline void Vector3::normalize()
     if(fabs(z) < tol) z = 0.0f;
 }
 
-inline Vector3 Vector3::getNormalized()
+Vector3 Vector3::getNormalized()
 {
     Vector3 tmp;
     
@@ -57,26 +57,26 @@ inline Vector3 Vector3::getNormalized()
     return tmp;
 }
 
-inline void Vector3::reverse()
+void Vector3::reverse()
 {
     x = -x;
     y = -y;
     z = -z;
 }
 
-inline float Vector3::dot(const Vector3 &v) const
+float Vector3::dot(const Vector3 &v) const
 {
     return x * v.x + y * v.y + z * v.z;
 }
 
-inline Vector3 Vector3::cross(const Vector3 &v) const
+Vector3 Vector3::cross(const Vector3 &v) const
 {
     return Vector3(y * v.z - z * v.y,
                    z * v.x - x * v.z,
                    x * v.y - y * v.x);
 }
 
-inline Vector3& Vector3::operator+=(Vector3 u)
+Vector3& Vector3::operator+=(Vector3 u)
 {
     x += u.x;
     y += u.y;
@@ -85,7 +85,7 @@ inline Vector3& Vector3::operator+=(Vector3 u)
     return *this;
 }
 
-inline Vector3& Vector3::operator-=(Vector3 u)
+Vector3& Vector3::operator-=(Vector3 u)
 {
     x -= u.x;
     y -= u.y;
@@ -94,7 +94,7 @@ inline Vector3& Vector3::operator-=(Vector3 u)
     return *this;
 }
 
-inline Vector3& Vector3::operator*=(float s)
+Vector3& Vector3::operator*=(float s)
 {
     x *= s;
     y *= s;
@@ -103,7 +103,7 @@ inline Vector3& Vector3::operator*=(float s)
     return *this;
 }
 
-inline Vector3& Vector3::operator/=(float s)
+Vector3& Vector3::operator/=(float s)
 {
     x /= s;
     y /= s;
@@ -112,12 +112,23 @@ inline Vector3& Vector3::operator/=(float s)
     return *this;
 }
 
-inline Vector3 Vector3::operator-()
+Vector3& Vector3::operator=(const Vector3& other){
+    //自己代入の抑制
+    if(this != &other){
+        x = other.x;
+        y = other.y;
+        z = other.z;
+    }
+    
+    return *this;
+}
+
+Vector3 Vector3::operator-()
 {
     return Vector3(-x,-y,-z);
 }
 
-inline Vector3 Vector3::operator+(Vector3 u)
+Vector3 Vector3::operator+(const Vector3& u)
 {
     Vector3 tmp;
     tmp.x = x + u.x;
@@ -127,7 +138,7 @@ inline Vector3 Vector3::operator+(Vector3 u)
     return tmp;
 }
 
-inline Vector3 Vector3::operator-(Vector3 u)
+Vector3 Vector3::operator-(const Vector3& u)
 {
     Vector3 tmp;
     tmp.x = x - u.x;
@@ -137,7 +148,17 @@ inline Vector3 Vector3::operator-(Vector3 u)
     return tmp;
 }
 
-inline Vector3 Vector3::operator^(Vector3 u)
+Vector3 Vector3::operator*(float f)
+{
+    Vector3 tmp;
+    tmp.x = x*f;
+    tmp.y = y*f;
+    tmp.z = z*f;
+    
+    return tmp;
+}
+
+Vector3 Vector3::operator^(const Vector3& u)
 {
     Vector3 tmp;
     tmp.x = y * u.z - z * u.y;
@@ -145,4 +166,24 @@ inline Vector3 Vector3::operator^(Vector3 u)
     tmp.z = x * u.y - y * u.x;
     
     return tmp;
+}
+
+Vector3 Vector3::ZERO(){
+    return Vector3(0,0,0);
+}
+
+Vector3 Vector3::ONE(){
+    return Vector3(1,1,1);
+}
+
+Vector3 Vector3::RIGHT(){
+    return Vector3(1,0,0);
+}
+
+Vector3 Vector3::UP(){
+    return Vector3(0,1,0);
+}
+
+Vector3 Vector3::FORWARD(){
+    return Vector3(0,0,1);
 }

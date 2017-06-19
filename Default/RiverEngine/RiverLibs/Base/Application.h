@@ -5,6 +5,10 @@
 //  Created by 大川恭平 on 2017/05/13.
 //  Copyright © 2017年 BiGRiVER. All rights reserved.
 //
+
+#ifndef Application_h
+#define Application_h
+
 #import <OpenGLES/ES2/gl.h>
 #import <OpenGLES/ES2/glext.h>
 #include "GLProgram.hpp"
@@ -87,3 +91,5 @@ public:
     ///解放処理
     void destroy();
 };
+
+#endif

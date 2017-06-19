@@ -9,6 +9,9 @@
 #ifndef river_h
 #define river_h
 
+#include "Vector3.hpp"
+#include "Matrix4x4.hpp"
+
 #include "Application.h"
 #include "Director.hpp"
 #include "Scene.hpp"
@@ -18,10 +21,11 @@
 #include "GLProgram.hpp"
 #include "FileUtils.hpp"
 #include "Component.hpp"
+#include "Transform.hpp"
 
-#include <assert.h>
-#include <vector>
-#include <math.h>
-#include <memory>
+//#include <assert.h>
+//#include <vector>
+//#include <math.h>
+//#include <memory>
 
 #endif /* river_h */

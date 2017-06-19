@@ -35,13 +35,20 @@ bool Sprite::init()
     if(!GameObject::init())
         return false;
     
+    auto transPtr = getTransform();
+    transPtr->setPosition(Vector3(50,100,0));
+    
     return true;
 }
 
 void Sprite::update()
 {
-    pixel_x += 1;
-    pixel_y += 1;
+//    pixel_x += 1;
+//    pixel_y += 1;
+    auto transPtr = getTransform();
+    Vector3 add = Vector3(10,10,0) * Application::getInstance()->getDeltaTime();
+    transPtr->setPosition(transPtr->getPosition() + add);
+    
 }
 
 void Sprite::draw()
@@ -52,10 +59,12 @@ void Sprite::draw()
     auto width = Application::getInstance()->getSurfaceWidth();
     auto height = Application::getInstance()->getSurfaceHeight();
     
-    GLfloat VERTEX_LEFT = ((GLfloat)pixel_x / (GLfloat)width) * 2.0f - 1.0f;
-    GLfloat VERTEX_RIGHT = ((GLfloat)(pixel_x + pixel_width) / (GLfloat)width) * 2.0f - 1.0f;
-    GLfloat VERTEX_TOP = (((GLfloat)pixel_y / (GLfloat) height) * 2.0f - 1.0f) * -1.0f;
-    GLfloat VERTEX_BOTTOM = (((GLfloat)(pixel_y + pixel_height) / (GLfloat) height) * 2.0f - 1.0f) * -1.0f;
+    auto pos = getTransform()->getPosition();
+    
+    GLfloat VERTEX_LEFT = ((GLfloat)pos.x / (GLfloat)width) * 2.0f - 1.0f;
+    GLfloat VERTEX_RIGHT = ((GLfloat)(pos.x + pixel_width) / (GLfloat)width) * 2.0f - 1.0f;
+    GLfloat VERTEX_TOP = (((GLfloat)pos.y / (GLfloat) height) * 2.0f - 1.0f) * -1.0f;
+    GLfloat VERTEX_BOTTOM = (((GLfloat)(pos.y + pixel_height) / (GLfloat) height) * 2.0f - 1.0f) * -1.0f;
     
     const GLfloat position[] = {
         VERTEX_LEFT,VERTEX_TOP,

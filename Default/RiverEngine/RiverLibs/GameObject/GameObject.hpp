@@ -17,12 +17,14 @@
 #include <list>
 
 class Component;
+class Transform;
 
 class GameObject : public ObjectInterface,public ShapeInterface
 {
 protected:
     std::map<std::type_index,std::shared_ptr<Component>> _compMap;
     std::list<std::type_index> _compOrder;
+    std::shared_ptr<Transform> _transform;
 private:
     std::shared_ptr<Component> searchComponent(std::type_index typeId)const;
     
@@ -31,6 +33,13 @@ public:
     GameObject();
     
     virtual ~GameObject();
+    
+    
+    std::shared_ptr<Transform> getTransform(){
+        return _transform;
+    }
+    
+    void setTransform(const std::shared_ptr<Transform>& ptr);
     
     template<typename T,typename... Ts>
     std::shared_ptr<T> addComponent(Ts&&... params){
@@ -77,7 +86,7 @@ public:
 
     static std::shared_ptr<GameObject> create();
     
-    virtual bool init(){ return true;};
+    virtual bool init();
     
     virtual void update(){};
     

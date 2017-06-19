@@ -6,7 +6,7 @@
 //  Copyright © 2017年 BiGRiVER. All rights reserved.
 //
 
-#include "Component.hpp"
+#include "river.h"
 
 Component::Component(const std::shared_ptr<GameObject>& GameObjectPtr):
 _gameObject(GameObjectPtr)
