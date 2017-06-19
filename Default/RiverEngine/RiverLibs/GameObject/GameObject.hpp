@@ -52,6 +52,28 @@ public:
             return newPtr;
         }
     }
+    
+    template<typename T>
+    std::shared_ptr<T> getComponent(bool exceptionActive = true) const{
+        auto ptr = searchComponent(std::type_index(typeid(T)));
+        if(ptr){
+            auto retPtr = std::dynamic_pointer_cast<T>(ptr);
+            
+            //コンポーネントはありましたが。
+            //指定の方にキャストできませんでした。
+            assert(retPtr);
+            
+            return retPtr;
+        }
+        else{
+            if(exceptionActive){
+                //コンポーネントが見つかりません
+                assert(false);
+            }
+        }
+        
+        return nullptr;
+    }
 
     static std::shared_ptr<GameObject> create();
     
