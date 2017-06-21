@@ -11,6 +11,8 @@
 
 #include <stdio.h>
 #include <memory.h>
+#include <map>
+#include <string>
 
 class Scene;
 
@@ -19,6 +21,7 @@ private:
     Director(){}
     static Director* _director;
     std::shared_ptr<Scene> _scene;
+    std::map<std::string,GLProgram*> _programMap;
 public:
     static Director* getInstance();
     void updateScene();
@@ -29,6 +32,12 @@ public:
     std::shared_ptr<Scene> getScene(){
         return _scene;
     }
+    
+    void createDefaultGLPrograms();
+    
+    GLProgram* getGLProgram(std::string name);
+    
+    void addGLProgram(GLProgram* program,std::string name);
 };
 
 #endif /* Director_hpp */

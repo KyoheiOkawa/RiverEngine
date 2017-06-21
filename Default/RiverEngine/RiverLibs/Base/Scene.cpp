@@ -36,9 +36,21 @@ bool Scene::init()
 
 void Scene::draw()
 {
+
+}
+
+void Scene::gameObjectUpdate()
+{
     for(auto object : _gameObjects)
     {
         object->update();
+    }
+}
+
+void Scene::gameObjectDraw()
+{
+    for(auto object : _gameObjects)
+    {
         object->draw();
     }
 }

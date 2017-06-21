@@ -35,21 +35,12 @@ bool HelloWorldScene::init()
     if(!Scene::init())
         return false;
     
-//    _program = GLProgram::createWithFile("Shaders/SimpleShader", "Shaders/SimpleShader");
-//    
-//    _program->use();
-    
-    static GLfloat position[] = {
-        0.0f,1.0f,
-        1.0f,-1.0f,
-        -1.0f,-1.0f
-    };
-    
-//    _position = position;
-    
     auto sprite = Sprite::create();
     this->addGameObject(sprite);
-    //sprite->setUseProgram(_program);
+    
+    auto sprite2 = Sprite::create();
+    sprite2->getTransform()->setPosition(Vector3(0,600,0));
+    this->addGameObject(sprite2);
     
     return true;
 }
@@ -61,11 +52,5 @@ void HelloWorldScene::update()
 
 void HelloWorldScene::draw()
 {
-//    glEnableVertexAttribArray(0);
-//    
-//    glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 0, (GLvoid*)_position);
-//    
-//    glDrawArrays(GL_TRIANGLES, 0, 3);
-    
     Scene::draw();
 }

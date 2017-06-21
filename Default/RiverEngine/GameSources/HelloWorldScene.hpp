@@ -14,9 +14,6 @@
 
 class HelloWorldScene : public Scene
 {
-//    GLProgram* _program;
-//    
-//    GLfloat* _position;
 public:
     HelloWorldScene();
     virtual ~HelloWorldScene();
@@ -28,10 +25,6 @@ public:
     virtual void update();
     
     virtual void draw();
-    
-//    GLProgram* getProgram(){
-//        return _program;
-//    }
 };
 
 

@@ -30,8 +30,6 @@ private:
     void* _viewController;
     
     float _deltaTime;
-
-    GLProgram* _program;
  
 public:
     static Application* getInstance();
@@ -92,10 +90,6 @@ public:
     void rendering();
     ///解放処理
     void destroy();
-    
-    GLProgram* getProgram(){
-        return _program;
-    }
 };
 
 #endif

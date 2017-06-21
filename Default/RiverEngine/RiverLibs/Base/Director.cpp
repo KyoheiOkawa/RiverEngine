@@ -15,6 +15,7 @@ Director* Director::getInstance()
     
     if(_director == nullptr){
         _director = new Director();
+        _director->createDefaultGLPrograms();
     }
     
     return _director;
@@ -23,9 +24,34 @@ Director* Director::getInstance()
 void Director::updateScene()
 {
     _scene->update();
+    _scene->gameObjectUpdate();
 }
 
 void Director::drawScene()
 {
     _scene->draw();
+    _scene->gameObjectDraw();
+}
+
+void Director::createDefaultGLPrograms()
+{
+    _programMap["SpriteShader"] = GLProgram::createWithFile("Shaders/SimpleShader", "Shaders/SimpleShader");
+}
+
+GLProgram* Director::getGLProgram(std::string name)
+{
+    auto ret = _programMap[name];
+    //シェーダーが見つかりません
+    assert(ret);
+    
+    return ret;
+}
+
+void Director::addGLProgram(GLProgram* program,std::string name)
+{
+    auto check = _programMap[name];
+    //すでに同じ名前のプログラムが追加されています
+    assert(!check);
+    
+    _programMap[name] = program;
 }

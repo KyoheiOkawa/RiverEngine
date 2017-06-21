@@ -15,6 +15,7 @@
 #include <OpenGLES/ES2/glext.h>
 #include <string>
 #include <unordered_map>
+#include <assert.h>
 
 struct VertexAttrib
 {
@@ -62,11 +63,17 @@ public:
     }
     
     GLint getAttribLocation(GLchar* name){
-        return glGetAttribLocation(_program, name);
+        auto ret = glGetAttribLocation(_program, name);
+        assert(ret >= 0);
+        
+        return ret;
     }
     
     GLint getUnifLocation(GLchar* name){
-        return glGetUniformLocation(_program, name);
+        auto ret = glGetUniformLocation(_program, name);
+        assert(ret >= 0);
+        
+        return ret;
     }
 };
 

@@ -39,13 +39,11 @@ bool Sprite::init()
     auto transPtr = getTransform();
     transPtr->setPosition(Vector3(50,100,0));
     
-    auto app = Application::getInstance();
-    _useProgram = app->getProgram();
+    auto director = Director::getInstance();
+    _useProgram = director->getGLProgram("SpriteShader");
     
     _attr_pos = _useProgram->getAttribLocation("attr_pos");
-    assert(_attr_pos >= 0);
     _unif_matrix = _useProgram->getUnifLocation("unif_matrix");
-    assert(_unif_matrix >= 0);
     
     return true;
 }

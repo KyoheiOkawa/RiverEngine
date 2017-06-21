@@ -32,6 +32,10 @@ public:
     
     virtual void draw();
     
+    void gameObjectUpdate();
+    
+    void gameObjectDraw();
+    
     virtual void addGameObject(std::shared_ptr<GameObject> gameObject);
 };
 
