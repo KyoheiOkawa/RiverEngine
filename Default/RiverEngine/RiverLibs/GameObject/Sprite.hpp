@@ -14,12 +14,13 @@
 
 class Sprite : public GameObject
 {
-    int pixel_x = 50;
-    int pixel_y = 100;
-    int pixel_width = 200;
-    int pixel_height = 300;
+    int _spriteWidth = 256;
+    int _spriteHeight = 256;
     
     GLProgram* _useProgram;
+    
+    GLint _attr_pos;
+    GLint _unif_matrix;
     
 public:
     Sprite();

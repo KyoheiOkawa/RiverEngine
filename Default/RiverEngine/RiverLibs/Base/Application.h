@@ -30,10 +30,8 @@ private:
     void* _viewController;
     
     float _deltaTime;
-    
-    GLProgram* _program;
 
-    GLfloat* _position;
+    GLProgram* _program;
  
 public:
     static Application* getInstance();
@@ -55,9 +53,13 @@ public:
     }
     
     float getDeltaTime(){
+        if(_deltaTime > 1.0f){
+            return 0;
+        }
+        
         return _deltaTime;
     }
-    
+
     void setSurfaceWidth(int width){
         _surface_width = width;
     }
@@ -90,6 +92,10 @@ public:
     void rendering();
     ///解放処理
     void destroy();
+    
+    GLProgram* getProgram(){
+        return _program;
+    }
 };
 
 #endif

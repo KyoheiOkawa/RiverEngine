@@ -83,7 +83,6 @@ GLProgram* GLProgram::createWithByteArray(const char* vertex_shader_source, cons
         checkLinkError(program);
         
         ret->_program = program;
-        ret->bindDefaultVertexAttribs();
         
         return ret;
     }
@@ -166,21 +165,4 @@ void GLProgram::checkLinkError(const GLuint program)
         }
     }
     assert(linkSuccess == GL_TRUE);
-}
-
-void GLProgram::bindDefaultVertexAttribs()
-{
-    static const struct{
-        const char *attributeName;
-        int location;
-    } attribute_locations[] =
-    {
-        {GLProgram::ATTRIBUTE_NAME_POSITION,GLProgram::VERTEX_ATTRIB_POSITION}
-    };
-    
-    const int size = sizeof(attribute_locations) / sizeof(attribute_locations[0]);
-    
-    for(int i = 0; i < size; i++){
-        glBindAttribLocation(_program, attribute_locations[i].location, attribute_locations[i].attributeName);
-    }
 }

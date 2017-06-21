@@ -10,6 +10,7 @@
 #define Director_hpp
 
 #include <stdio.h>
+#include <memory.h>
 
 class Scene;
 
@@ -17,15 +18,15 @@ class Director{
 private:
     Director(){}
     static Director* _director;
-    Scene* _scene;
+    std::shared_ptr<Scene> _scene;
 public:
     static Director* getInstance();
     void updateScene();
     void drawScene();
-    void setScene(Scene* scene){
+    void setScene(std::shared_ptr<Scene> scene){
         _scene = scene;
     }
-    Scene* getScene(){
+    std::shared_ptr<Scene> getScene(){
         return _scene;
     }
 };

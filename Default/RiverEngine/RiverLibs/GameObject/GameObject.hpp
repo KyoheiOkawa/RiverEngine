@@ -22,6 +22,7 @@ class Transform;
 class GameObject : public ObjectInterface,public ShapeInterface
 {
 protected:
+    std::shared_ptr<Scene> _scene;
     std::map<std::type_index,std::shared_ptr<Component>> _compMap;
     std::list<std::type_index> _compOrder;
     std::shared_ptr<Transform> _transform;
@@ -82,6 +83,14 @@ public:
         }
         
         return nullptr;
+    }
+    
+    void setScene(std::shared_ptr<Scene> scene){
+        _scene = scene;
+    }
+    
+    std::shared_ptr<Scene> getScene(){
+        return _scene;
     }
 
     static std::shared_ptr<GameObject> create();

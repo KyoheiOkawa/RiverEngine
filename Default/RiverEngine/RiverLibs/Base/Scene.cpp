@@ -18,9 +18,9 @@ Scene::~Scene()
     
 }
 
-Scene* Scene::create()
+std::shared_ptr<Scene> Scene::create()
 {
-    auto ret = new Scene();
+    auto ret = std::shared_ptr<Scene>(new Scene);
     if(ret && ret->init())
     {
         return ret;
@@ -41,4 +41,10 @@ void Scene::draw()
         object->update();
         object->draw();
     }
+}
+
+void Scene::addGameObject(std::shared_ptr<GameObject> gameObject)
+{
+    gameObject->setScene(getThis<Scene>());
+    _gameObjects.push_back(gameObject);
 }

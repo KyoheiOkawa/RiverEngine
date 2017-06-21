@@ -11,17 +11,20 @@
 
 #include <stdio.h>
 #include <memory>
+#include "Helper.hpp"
 
 class GameObject;
 
-class Scene{
+class Scene : public ObjectInterface
+{
 protected:
-    Scene();
-    virtual ~Scene();
     std::vector<std::shared_ptr<GameObject>> _gameObjects;
     
 public:
-    static Scene* create();
+    Scene();
+    virtual ~Scene();
+    
+    static std::shared_ptr<Scene> create();
     
     virtual bool init();
     
@@ -29,9 +32,7 @@ public:
     
     virtual void draw();
     
-    virtual void addGameObject(std::shared_ptr<GameObject> gameObject){
-        _gameObjects.push_back(gameObject);
-    }
+    virtual void addGameObject(std::shared_ptr<GameObject> gameObject);
 };
 
 #endif /* Scene_hpp */

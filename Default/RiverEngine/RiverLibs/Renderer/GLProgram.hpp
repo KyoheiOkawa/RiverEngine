@@ -36,7 +36,6 @@ protected:
     
     static void checkCompileError(const GLint shader);
     static void checkLinkError(const GLuint program);
-    void bindDefaultVertexAttribs();
     void clearShaser();
     
     GLProgram();
@@ -58,8 +57,16 @@ public:
     
     void use();
     
-    GLuint getProgram(){
+    GLuint& getProgram(){
         return _program;
+    }
+    
+    GLint getAttribLocation(GLchar* name){
+        return glGetAttribLocation(_program, name);
+    }
+    
+    GLint getUnifLocation(GLchar* name){
+        return glGetUniformLocation(_program, name);
     }
 };
 

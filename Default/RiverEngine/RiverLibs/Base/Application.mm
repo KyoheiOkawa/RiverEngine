@@ -54,6 +54,8 @@ void Application::initialize()
 //    };
 //    
 //    _position = position;
+    
+    _program = GLProgram::createWithFile("Shaders/SimpleShader", "Shaders/SimpleShader");
 }
 
 void Application::async()

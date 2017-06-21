@@ -14,20 +14,24 @@
 
 class HelloWorldScene : public Scene
 {
-    GLProgram* _program;
-    
-    GLfloat* _position;
-    
+//    GLProgram* _program;
+//    
+//    GLfloat* _position;
+public:
     HelloWorldScene();
     virtual ~HelloWorldScene();
-public:
-    static HelloWorldScene* createScene();
+    
+    static std::shared_ptr<Scene> createScene();
     
     virtual bool init();
     
     virtual void update();
     
     virtual void draw();
+    
+//    GLProgram* getProgram(){
+//        return _program;
+//    }
 };
 
 

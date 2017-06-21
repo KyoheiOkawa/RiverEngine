@@ -18,9 +18,9 @@ HelloWorldScene::~HelloWorldScene()
     
 }
 
-HelloWorldScene* HelloWorldScene::createScene()
+std::shared_ptr<Scene> HelloWorldScene::createScene()
 {
-    auto ret = new (std::nothrow) HelloWorldScene();
+    auto ret = std::shared_ptr<HelloWorldScene>(new HelloWorldScene());
     
     if(ret && ret->init())
     {
@@ -35,9 +35,9 @@ bool HelloWorldScene::init()
     if(!Scene::init())
         return false;
     
-    _program = GLProgram::createWithFile("Shaders/SimpleShader", "Shaders/SimpleShader");
-    
-    _program->use();
+//    _program = GLProgram::createWithFile("Shaders/SimpleShader", "Shaders/SimpleShader");
+//    
+//    _program->use();
     
     static GLfloat position[] = {
         0.0f,1.0f,
@@ -45,11 +45,11 @@ bool HelloWorldScene::init()
         -1.0f,-1.0f
     };
     
-    _position = position;
+//    _position = position;
     
     auto sprite = Sprite::create();
     this->addGameObject(sprite);
-    sprite->setUseProgram(_program);
+    //sprite->setUseProgram(_program);
     
     return true;
 }

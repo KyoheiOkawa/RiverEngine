@@ -7,6 +7,7 @@
 //
 
 #include "river.h"
+#include "HelloWorldScene.hpp"
 
 Sprite::Sprite()
 {
@@ -38,15 +39,21 @@ bool Sprite::init()
     auto transPtr = getTransform();
     transPtr->setPosition(Vector3(50,100,0));
     
+    auto app = Application::getInstance();
+    _useProgram = app->getProgram();
+    
+    _attr_pos = _useProgram->getAttribLocation("attr_pos");
+    assert(_attr_pos >= 0);
+    _unif_matrix = _useProgram->getUnifLocation("unif_matrix");
+    assert(_unif_matrix >= 0);
+    
     return true;
 }
 
 void Sprite::update()
 {
-//    pixel_x += 1;
-//    pixel_y += 1;
     auto transPtr = getTransform();
-    Vector3 add = Vector3(10,10,0) * Application::getInstance()->getDeltaTime();
+    Vector3 add = Vector3(100,100,0) * Application::getInstance()->getDeltaTime();
     transPtr->setPosition(transPtr->getPosition() + add);
     
 }
@@ -54,26 +61,36 @@ void Sprite::update()
 void Sprite::draw()
 {
     _useProgram->use();
-    glEnableVertexAttribArray(0);
+    glEnableVertexAttribArray(_attr_pos);
     
-    auto width = Application::getInstance()->getSurfaceWidth();
-    auto height = Application::getInstance()->getSurfaceHeight();
+    const GLfloat position[] = {
+        -0.5f,0.5f,
+        -0.5f,-0.5f,
+        0.5f,0.5f,
+        0.5f,-0.5f
+    };
+    
+    glVertexAttribPointer(_attr_pos, 2, GL_FLOAT, GL_FALSE, 0, (GLvoid*)position);
+    
+    auto app = Application::getInstance();
     
     auto pos = getTransform()->getPosition();
     
-    GLfloat VERTEX_LEFT = ((GLfloat)pos.x / (GLfloat)width) * 2.0f - 1.0f;
-    GLfloat VERTEX_RIGHT = ((GLfloat)(pos.x + pixel_width) / (GLfloat)width) * 2.0f - 1.0f;
-    GLfloat VERTEX_TOP = (((GLfloat)pos.y / (GLfloat) height) * 2.0f - 1.0f) * -1.0f;
-    GLfloat VERTEX_BOTTOM = (((GLfloat)(pos.y + pixel_height) / (GLfloat) height) * 2.0f - 1.0f) * -1.0f;
+    const GLfloat xScale = (GLfloat)_spriteWidth / (GLfloat) app->getSurfaceWidth() * 2.0f;
+    const GLfloat yScale = (GLfloat)_spriteHeight / (GLfloat) app->getSurfaceHeight() * 2.0f;
     
-    const GLfloat position[] = {
-        VERTEX_LEFT,VERTEX_TOP,
-        VERTEX_LEFT,VERTEX_BOTTOM,
-        VERTEX_RIGHT,VERTEX_TOP,
-        VERTEX_RIGHT,VERTEX_BOTTOM
-    };
+    const Matrix4x4 scale = Matrix4x4::createScale(xScale, yScale, 0);
     
-    glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 0, (GLvoid*)position);
+    const GLfloat vertexLeft = 0.5f + (1.0 - xScale) * 0.5f;
+    const GLfloat vertexTop = 0.5f + (1.0f - yScale) * 0.5f;
+    const GLfloat moveX = (GLfloat)pos.x / (GLfloat) app->getSurfaceWidth() * 2.0f;
+    const GLfloat moveY = -((GLfloat)pos.y / (GLfloat) app->getSurfaceHeight() * 2.0f);
+    
+    const Matrix4x4 translate = Matrix4x4::createTranslate(-vertexLeft+moveX, vertexTop + moveY, 0);
+    
+    Matrix4x4 matrix = Matrix4x4::multiply(translate, scale);
+    
+    glUniformMatrix4fv(_unif_matrix, 1, GL_FALSE, matrix.matrix);
     
     glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
 }
