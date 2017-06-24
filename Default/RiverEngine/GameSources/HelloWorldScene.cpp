@@ -35,11 +35,17 @@ bool HelloWorldScene::init()
     if(!Scene::init())
         return false;
     
+    auto director = Director::getInstance();
+    director->registerTexture("RIVER_TX", "River.png");
+    director->registerTexture("ANGRY_TX", "Angry.png");
+    
     auto sprite = Sprite::create();
+    sprite->setTexture("RIVER_TX");
     this->addGameObject(sprite);
     
     auto sprite2 = Sprite::create();
     sprite2->getTransform()->setPosition(Vector3(0,600,0));
+    sprite2->setTexture("ANGRY_TX");
     this->addGameObject(sprite2);
     
     return true;

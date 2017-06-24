@@ -41,6 +41,8 @@ public:
     virtual void update();
     
     virtual void draw();
+    
+    void setTexture(std::string texKey);
 };
 
 #endif /* Sprite_hpp */

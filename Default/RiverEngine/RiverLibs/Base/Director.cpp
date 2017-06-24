@@ -55,3 +55,68 @@ void Director::addGLProgram(GLProgram* program,std::string name)
     
     _programMap[name] = program;
 }
+
+bool Director::registerTexture(std::string texKey, std::string fileName)
+{
+    if(!isRegisteredTexture(texKey))
+    {
+        GLuint id;
+        glGenTextures(1, &id);
+        assert(id != 0);
+        assert(glGetError() == GL_NO_ERROR);
+        
+        glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
+        
+        glBindTexture(GL_TEXTURE_2D, id);
+        assert(glGetError() == GL_NO_ERROR);
+        
+        RawPixelImage *image = RawPixelImage_load(fileName.c_str(), TEXTURE_RAW_RGBA8);
+        assert(image != NULL);
+        
+        glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, image->width, image->height, 0, GL_RGBA, GL_UNSIGNED_BYTE, image->pixel_data);
+        assert(glGetError() == GL_NO_ERROR);
+        
+        RawPixelImage_free(image);
+        
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+        assert(glGetError() == GL_NO_ERROR);
+        
+        _textureCache[texKey] = id;
+        
+        return true;
+    }
+    
+    return false;
+}
+
+bool Director::unregisterTexture(std::string texKey)
+{
+    if(isRegisteredTexture(texKey)){
+        
+        glDeleteTextures(1, &_textureCache[texKey]);
+        _textureCache.erase(texKey);
+        
+        return true;
+    }
+    
+    return false;
+}
+
+bool Director::isRegisteredTexture(std::string texKey)
+{
+    auto it = _textureCache.find(texKey);
+    if(it != _textureCache.end())
+        return true;
+    
+    return false;
+}
+
+GLuint Director::getRegesterdTextureId(std::string texKey)
+{
+    if(isRegisteredTexture(texKey)){
+        return _textureCache[texKey];
+    }
+    
+    return 0;
+}

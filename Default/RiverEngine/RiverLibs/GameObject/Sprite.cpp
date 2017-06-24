@@ -47,33 +47,6 @@ bool Sprite::init()
     _unif_matrix = _useProgram->getUnifLocation("unif_matrix");
     _unif_texture = _useProgram->getUnifLocation("unif_texture");
     
-    //テクスチャの生成
-    {
-        glGenTextures(1, &_texture_id);
-        assert(_texture_id != 0);
-        assert(glGetError() == GL_NO_ERROR);
-        
-        glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
-        assert(glGetError() == GL_NO_ERROR);
-        
-        glBindTexture(GL_TEXTURE_2D, _texture_id);
-        assert(glGetError() == GL_NO_ERROR);
-        
-        {
-            RawPixelImage *image = RawPixelImage_load("River.jpg", TEXTURE_RAW_RGBA8);
-            assert(image != NULL);
-            
-            glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, image->width, image->height, 0, GL_RGBA, GL_UNSIGNED_BYTE, image->pixel_data);
-            assert(glGetError() == GL_NO_ERROR);
-            
-            RawPixelImage_free(image);
-        }
-        
-        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
-        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
-        assert(glGetError() == GL_NO_ERROR);
-    }
-    
     return true;
 }
 
@@ -129,5 +102,13 @@ void Sprite::draw()
     glUniformMatrix4fv(_unif_matrix, 1, GL_FALSE, matrix.matrix);
     glUniform1i(_unif_texture, 0);
     
+    glBindTexture(GL_TEXTURE_2D, _texture_id);
     glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
+}
+
+void Sprite::setTexture(std::string texKey)
+{
+    auto director = Director::getInstance();
+    
+    _texture_id = director->getRegesterdTextureId(texKey);
 }
