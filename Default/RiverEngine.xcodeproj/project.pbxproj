@@ -33,6 +33,9 @@
 		D6CA24241EECE64400EEC572 /* Component.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6CA24221EECE64400EEC572 /* Component.cpp */; };
 		D6D6458F1ED7205100FDA749 /* FileUtils.mm in Sources */ = {isa = PBXBuildFile; fileRef = D6D6458D1ED7205100FDA749 /* FileUtils.mm */; };
 		D6D645911ED72E6800FDA749 /* Shaders in Resources */ = {isa = PBXBuildFile; fileRef = D6D645901ED72E6800FDA749 /* Shaders */; };
+		D6F6FAEC1EFE3EDE0041A212 /* RawPixelImage.mm in Sources */ = {isa = PBXBuildFile; fileRef = D6F6FAEA1EFE3EDE0041A212 /* RawPixelImage.mm */; };
+		D6F6FAEF1EFE42090041A212 /* Texture2D.mm in Sources */ = {isa = PBXBuildFile; fileRef = D6F6FAED1EFE42090041A212 /* Texture2D.mm */; };
+		D6F6FAF11EFE48490041A212 /* Assets in Resources */ = {isa = PBXBuildFile; fileRef = D6F6FAF01EFE48490041A212 /* Assets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -103,6 +106,11 @@
 		D6D6458D1ED7205100FDA749 /* FileUtils.mm */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; fileEncoding = 4; path = FileUtils.mm; sourceTree = "<group>"; };
 		D6D6458E1ED7205100FDA749 /* FileUtils.hpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.h; fileEncoding = 4; path = FileUtils.hpp; sourceTree = "<group>"; };
 		D6D645901ED72E6800FDA749 /* Shaders */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Shaders; sourceTree = "<group>"; };
+		D6F6FAEA1EFE3EDE0041A212 /* RawPixelImage.mm */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; fileEncoding = 4; path = RawPixelImage.mm; sourceTree = "<group>"; };
+		D6F6FAEB1EFE3EDE0041A212 /* RawPixelImage.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.h; fileEncoding = 4; path = RawPixelImage.h; sourceTree = "<group>"; };
+		D6F6FAED1EFE42090041A212 /* Texture2D.mm */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; fileEncoding = 4; path = Texture2D.mm; sourceTree = "<group>"; };
+		D6F6FAEE1EFE42090041A212 /* Texture2D.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.h; fileEncoding = 4; path = Texture2D.h; sourceTree = "<group>"; };
+		D6F6FAF01EFE48490041A212 /* Assets */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Assets; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -166,6 +174,7 @@
 		D61109081EC6B5A000B89DFE /* RiverEngine */ = {
 			isa = PBXGroup;
 			children = (
+				D6F6FAF01EFE48490041A212 /* Assets */,
 				D6535F811EDFC5EF00632E0B /* GameSources */,
 				D6D645901ED72E6800FDA749 /* Shaders */,
 				D64208901ED68FC3009833A2 /* RiverLibs */,
@@ -240,6 +249,10 @@
 				D642089E1ED68FC3009833A2 /* GLProgramState.hpp */,
 				D642089F1ED68FC3009833A2 /* support_gl.h */,
 				D64208A01ED68FC3009833A2 /* support_gl.mm */,
+				D6F6FAEA1EFE3EDE0041A212 /* RawPixelImage.mm */,
+				D6F6FAEB1EFE3EDE0041A212 /* RawPixelImage.h */,
+				D6F6FAED1EFE42090041A212 /* Texture2D.mm */,
+				D6F6FAEE1EFE42090041A212 /* Texture2D.h */,
 			);
 			path = Renderer;
 			sourceTree = "<group>";
@@ -401,6 +414,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D6F6FAF11EFE48490041A212 /* Assets in Resources */,
 				D611091C1EC6B5A100B89DFE /* LaunchScreen.storyboard in Resources */,
 				D6D645911ED72E6800FDA749 /* Shaders in Resources */,
 				D61109191EC6B5A100B89DFE /* Assets.xcassets in Resources */,
@@ -434,6 +448,7 @@
 				D64208A61ED68FC3009833A2 /* Scene.cpp in Sources */,
 				D6180CE11EEA50D600F9F60B /* Sprite.cpp in Sources */,
 				D610B6001EF4227000AB5048 /* Matrix4x4.cpp in Sources */,
+				D6F6FAEF1EFE42090041A212 /* Texture2D.mm in Sources */,
 				D6535F801EDFC43F00632E0B /* GameObject.cpp in Sources */,
 				D64208AA1ED68FC3009833A2 /* support_gl.mm in Sources */,
 				D611090E1EC6B5A000B89DFE /* AppDelegate.m in Sources */,
@@ -442,6 +457,7 @@
 				D69371961EF81DCB008FF5C2 /* Transform.cpp in Sources */,
 				D61109171EC6B5A100B89DFE /* RiverEngine.xcdatamodeld in Sources */,
 				D64208A41ED68FC3009833A2 /* Application.mm in Sources */,
+				D6F6FAEC1EFE3EDE0041A212 /* RawPixelImage.mm in Sources */,
 				D611090B1EC6B5A000B89DFE /* main.m in Sources */,
 				D64208A51ED68FC3009833A2 /* Director.cpp in Sources */,
 				D64208A71ED68FC3009833A2 /* GLES20View.m in Sources */,

@@ -12,6 +12,8 @@
 #include "Vector3.hpp"
 #include "Matrix4x4.hpp"
 
+#include "RawPixelImage.h"
+
 #include "Application.h"
 #include "Director.hpp"
 #include "Scene.hpp"

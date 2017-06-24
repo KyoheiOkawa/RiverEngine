@@ -21,6 +21,9 @@ class Sprite : public GameObject
     
     GLint _attr_pos;
     GLint _unif_matrix;
+    GLint _attr_uv;
+    GLint _unif_texture;
+    GLuint _texture_id;
     
 public:
     Sprite();

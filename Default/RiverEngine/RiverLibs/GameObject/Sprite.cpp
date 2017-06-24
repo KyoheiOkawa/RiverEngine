@@ -43,7 +43,36 @@ bool Sprite::init()
     _useProgram = director->getGLProgram("SpriteShader");
     
     _attr_pos = _useProgram->getAttribLocation("attr_pos");
+    _attr_uv = _useProgram->getAttribLocation("attr_uv");
     _unif_matrix = _useProgram->getUnifLocation("unif_matrix");
+    _unif_texture = _useProgram->getUnifLocation("unif_texture");
+    
+    //テクスチャの生成
+    {
+        glGenTextures(1, &_texture_id);
+        assert(_texture_id != 0);
+        assert(glGetError() == GL_NO_ERROR);
+        
+        glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
+        assert(glGetError() == GL_NO_ERROR);
+        
+        glBindTexture(GL_TEXTURE_2D, _texture_id);
+        assert(glGetError() == GL_NO_ERROR);
+        
+        {
+            RawPixelImage *image = RawPixelImage_load("River.jpg", TEXTURE_RAW_RGBA8);
+            assert(image != NULL);
+            
+            glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, image->width, image->height, 0, GL_RGBA, GL_UNSIGNED_BYTE, image->pixel_data);
+            assert(glGetError() == GL_NO_ERROR);
+            
+            RawPixelImage_free(image);
+        }
+        
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+        assert(glGetError() == GL_NO_ERROR);
+    }
     
     return true;
 }
@@ -60,6 +89,7 @@ void Sprite::draw()
 {
     _useProgram->use();
     glEnableVertexAttribArray(_attr_pos);
+    glEnableVertexAttribArray(_attr_uv);
     
     const GLfloat position[] = {
         -0.5f,0.5f,
@@ -68,7 +98,15 @@ void Sprite::draw()
         0.5f,-0.5f
     };
     
+    const GLfloat uv[]={
+        0,0,
+        0,1,
+        1,0,
+        1,1
+    };
+    
     glVertexAttribPointer(_attr_pos, 2, GL_FLOAT, GL_FALSE, 0, (GLvoid*)position);
+    glVertexAttribPointer(_attr_uv, 2, GL_FLOAT, GL_FALSE, 0, (GLvoid*)uv);
     
     auto app = Application::getInstance();
     
@@ -89,6 +127,7 @@ void Sprite::draw()
     Matrix4x4 matrix = Matrix4x4::multiply(translate, scale);
     
     glUniformMatrix4fv(_unif_matrix, 1, GL_FALSE, matrix.matrix);
+    glUniform1i(_unif_texture, 0);
     
     glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
 }

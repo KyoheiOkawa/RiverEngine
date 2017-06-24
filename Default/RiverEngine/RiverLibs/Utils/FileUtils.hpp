@@ -13,6 +13,8 @@
 #include <string>
 #include <unordered_map>
 
+#define CSTR2NSSTRING(c_str) [[NSString alloc] initWithUTF8String:c_str]
+
 class FileUtils
 {
 private:
