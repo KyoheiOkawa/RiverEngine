@@ -14,10 +14,16 @@
 #include "GLProgram.hpp"
 #include "GLProgramState.hpp"
 
+/**
+ *@class Application
+ *@brief アプリケーションクラス（シングルトン）
+ */
 class Application{
 private:
+    ///コンストラクタ
     Application();
     
+    ///自分自信へのポインタ
     static Application* _application;
 
     ///View(レンダリングターゲット）の幅
@@ -28,7 +34,7 @@ private:
     void* _glesView;
     
     void* _viewController;
-    
+    ///１フレーム更新にかかった時間
     float _deltaTime;
  
 public:

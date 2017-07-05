@@ -86,9 +86,15 @@ bool Director::registerTexture(std::string texKey, std::string fileName)
             glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
         }
         
+        std::shared_ptr<TextureInfo> texInfo(new TextureInfo);
+        texInfo->id = id;
+        texInfo->width = image->width;
+        texInfo->height = image->height;
+        texInfo->isPod = isPod;
+        
         RawPixelImage_free(image);
         
-        _textureCache[texKey] = id;
+        _textureCache[texKey] = texInfo;
         
         return true;
     }
@@ -100,7 +106,7 @@ bool Director::unregisterTexture(std::string texKey)
 {
     if(isRegisteredTexture(texKey)){
         
-        glDeleteTextures(1, &_textureCache[texKey]);
+        glDeleteTextures(1, &_textureCache[texKey]->id);
         _textureCache.erase(texKey);
         
         return true;
@@ -118,7 +124,7 @@ bool Director::isRegisteredTexture(std::string texKey)
     return false;
 }
 
-GLuint Director::getRegesterdTextureId(std::string texKey)
+std::shared_ptr<TextureInfo> Director::getRegesterdTextureId(std::string texKey)
 {
     if(isRegisteredTexture(texKey)){
         return _textureCache[texKey];

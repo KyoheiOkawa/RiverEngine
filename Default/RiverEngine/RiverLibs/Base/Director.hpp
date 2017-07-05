@@ -16,13 +16,21 @@
 
 class Scene;
 
+struct TextureInfo
+{
+    GLuint id;
+    float width;
+    float height;
+    bool isPod;
+};
+
 class Director{
 private:
     Director(){}
     static Director* _director;
     std::shared_ptr<Scene> _scene;
     std::map<std::string,GLProgram*> _programMap;
-    std::map<std::string,GLuint> _textureCache;
+    std::map<std::string,std::shared_ptr<TextureInfo>> _textureCache;
 public:
     static Director* getInstance();
     void updateScene();
@@ -46,7 +54,7 @@ public:
     
     bool isRegisteredTexture(std::string texKey);
     
-    GLuint getRegesterdTextureId(std::string texKey);
+    std::shared_ptr<TextureInfo> getRegesterdTextureId(std::string texKey);
 };
 
 #endif /* Director_hpp */

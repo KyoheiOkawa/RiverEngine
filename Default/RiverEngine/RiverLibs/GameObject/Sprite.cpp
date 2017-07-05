@@ -64,6 +64,9 @@ void Sprite::draw()
     glEnableVertexAttribArray(_attr_pos);
     glEnableVertexAttribArray(_attr_uv);
     
+    glEnable(GL_BLEND);
+    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+    
     const GLfloat position[] = {
         -0.5f,0.5f,
         -0.5f,-0.5f,
@@ -110,5 +113,10 @@ void Sprite::setTexture(std::string texKey)
 {
     auto director = Director::getInstance();
     
-    _texture_id = director->getRegesterdTextureId(texKey);
+    auto texInfo = director->getRegesterdTextureId(texKey);
+    
+    _texture_id = texInfo->id;
+    
+    _spriteWidth = texInfo->width;
+    _spriteHeight = texInfo->height;
 }
