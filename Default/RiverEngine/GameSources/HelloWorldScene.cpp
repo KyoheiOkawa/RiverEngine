@@ -37,7 +37,7 @@ bool HelloWorldScene::init()
     
     auto director = Director::getInstance();
     director->registerTexture("RIVER_TX", "River.png");
-    director->registerTexture("ANGRY_TX", "Angry.png");
+    director->registerTexture("ANGRY_TX", "nPodTex.png");
     
     auto sprite = Sprite::create();
     sprite->setTexture("RIVER_TX");

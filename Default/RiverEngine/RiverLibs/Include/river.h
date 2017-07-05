@@ -13,6 +13,7 @@
 #include "Matrix4x4.hpp"
 
 #include "RawPixelImage.h"
+#include "Texture2D.h"
 
 #include "Application.h"
 #include "Director.hpp"

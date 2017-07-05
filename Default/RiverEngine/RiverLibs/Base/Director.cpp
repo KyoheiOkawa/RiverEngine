@@ -76,11 +76,17 @@ bool Director::registerTexture(std::string texKey, std::string fileName)
         glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, image->width, image->height, 0, GL_RGBA, GL_UNSIGNED_BYTE, image->pixel_data);
         assert(glGetError() == GL_NO_ERROR);
         
-        RawPixelImage_free(image);
-        
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
         assert(glGetError() == GL_NO_ERROR);
+        
+        bool isPod = Texture2D_checkPowerOfTwoWH(image->width, image->height);
+        if(!isPod){
+            glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+            glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+        }
+        
+        RawPixelImage_free(image);
         
         _textureCache[texKey] = id;
         

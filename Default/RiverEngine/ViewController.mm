@@ -141,7 +141,9 @@
             app->update();
             app->rendering();
             
-            [NSThread sleepForTimeInterval:0.0025f];
+#ifdef TARGET_IPHONE_SIMULATOR
+            [NSThread sleepForTimeInterval:0.005f];
+#endif
             
             end = std::chrono::steady_clock::now();
             auto delta = std::chrono::duration_cast<std::chrono::milliseconds>(end - start).count();
