@@ -43,8 +43,8 @@ void Application::resized()
 
 void Application::update()
 {
-    printf("DeltaTime:%f\n",_deltaTime);
-    printf("FPS:%f\n",1.0f/_deltaTime);
+//    printf("DeltaTime:%f\n",_deltaTime);
+//    printf("FPS:%f\n",1.0f/_deltaTime);
     
     Director::getInstance()->updateScene();
 }

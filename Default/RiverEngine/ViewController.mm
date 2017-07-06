@@ -161,4 +161,11 @@
     return YES;
 }
 
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
+{
+    CGPoint locationPoint = [[touches anyObject] locationInView:self.view];
+    auto scaleFactor = [self.view contentScaleFactor];
+    NSLog(@"touchesBegan = %lf,%lf\n", locationPoint.x * scaleFactor, locationPoint.y * scaleFactor);
+}
+
 @end
