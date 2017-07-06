@@ -132,3 +132,8 @@ std::shared_ptr<TextureInfo> Director::getRegesterdTextureId(std::string texKey)
     
     return 0;
 }
+
+void Director::onScreenTouched(TouchInfo& touchInfo)
+{
+    _scene->onScreenTouched(touchInfo);
+}

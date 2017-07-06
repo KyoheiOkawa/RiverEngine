@@ -7,6 +7,7 @@
 //
 
 #import "ViewController.h"
+#import <TargetConditionals.h>
 #include <thread>
 #include <chrono>
 
@@ -141,8 +142,8 @@
             app->update();
             app->rendering();
             
-#ifdef TARGET_IPHONE_SIMULATOR
-            [NSThread sleepForTimeInterval:0.005f];
+#if(TARGET_IPHONE_SIMULATOR)
+            [NSThread sleepForTimeInterval:0.001f];
 #endif
             
             end = std::chrono::steady_clock::now();
@@ -166,6 +167,44 @@
     CGPoint locationPoint = [[touches anyObject] locationInView:self.view];
     auto scaleFactor = [self.view contentScaleFactor];
     NSLog(@"touchesBegan = %lf,%lf\n", locationPoint.x * scaleFactor, locationPoint.y * scaleFactor);
+    
+    TouchInfo touchInfo;
+    touchInfo.type = TouchType::BEGAN;
+    touchInfo.posX = locationPoint.x * scaleFactor;
+    touchInfo.posY = locationPoint.y * scaleFactor;
+    
+    Application* app = Application::getInstance();
+    app->onScreenTouched(touchInfo);
+}
+
+- (void)touchesMoved:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
+{
+    CGPoint locationPoint = [[touches anyObject] locationInView:self.view];
+    auto scaleFactor = [self.view contentScaleFactor];
+    NSLog(@"touchesMoved = %lf,%lf\n", locationPoint.x * scaleFactor, locationPoint.y * scaleFactor);
+    
+    TouchInfo touchInfo;
+    touchInfo.type = TouchType::MOVED;
+    touchInfo.posX = locationPoint.x * scaleFactor;
+    touchInfo.posY = locationPoint.y * scaleFactor;
+    
+    Application* app = Application::getInstance();
+    app->onScreenTouched(touchInfo);
+}
+
+- (void)touchesEnded:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
+{
+    CGPoint locationPoint = [[touches anyObject] locationInView:self.view];
+    auto scaleFactor = [self.view contentScaleFactor];
+    NSLog(@"touchesEnded = %lf,%lf\n", locationPoint.x * scaleFactor, locationPoint.y * scaleFactor);
+    
+    TouchInfo touchInfo;
+    touchInfo.type = TouchType::ENDED;
+    touchInfo.posX = locationPoint.x * scaleFactor;
+    touchInfo.posY = locationPoint.y * scaleFactor;
+    
+    Application* app = Application::getInstance();
+    app->onScreenTouched(touchInfo);
 }
 
 @end

@@ -36,11 +36,13 @@ public:
     
     static std::shared_ptr<Sprite> create();
     
-    virtual bool init();
+    virtual bool init() override;
     
-    virtual void update();
+    virtual void update() override;
     
-    virtual void draw();
+    virtual void draw() override;
+    
+    virtual void onScreenTouched(TouchInfo& touchInfo) override;
     
     void setTexture(std::string texKey);
 };

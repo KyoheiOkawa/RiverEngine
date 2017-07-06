@@ -41,7 +41,7 @@ void Scene::draw()
 
 void Scene::gameObjectUpdate()
 {
-    for(auto object : _gameObjects)
+    for(auto& object : _gameObjects)
     {
         object->update();
     }
@@ -49,7 +49,7 @@ void Scene::gameObjectUpdate()
 
 void Scene::gameObjectDraw()
 {
-    for(auto object : _gameObjects)
+    for(auto& object : _gameObjects)
     {
         object->draw();
     }
@@ -59,4 +59,12 @@ void Scene::addGameObject(std::shared_ptr<GameObject> gameObject)
 {
     gameObject->setScene(getThis<Scene>());
     _gameObjects.push_back(gameObject);
+}
+
+void Scene::onScreenTouched(TouchInfo& touchInfo)
+{
+    for(auto& object : _gameObjects)
+    {
+        object->onScreenTouched(touchInfo);
+    }
 }

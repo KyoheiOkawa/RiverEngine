@@ -14,6 +14,19 @@
 #include "GLProgram.hpp"
 #include "GLProgramState.hpp"
 
+enum TouchType
+{
+    BEGAN,
+    MOVED,
+    ENDED
+};
+
+struct TouchInfo
+{
+    TouchType type;
+    float posX,posY;
+};
+
 /**
  *@class Application
  *@brief アプリケーションクラス（シングルトン）
@@ -96,6 +109,8 @@ public:
     void rendering();
     ///解放処理
     void destroy();
+    
+    void onScreenTouched(TouchInfo& touchInfo);
 };
 
 #endif

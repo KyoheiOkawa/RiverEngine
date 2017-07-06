@@ -120,3 +120,12 @@ void Sprite::setTexture(std::string texKey)
     _spriteWidth = texInfo->width;
     _spriteHeight = texInfo->height;
 }
+
+void Sprite::onScreenTouched(TouchInfo& touchInfo)
+{
+    if(touchInfo.type == TouchType::BEGAN)
+    {
+        auto transPtr = getTransform();
+        transPtr->setPosition(Vector3(touchInfo.posX,touchInfo.posY,0));
+    }
+}

@@ -37,6 +37,8 @@ public:
     void gameObjectDraw();
     
     virtual void addGameObject(std::shared_ptr<GameObject> gameObject);
+    
+    void onScreenTouched(TouchInfo& touchInfo);
 };
 
 #endif /* Scene_hpp */

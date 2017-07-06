@@ -61,5 +61,10 @@ void Application::rendering()
 
 void Application::destroy()
 {
+    
+}
 
+void Application::onScreenTouched(TouchInfo& touchInfo)
+{
+    Director::getInstance()->onScreenTouched(touchInfo);
 }
