@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D60403671F336DED00596BD0 /* Vector2.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D60403651F336DED00596BD0 /* Vector2.cpp */; };
 		D610B6001EF4227000AB5048 /* Matrix4x4.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D610B5FE1EF4227000AB5048 /* Matrix4x4.cpp */; };
 		D611090B1EC6B5A000B89DFE /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D611090A1EC6B5A000B89DFE /* main.m */; };
 		D611090E1EC6B5A000B89DFE /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D611090D1EC6B5A000B89DFE /* AppDelegate.m */; };
@@ -56,6 +57,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		D60403651F336DED00596BD0 /* Vector2.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Vector2.cpp; sourceTree = "<group>"; };
+		D60403661F336DED00596BD0 /* Vector2.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Vector2.hpp; sourceTree = "<group>"; };
 		D610B5FE1EF4227000AB5048 /* Matrix4x4.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Matrix4x4.cpp; sourceTree = "<group>"; };
 		D610B5FF1EF4227000AB5048 /* Matrix4x4.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Matrix4x4.hpp; sourceTree = "<group>"; };
 		D610B6011EF42D0500AB5048 /* MathMacro.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MathMacro.h; sourceTree = "<group>"; };
@@ -148,6 +151,8 @@
 				D610B5FE1EF4227000AB5048 /* Matrix4x4.cpp */,
 				D610B5FF1EF4227000AB5048 /* Matrix4x4.hpp */,
 				D610B6011EF42D0500AB5048 /* MathMacro.h */,
+				D60403651F336DED00596BD0 /* Vector2.cpp */,
+				D60403661F336DED00596BD0 /* Vector2.hpp */,
 			);
 			path = Math;
 			sourceTree = "<group>";
@@ -460,6 +465,7 @@
 				D6F6FAEC1EFE3EDE0041A212 /* RawPixelImage.mm in Sources */,
 				D611090B1EC6B5A000B89DFE /* main.m in Sources */,
 				D64208A51ED68FC3009833A2 /* Director.cpp in Sources */,
+				D60403671F336DED00596BD0 /* Vector2.cpp in Sources */,
 				D64208A71ED68FC3009833A2 /* GLES20View.m in Sources */,
 				D64208A81ED68FC3009833A2 /* GLProgram.cpp in Sources */,
 				D6D6458F1ED7205100FDA749 /* FileUtils.mm in Sources */,

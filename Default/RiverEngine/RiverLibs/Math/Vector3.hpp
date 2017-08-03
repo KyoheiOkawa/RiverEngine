@@ -14,7 +14,6 @@
 
 class Vector3
 {
-    const float tol = 0.0001;//公差
 public:
     float x;
     float y;
@@ -29,12 +28,16 @@ public:
     static Vector3 UP();
     static Vector3 FORWARD();
     
-    float magnitude();
+    static float dot(const Vector3& v1, const Vector3& v2);
+    static float angle(Vector3& v1, Vector3& v2);
+    
+    float magnitude() const;
     void normalize();
-    Vector3 getNormalized();
+    Vector3 getNormalized() const;
     void reverse();
     float dot(const Vector3 &v) const;
     Vector3 cross(const Vector3 &v) const;
+    void set(float xi, float yi, float zi);
     
     Vector3& operator=(const Vector3& other);
     Vector3& operator+=(Vector3 u);

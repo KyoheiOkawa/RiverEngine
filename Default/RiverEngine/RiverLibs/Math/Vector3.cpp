@@ -7,6 +7,7 @@
 //
 
 #include "Vector3.hpp"
+#include "MathMacro.h"
 
 Vector3::Vector3()
 {
@@ -22,37 +23,37 @@ Vector3::Vector3(float xi, float yi, float zi)
     z = zi;
 }
 
-float Vector3::magnitude()
+float Vector3::magnitude() const
 {
     return sqrtf(x*x + y*y + z*z);
 }
 
 void Vector3::normalize()
 {
-    float m = sqrtf(x*x + y*y + z*z);
-    if(m <= tol) m = 1;
+    float m = magnitude();
+    if(m <= MATH_TOLERANCE) m = 1;
     x /= m;
     y /= m;
     z /= m;
     
-    if(fabs(x) < tol) x = 0.0f;
-    if(fabs(y) < tol) y = 0.0f;
-    if(fabs(z) < tol) z = 0.0f;
+    if(fabs(x) < MATH_TOLERANCE) x = 0.0f;
+    if(fabs(y) < MATH_TOLERANCE) y = 0.0f;
+    if(fabs(z) < MATH_TOLERANCE) z = 0.0f;
 }
 
-Vector3 Vector3::getNormalized()
+Vector3 Vector3::getNormalized() const
 {
     Vector3 tmp;
     
-    float m = sqrtf(x*x + y*y + z*z);
-    if(m <= tol) m = 1;
+    float m = magnitude();
+    if(m <= MATH_TOLERANCE) m = 1;
     tmp.x = x / m;
     tmp.y = y / m;
     tmp.z = z / m;
     
-    if(fabs(tmp.x) < tol) tmp.x = 0.0f;
-    if(fabs(tmp.y) < tol) tmp.y = 0.0f;
-    if(fabs(tmp.z) < tol) tmp.z = 0.0f;
+    if(fabs(tmp.x) < MATH_TOLERANCE) tmp.x = 0.0f;
+    if(fabs(tmp.y) < MATH_TOLERANCE) tmp.y = 0.0f;
+    if(fabs(tmp.z) < MATH_TOLERANCE) tmp.z = 0.0f;
     
     return tmp;
 }
@@ -74,6 +75,13 @@ Vector3 Vector3::cross(const Vector3 &v) const
     return Vector3(y * v.z - z * v.y,
                    z * v.x - x * v.z,
                    x * v.y - y * v.x);
+}
+
+void Vector3::set(float xi, float yi, float zi)
+{
+    x = xi;
+    y = yi;
+    z = zi;
 }
 
 Vector3& Vector3::operator+=(Vector3 u)
@@ -186,4 +194,18 @@ Vector3 Vector3::UP(){
 
 Vector3 Vector3::FORWARD(){
     return Vector3(0,0,1);
+}
+
+float Vector3::dot(const Vector3& v1, const Vector3& v2)
+{
+    return (v1.x * v2.x + v1.y * v2.y + v1.z * v2.z);
+}
+
+float Vector3::angle(Vector3& v1, Vector3& v2)
+{
+    float dx = v1.y * v2.z - v1.z * v2.y;
+    float dy = v1.z * v2.x - v1.x * v2.z;
+    float dz = v1.x * v2.y - v1.y * v2.x;
+    
+    return atan2(sqrt(dx * dx + dy * dy + dz * dz) + MATH_FLOAT_SMALL, dot(v1, v2));
 }
