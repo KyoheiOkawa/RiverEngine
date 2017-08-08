@@ -88,13 +88,15 @@ void Sprite::draw()
     
     auto pos = getTransform()->getPosition();
     
+    Vector3 pivot = getTransform()->getPivot();
+    
     const GLfloat xScale = (GLfloat)_spriteWidth / (GLfloat) app->getSurfaceWidth() * 2.0f;
     const GLfloat yScale = (GLfloat)_spriteHeight / (GLfloat) app->getSurfaceHeight() * 2.0f;
     
     const Matrix4x4 scale = Matrix4x4::createScale(xScale, yScale, 0);
     
-    const GLfloat vertexLeft = 0.5f + (1.0 - xScale) * 0.5f;
-    const GLfloat vertexTop = 0.5f + (1.0f - yScale) * 0.5f;
+    const GLfloat vertexLeft = 0.5f + (1.0 - xScale) * 0.5f + xScale * pivot.x;
+    const GLfloat vertexTop = 0.5f + (1.0f - yScale) * 0.5f + yScale * pivot.y;
     const GLfloat moveX = (GLfloat)pos.x / (GLfloat) app->getSurfaceWidth() * 2.0f;
     const GLfloat moveY = -((GLfloat)pos.y / (GLfloat) app->getSurfaceHeight() * 2.0f);
     
@@ -113,7 +115,7 @@ void Sprite::setTexture(std::string texKey)
 {
     auto director = Director::getInstance();
     
-    auto texInfo = director->getRegesterdTextureId(texKey);
+    auto texInfo = director->getRegesterdTextureInfo(texKey);
     
     _texture_id = texInfo->id;
     

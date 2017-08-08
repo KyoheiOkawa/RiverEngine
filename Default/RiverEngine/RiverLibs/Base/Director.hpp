@@ -54,7 +54,7 @@ public:
     
     bool isRegisteredTexture(std::string texKey);
     
-    std::shared_ptr<TextureInfo> getRegesterdTextureId(std::string texKey);
+    std::shared_ptr<TextureInfo> getRegesterdTextureInfo(std::string texKey);
     
     void onScreenTouched(TouchInfo& touchInfo);
 };

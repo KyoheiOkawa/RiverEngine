@@ -18,6 +18,7 @@ class Transform : public Component
 protected:
     Vector3 _scale;
     Vector3 _position;
+    Vector3 _pivot;
 public:
     explicit Transform(const std::shared_ptr<GameObject>& gameObjectPtr);
     
@@ -31,12 +32,20 @@ public:
         _position = position;
     }
     
+    void setPivot(Vector3 pivot){
+        _pivot = pivot;
+    }
+    
     Vector3 getScale(){
         return _scale;
     }
     
     Vector3 getPosition(){
         return _position;
+    }
+    
+    Vector3 getPivot(){
+        return _pivot;
     }
 };
 

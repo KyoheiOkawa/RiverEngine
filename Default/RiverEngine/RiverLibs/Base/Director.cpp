@@ -124,7 +124,7 @@ bool Director::isRegisteredTexture(std::string texKey)
     return false;
 }
 
-std::shared_ptr<TextureInfo> Director::getRegesterdTextureId(std::string texKey)
+std::shared_ptr<TextureInfo> Director::getRegesterdTextureInfo(std::string texKey)
 {
     if(isRegisteredTexture(texKey)){
         return _textureCache[texKey];
