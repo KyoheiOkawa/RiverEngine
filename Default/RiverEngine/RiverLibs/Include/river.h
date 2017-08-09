@@ -23,9 +23,13 @@
 #include "GameObject.hpp"
 #include "Sprite.hpp"
 #include "GLProgram.hpp"
+#include "Vertex.hpp"
 #include "FileUtils.hpp"
 #include "Component.hpp"
 #include "Transform.hpp"
+
+#include <OpenGLES/ES2/gl.h>
+#include <OpenGLES/ES2/glext.h>
 
 //#include <assert.h>
 //#include <vector>

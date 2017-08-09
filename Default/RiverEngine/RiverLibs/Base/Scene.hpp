@@ -11,6 +11,7 @@
 
 #include <stdio.h>
 #include <memory>
+#include <vector>
 #include "Helper.hpp"
 
 class GameObject;
@@ -39,6 +40,9 @@ public:
     virtual void addGameObject(std::shared_ptr<GameObject> gameObject);
     
     void onScreenTouched(TouchInfo& touchInfo);
+    
+private:
+    static bool compareDrawLayerOrder(std::shared_ptr<GameObject> left,std::shared_ptr<GameObject> right);
 };
 
 #endif /* Scene_hpp */

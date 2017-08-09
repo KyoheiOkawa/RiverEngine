@@ -14,8 +14,7 @@
 
 class Sprite : public GameObject
 {
-    int _spriteWidth = 256;
-    int _spriteHeight = 256;
+    Vector2 _spriteSize;
     
     GLProgram* _useProgram;
     
@@ -36,6 +35,8 @@ public:
     
     static std::shared_ptr<Sprite> create();
     
+    static std::shared_ptr<Sprite> createWithTexture(std::string texKey);
+    
     virtual bool init() override;
     
     virtual void update() override;
@@ -45,6 +46,10 @@ public:
     virtual void onScreenTouched(TouchInfo& touchInfo) override;
     
     void setTexture(std::string texKey);
+    
+    Vector2 getSpriteSize(){
+        return _spriteSize;
+    }
 };
 
 #endif /* Sprite_hpp */

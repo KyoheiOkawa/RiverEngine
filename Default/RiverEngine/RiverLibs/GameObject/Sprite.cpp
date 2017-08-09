@@ -7,7 +7,6 @@
 //
 
 #include "river.h"
-#include "HelloWorldScene.hpp"
 
 Sprite::Sprite()
 {
@@ -31,6 +30,29 @@ std::shared_ptr<Sprite> Sprite::create()
     return nullptr;
 }
 
+std::shared_ptr<Sprite> Sprite::createWithTexture(std::string texPath)
+{
+    auto ret = std::shared_ptr<Sprite>(new Sprite);
+    
+    if(ret && ret->init())
+    {
+        auto director = Director::getInstance();
+
+        if(!director->isRegisteredTexture(texPath))
+            director->registerTexture(texPath, texPath);
+        
+        auto texInfo = director->getRegesterdTextureInfo(texPath);
+        
+        ret->_spriteSize.x = texInfo->width;
+        ret->_spriteSize.y = texInfo->height;
+        ret->_texture_id = texInfo->id;
+        
+        return ret;
+    }
+    
+    return nullptr;
+}
+
 bool Sprite::init()
 {
     if(!GameObject::init())
@@ -40,7 +62,7 @@ bool Sprite::init()
     transPtr->setPosition(Vector3(50,100,0));
     
     auto director = Director::getInstance();
-    _useProgram = director->getGLProgram("SpriteShader");
+    _useProgram = director->getGLProgram("PTSprite");
     
     _attr_pos = _useProgram->getAttribLocation("attr_pos");
     _attr_uv = _useProgram->getAttribLocation("attr_uv");
@@ -67,33 +89,28 @@ void Sprite::draw()
     glEnable(GL_BLEND);
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
     
-    const GLfloat position[] = {
-        -0.5f,0.5f,
-        -0.5f,-0.5f,
-        0.5f,0.5f,
-        0.5f,-0.5f
+    const PositionTexture vertex[] ={
+        {{-0.5f,0.5f},{0,0}},
+        {{-0.5f,-0.5f},{0,1}},
+        {{0.5f,0.5f},{1,0}},
+        {{0.5f,-0.5f},{1,1}}
     };
     
-    const GLfloat uv[]={
-        0,0,
-        0,1,
-        1,0,
-        1,1
-    };
-    
-    glVertexAttribPointer(_attr_pos, 2, GL_FLOAT, GL_FALSE, 0, (GLvoid*)position);
-    glVertexAttribPointer(_attr_uv, 2, GL_FLOAT, GL_FALSE, 0, (GLvoid*)uv);
+    glVertexAttribPointer(_attr_pos, 2, GL_FLOAT, GL_FALSE, sizeof(PositionTexture), (GLvoid*)vertex);
+    glVertexAttribPointer(_attr_uv, 2, GL_FLOAT, GL_FALSE, sizeof(PositionTexture), (GLvoid*)((GLubyte*)vertex + sizeof(GLfloat)*3));
     
     auto app = Application::getInstance();
     
-    auto pos = getTransform()->getPosition();
+    auto trans = getTransform();
     
-    Vector3 pivot = getTransform()->getPivot();
+    auto pos = trans->getPosition();
+    auto scale = trans->getScale();
+    Vector3 pivot = trans->getPivot();
     
-    const GLfloat xScale = (GLfloat)_spriteWidth / (GLfloat) app->getSurfaceWidth() * 2.0f;
-    const GLfloat yScale = (GLfloat)_spriteHeight / (GLfloat) app->getSurfaceHeight() * 2.0f;
+    const GLfloat xScale = (GLfloat)_spriteSize.x * scale.x / (GLfloat) app->getSurfaceWidth() * 2.0f;
+    const GLfloat yScale = (GLfloat)_spriteSize.y * scale.y / (GLfloat) app->getSurfaceHeight() * 2.0f;
     
-    const Matrix4x4 scale = Matrix4x4::createScale(xScale, yScale, 0);
+    const Matrix4x4 scaleM = Matrix4x4::createScale(xScale, yScale, 0);
     
     const GLfloat vertexLeft = 0.5f + (1.0 - xScale) * 0.5f + xScale * pivot.x;
     const GLfloat vertexTop = 0.5f + (1.0f - yScale) * 0.5f + yScale * pivot.y;
@@ -102,7 +119,7 @@ void Sprite::draw()
     
     const Matrix4x4 translate = Matrix4x4::createTranslate(-vertexLeft+moveX, vertexTop + moveY, 0);
     
-    Matrix4x4 matrix = Matrix4x4::multiply(translate, scale);
+    Matrix4x4 matrix = Matrix4x4::multiply(translate, scaleM);
     
     glUniformMatrix4fv(_unif_matrix, 1, GL_FALSE, matrix.matrix);
     glUniform1i(_unif_texture, 0);
@@ -119,8 +136,8 @@ void Sprite::setTexture(std::string texKey)
     
     _texture_id = texInfo->id;
     
-    _spriteWidth = texInfo->width;
-    _spriteHeight = texInfo->height;
+    _spriteSize.x = texInfo->width;
+    _spriteSize.y = texInfo->height;
 }
 
 void Sprite::onScreenTouched(TouchInfo& touchInfo)

@@ -26,6 +26,7 @@ protected:
     std::map<std::type_index,std::shared_ptr<Component>> _compMap;
     std::list<std::type_index> _compOrder;
     std::shared_ptr<Transform> _transform;
+    int _drawLayer = 0;
 private:
     std::shared_ptr<Component> searchComponent(std::type_index typeId)const;
     
@@ -91,6 +92,14 @@ public:
     
     std::shared_ptr<Scene> getScene(){
         return _scene;
+    }
+    
+    void setDrawLayer(int layer){
+        _drawLayer = layer;
+    }
+    
+    int getDrawLayer(){
+        return _drawLayer;
     }
 
     static std::shared_ptr<GameObject> create();

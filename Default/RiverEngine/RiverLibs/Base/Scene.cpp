@@ -49,6 +49,8 @@ void Scene::gameObjectUpdate()
 
 void Scene::gameObjectDraw()
 {
+    std::stable_sort(_gameObjects.begin(), _gameObjects.end(),Scene::compareDrawLayerOrder);
+    
     for(auto& object : _gameObjects)
     {
         object->draw();
@@ -67,4 +69,9 @@ void Scene::onScreenTouched(TouchInfo& touchInfo)
     {
         object->onScreenTouched(touchInfo);
     }
+}
+
+bool Scene::compareDrawLayerOrder(std::shared_ptr<GameObject> left, std::shared_ptr<GameObject> right)
+{
+    return left->getDrawLayer() < right->getDrawLayer();
 }

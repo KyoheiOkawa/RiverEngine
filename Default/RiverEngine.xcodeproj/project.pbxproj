@@ -24,7 +24,6 @@
 		D64208A61ED68FC3009833A2 /* Scene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D64208961ED68FC3009833A2 /* Scene.cpp */; };
 		D64208A71ED68FC3009833A2 /* GLES20View.m in Sources */ = {isa = PBXBuildFile; fileRef = D642089A1ED68FC3009833A2 /* GLES20View.m */; };
 		D64208A81ED68FC3009833A2 /* GLProgram.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D642089B1ED68FC3009833A2 /* GLProgram.cpp */; };
-		D64208A91ED68FC3009833A2 /* GLProgramState.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D642089D1ED68FC3009833A2 /* GLProgramState.cpp */; };
 		D64208AA1ED68FC3009833A2 /* support_gl.mm in Sources */ = {isa = PBXBuildFile; fileRef = D64208A01ED68FC3009833A2 /* support_gl.mm */; };
 		D65127F51EF840CD00DEE016 /* Vector3.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D65127F31EF840CD00DEE016 /* Vector3.cpp */; };
 		D6535F801EDFC43F00632E0B /* GameObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6535F7E1EDFC43F00632E0B /* GameObject.cpp */; };
@@ -37,6 +36,7 @@
 		D6F6FAEC1EFE3EDE0041A212 /* RawPixelImage.mm in Sources */ = {isa = PBXBuildFile; fileRef = D6F6FAEA1EFE3EDE0041A212 /* RawPixelImage.mm */; };
 		D6F6FAEF1EFE42090041A212 /* Texture2D.mm in Sources */ = {isa = PBXBuildFile; fileRef = D6F6FAED1EFE42090041A212 /* Texture2D.mm */; };
 		D6F6FAF11EFE48490041A212 /* Assets in Resources */ = {isa = PBXBuildFile; fileRef = D6F6FAF01EFE48490041A212 /* Assets */; };
+		D6FED0F31F3B131200E0C028 /* Vertex.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6FED0F11F3B131200E0C028 /* Vertex.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -89,8 +89,6 @@
 		D642089A1ED68FC3009833A2 /* GLES20View.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLES20View.m; sourceTree = "<group>"; };
 		D642089B1ED68FC3009833A2 /* GLProgram.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GLProgram.cpp; sourceTree = "<group>"; };
 		D642089C1ED68FC3009833A2 /* GLProgram.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = GLProgram.hpp; sourceTree = "<group>"; };
-		D642089D1ED68FC3009833A2 /* GLProgramState.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GLProgramState.cpp; sourceTree = "<group>"; };
-		D642089E1ED68FC3009833A2 /* GLProgramState.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = GLProgramState.hpp; sourceTree = "<group>"; };
 		D642089F1ED68FC3009833A2 /* support_gl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = support_gl.h; sourceTree = "<group>"; };
 		D64208A01ED68FC3009833A2 /* support_gl.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = support_gl.mm; sourceTree = "<group>"; };
 		D65127F31EF840CD00DEE016 /* Vector3.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Vector3.cpp; sourceTree = "<group>"; };
@@ -114,6 +112,8 @@
 		D6F6FAED1EFE42090041A212 /* Texture2D.mm */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; fileEncoding = 4; path = Texture2D.mm; sourceTree = "<group>"; };
 		D6F6FAEE1EFE42090041A212 /* Texture2D.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.h; fileEncoding = 4; path = Texture2D.h; sourceTree = "<group>"; };
 		D6F6FAF01EFE48490041A212 /* Assets */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Assets; sourceTree = "<group>"; };
+		D6FED0F11F3B131200E0C028 /* Vertex.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Vertex.cpp; sourceTree = "<group>"; };
+		D6FED0F21F3B131200E0C028 /* Vertex.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Vertex.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -250,14 +250,14 @@
 				D642089A1ED68FC3009833A2 /* GLES20View.m */,
 				D642089B1ED68FC3009833A2 /* GLProgram.cpp */,
 				D642089C1ED68FC3009833A2 /* GLProgram.hpp */,
-				D642089D1ED68FC3009833A2 /* GLProgramState.cpp */,
-				D642089E1ED68FC3009833A2 /* GLProgramState.hpp */,
 				D642089F1ED68FC3009833A2 /* support_gl.h */,
 				D64208A01ED68FC3009833A2 /* support_gl.mm */,
 				D6F6FAEA1EFE3EDE0041A212 /* RawPixelImage.mm */,
 				D6F6FAEB1EFE3EDE0041A212 /* RawPixelImage.h */,
 				D6F6FAED1EFE42090041A212 /* Texture2D.mm */,
 				D6F6FAEE1EFE42090041A212 /* Texture2D.h */,
+				D6FED0F11F3B131200E0C028 /* Vertex.cpp */,
+				D6FED0F21F3B131200E0C028 /* Vertex.hpp */,
 			);
 			path = Renderer;
 			sourceTree = "<group>";
@@ -457,7 +457,7 @@
 				D6535F801EDFC43F00632E0B /* GameObject.cpp in Sources */,
 				D64208AA1ED68FC3009833A2 /* support_gl.mm in Sources */,
 				D611090E1EC6B5A000B89DFE /* AppDelegate.m in Sources */,
-				D64208A91ED68FC3009833A2 /* GLProgramState.cpp in Sources */,
+				D6FED0F31F3B131200E0C028 /* Vertex.cpp in Sources */,
 				D6CA24241EECE64400EEC572 /* Component.cpp in Sources */,
 				D69371961EF81DCB008FF5C2 /* Transform.cpp in Sources */,
 				D61109171EC6B5A100B89DFE /* RiverEngine.xcdatamodeld in Sources */,
