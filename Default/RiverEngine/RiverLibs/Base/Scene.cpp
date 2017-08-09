@@ -45,6 +45,26 @@ void Scene::gameObjectUpdate()
     {
         object->update();
     }
+    
+    //削除対象ゲームオブジェクトを削除
+    if(_waitRemoveObjects.size() != 0)
+    {
+        for(auto& deleteObj : _waitRemoveObjects)
+        {
+            auto it = _gameObjects.begin();
+            while(it != _gameObjects.end())
+            {
+                if(*it == deleteObj)
+                {
+                    _gameObjects.erase(it);
+                    break;
+                }
+                it++;
+            }
+        }
+        
+        _waitRemoveObjects.clear();
+    }
 }
 
 void Scene::gameObjectDraw()
@@ -69,6 +89,23 @@ void Scene::onScreenTouched(TouchInfo& touchInfo)
     {
         object->onScreenTouched(touchInfo);
     }
+}
+
+bool Scene::findGameObject(const std::shared_ptr<GameObject>& obj)
+{
+    for(auto ptr : _gameObjects)
+    {
+        if(obj == ptr)
+            return true;
+    }
+    
+    return false;
+}
+
+void Scene::removeGameObject(const std::shared_ptr<GameObject>& obj)
+{
+    if(findGameObject(obj))
+        _waitRemoveObjects.push_back(obj);
 }
 
 bool Scene::compareDrawLayerOrder(std::shared_ptr<GameObject> left, std::shared_ptr<GameObject> right)

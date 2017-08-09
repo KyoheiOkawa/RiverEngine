@@ -20,6 +20,7 @@ class Scene : public ObjectInterface
 {
 protected:
     std::vector<std::shared_ptr<GameObject>> _gameObjects;
+    std::vector<std::shared_ptr<GameObject>> _waitRemoveObjects;
     
 public:
     Scene();
@@ -37,11 +38,16 @@ public:
     
     void gameObjectDraw();
     
-    virtual void addGameObject(std::shared_ptr<GameObject> gameObject);
+    void addGameObject(std::shared_ptr<GameObject> gameObject);
+    
+    bool findGameObject(const std::shared_ptr<GameObject>& obj);
+    
+    void removeGameObject(const std::shared_ptr<GameObject>& gameObject);
     
     void onScreenTouched(TouchInfo& touchInfo);
     
 private:
+    
     static bool compareDrawLayerOrder(std::shared_ptr<GameObject> left,std::shared_ptr<GameObject> right);
 };
 
