@@ -75,8 +75,10 @@ bool Sprite::init()
 void Sprite::update()
 {
     auto transPtr = getTransform();
-    Vector3 add = Vector3(100,100,0) * Application::getInstance()->getDeltaTime();
+    float delta = Application::getInstance()->getDeltaTime();
+    Vector3 add = Vector3(100,100,0) * delta;
     transPtr->setPosition(transPtr->getPosition() + add);
+    transPtr->setRotation(transPtr->getRotation() + Vector3(0,0,45) * delta);
     
 }
 
@@ -102,24 +104,13 @@ void Sprite::draw()
     auto app = Application::getInstance();
     
     auto trans = getTransform();
-    
     auto pos = trans->getPosition();
     auto scale = trans->getScale();
+    auto rotation = trans->getRotation();
+    
     Vector3 pivot = trans->getPivot();
     
-    const GLfloat xScale = (GLfloat)_spriteSize.x * scale.x / (GLfloat) app->getSurfaceWidth() * 2.0f;
-    const GLfloat yScale = (GLfloat)_spriteSize.y * scale.y / (GLfloat) app->getSurfaceHeight() * 2.0f;
-    
-    const Matrix4x4 scaleM = Matrix4x4::createScale(xScale, yScale, 0);
-    
-    const GLfloat vertexLeft = 0.5f + (1.0 - xScale) * 0.5f + xScale * pivot.x;
-    const GLfloat vertexTop = 0.5f + (1.0f - yScale) * 0.5f + yScale * pivot.y;
-    const GLfloat moveX = (GLfloat)pos.x / (GLfloat) app->getSurfaceWidth() * 2.0f;
-    const GLfloat moveY = -((GLfloat)pos.y / (GLfloat) app->getSurfaceHeight() * 2.0f);
-    
-    const Matrix4x4 translate = Matrix4x4::createTranslate(-vertexLeft+moveX, vertexTop + moveY, 0);
-    
-    Matrix4x4 matrix = Matrix4x4::multiply(translate, scaleM);
+    Matrix4x4 matrix = Matrix4x4::create2DAffine(pos, _spriteSize , scale, rotation.z, Vector2(app->getSurfaceWidth(),app->getSurfaceHeight()), pivot);
     
     glUniformMatrix4fv(_unif_matrix, 1, GL_FALSE, matrix.matrix);
     glUniform1i(_unif_texture, 0);
