@@ -8,7 +8,10 @@
 
 #include "Matrix4x4.hpp"
 #include "Vector3.hpp"
+#include "Vector2.hpp"
 #include "MathMacro.h"
+#include <OpenGLES/ES2/gl.h>
+#include <OpenGLES/ES2/glext.h>
 
 Matrix4x4::Matrix4x4()
 {
@@ -122,6 +125,30 @@ Matrix4x4 Matrix4x4::multiply(const Matrix4x4 a, const Matrix4x4 b)
     return ret;
 }
 
+Matrix4x4 Matrix4x4::create2DAffine(const Vector3 pos, const Vector2 spriteSize,const Vector3 scale,const float rot, const Vector2 screenSize,const Vector3 pivot = Vector3(0.5f,0.5f,0.5f))
+{
+    const GLfloat surfaceAspect = (GLfloat) screenSize.x / (GLfloat) screenSize.y;
+    const Matrix4x4 aspect = Matrix4x4::createScale(1, surfaceAspect, 1);
+    
+    const GLfloat xScale = (GLfloat)spriteSize.x / (GLfloat) screenSize.x * 2.0f;
+    const GLfloat yScale = (GLfloat)spriteSize.y / (GLfloat) screenSize.x * 2.0f;
+    
+    const Matrix4x4 scaleMat = Matrix4x4::createScale(xScale, yScale, 0);
+    
+    const GLfloat vertexLeft = 0.5f + (1.0 - xScale) * 0.5f + xScale * pivot.x;
+    const GLfloat vertexTop = 0.5f + (1.0f - (yScale*surfaceAspect)) * 0.5f + yScale * surfaceAspect * pivot.y;
+    const GLfloat moveX = (GLfloat)pos.x / (GLfloat) screenSize.x * 2.0f;
+    const GLfloat moveY = -((GLfloat)pos.y / (GLfloat) screenSize.y * 2.0f);
+    
+    const Matrix4x4 translate = Matrix4x4::createTranslate(-vertexLeft+moveX, vertexTop + moveY, 0);
+    const Matrix4x4 rotate = Matrix4x4::createRotate(Vector3::FORWARD(), rot);
+    
+    Matrix4x4 ret = Matrix4x4::multiply(translate, aspect);
+    ret = Matrix4x4::multiply(ret, rotate);
+    ret = Matrix4x4::multiply(ret, scaleMat);
+    
+    return ret;
+}
 
 
 
