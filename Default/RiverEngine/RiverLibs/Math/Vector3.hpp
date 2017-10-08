@@ -12,6 +12,8 @@
 #include <stdio.h>
 #include <math.h>
 
+class Vector2;
+
 class Vector3
 {
 public:
@@ -40,6 +42,7 @@ public:
     void set(float xi, float yi, float zi);
     
     Vector3& operator=(const Vector3& other);
+    Vector3& operator=(const Vector2& other);
     Vector3& operator+=(Vector3 u);
     Vector3& operator-=(Vector3 u);
     Vector3& operator*=(float s);

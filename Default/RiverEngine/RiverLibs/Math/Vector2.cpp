@@ -7,6 +7,7 @@
 //
 
 #include "Vector2.hpp"
+#include "Vector3.hpp"
 #include "MathMacro.h"
 
 Vector2::Vector2()
@@ -108,6 +109,14 @@ Vector2& Vector2::operator=(const Vector2& other)
         x = other.x;
         y = other.y;
     }
+    
+    return *this;
+}
+
+Vector2& Vector2::operator=(const Vector3& other)
+{
+    x = other.x;
+    y = other.y;
     
     return *this;
 }

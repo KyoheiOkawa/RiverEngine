@@ -7,6 +7,7 @@
 //
 
 #include "Vector3.hpp"
+#include "Vector2.hpp"
 #include "MathMacro.h"
 
 Vector3::Vector3()
@@ -120,13 +121,24 @@ Vector3& Vector3::operator/=(float s)
     return *this;
 }
 
-Vector3& Vector3::operator=(const Vector3& other){
+Vector3& Vector3::operator=(const Vector3& other)
+{
     //自己代入の抑制
-    if(this != &other){
+    if(this != &other)
+    {
         x = other.x;
         y = other.y;
         z = other.z;
     }
+    
+    return *this;
+}
+
+Vector3& Vector3::operator=(const Vector2& other)
+{
+    x = other.x;
+    y = other.y;
+    z = 0;
     
     return *this;
 }
