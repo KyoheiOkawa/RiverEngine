@@ -41,6 +41,17 @@ void Scene::draw()
 
 void Scene::gameObjectUpdate()
 {
+    if(_waitAddObjects.size() != 0)
+    {
+        for(auto& addObj : _waitAddObjects)
+        {
+            addObj->setScene(getThis<Scene>());
+            _gameObjects.push_back(addObj);
+        }
+        
+        _waitAddObjects.clear();
+    }
+    
     for(auto& object : _gameObjects)
     {
         object->update();
@@ -79,8 +90,7 @@ void Scene::gameObjectDraw()
 
 void Scene::addGameObject(std::shared_ptr<GameObject> gameObject)
 {
-    gameObject->setScene(getThis<Scene>());
-    _gameObjects.push_back(gameObject);
+    _waitAddObjects.push_back(gameObject);
 }
 
 void Scene::onScreenTouched(TouchInfo& touchInfo)

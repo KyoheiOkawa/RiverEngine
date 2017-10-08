@@ -20,6 +20,7 @@ class Scene : public ObjectInterface
 {
 protected:
     std::vector<std::shared_ptr<GameObject>> _gameObjects;
+    std::vector<std::shared_ptr<GameObject>> _waitAddObjects;
     std::vector<std::shared_ptr<GameObject>> _waitRemoveObjects;
     
 public:

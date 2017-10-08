@@ -37,6 +37,8 @@
 		D6F6FAEF1EFE42090041A212 /* Texture2D.mm in Sources */ = {isa = PBXBuildFile; fileRef = D6F6FAED1EFE42090041A212 /* Texture2D.mm */; };
 		D6F6FAF11EFE48490041A212 /* Assets in Resources */ = {isa = PBXBuildFile; fileRef = D6F6FAF01EFE48490041A212 /* Assets */; };
 		D6FED0F31F3B131200E0C028 /* Vertex.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6FED0F11F3B131200E0C028 /* Vertex.cpp */; };
+		D6FED0F91F3B46A300E0C028 /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D6FED0F81F3B46A300E0C028 /* OpenAL.framework */; };
+		D6FED0FD1F3B57CD00E0C028 /* SimpleAudioEngine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6FED0FB1F3B57CD00E0C028 /* SimpleAudioEngine.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -114,6 +116,9 @@
 		D6F6FAF01EFE48490041A212 /* Assets */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Assets; sourceTree = "<group>"; };
 		D6FED0F11F3B131200E0C028 /* Vertex.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Vertex.cpp; sourceTree = "<group>"; };
 		D6FED0F21F3B131200E0C028 /* Vertex.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Vertex.hpp; sourceTree = "<group>"; };
+		D6FED0F81F3B46A300E0C028 /* OpenAL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenAL.framework; path = System/Library/Frameworks/OpenAL.framework; sourceTree = SDKROOT; };
+		D6FED0FB1F3B57CD00E0C028 /* SimpleAudioEngine.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SimpleAudioEngine.cpp; sourceTree = "<group>"; };
+		D6FED0FC1F3B57CD00E0C028 /* SimpleAudioEngine.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = SimpleAudioEngine.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -121,6 +126,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D6FED0F91F3B46A300E0C028 /* OpenAL.framework in Frameworks */,
 				D611094C1EC6BBC300B89DFE /* OpenGLES.framework in Frameworks */,
 				D611094A1EC6BBBA00B89DFE /* UIKit.framework in Frameworks */,
 			);
@@ -208,6 +214,7 @@
 		D61109481EC6BBB900B89DFE /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D6FED0F81F3B46A300E0C028 /* OpenAL.framework */,
 				D611094B1EC6BBC300B89DFE /* OpenGLES.framework */,
 				D61109491EC6BBBA00B89DFE /* UIKit.framework */,
 			);
@@ -217,6 +224,7 @@
 		D64208901ED68FC3009833A2 /* RiverLibs */ = {
 			isa = PBXGroup;
 			children = (
+				D6FED0F41F3B466900E0C028 /* Audio */,
 				D610B5FD1EF4221200AB5048 /* Math */,
 				D6CA24211EECE5FD00EEC572 /* Component */,
 				D6535F851EDFC87F00632E0B /* Include */,
@@ -308,6 +316,15 @@
 				D69371951EF81DCB008FF5C2 /* Transform.hpp */,
 			);
 			path = Component;
+			sourceTree = "<group>";
+		};
+		D6FED0F41F3B466900E0C028 /* Audio */ = {
+			isa = PBXGroup;
+			children = (
+				D6FED0FB1F3B57CD00E0C028 /* SimpleAudioEngine.cpp */,
+				D6FED0FC1F3B57CD00E0C028 /* SimpleAudioEngine.hpp */,
+			);
+			path = Audio;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -456,6 +473,7 @@
 				D6F6FAEF1EFE42090041A212 /* Texture2D.mm in Sources */,
 				D6535F801EDFC43F00632E0B /* GameObject.cpp in Sources */,
 				D64208AA1ED68FC3009833A2 /* support_gl.mm in Sources */,
+				D6FED0FD1F3B57CD00E0C028 /* SimpleAudioEngine.cpp in Sources */,
 				D611090E1EC6B5A000B89DFE /* AppDelegate.m in Sources */,
 				D6FED0F31F3B131200E0C028 /* Vertex.cpp in Sources */,
 				D6CA24241EECE64400EEC572 /* Component.cpp in Sources */,
