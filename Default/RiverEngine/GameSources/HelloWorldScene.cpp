@@ -36,8 +36,8 @@ bool HelloWorldScene::init()
         return false;
     
     auto director = Director::getInstance();
-//    director->registerTexture("RIVER_TX", "River.png");
-//    director->registerTexture("ANGRY_TX", "blendTex.png");
+    auto audioEngine = SimpleAudioEngine::getInstance();
+    audioEngine->test();
     
     auto sprite = Sprite::createWithTexture("River.png");
     this->addGameObject(sprite);

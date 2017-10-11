@@ -15,23 +15,25 @@
 #include <OpenAL/alc.h>
 #include <AudioToolbox/AudioToolbox.h>
 #include "FileUtils.hpp"
+#include <memory.h>
+#include <array>
+#include <thread>
 
 class SimpleAudioEngine
 {
 private:
     static SimpleAudioEngine* _instance;
     
-    ALuint buffer;
-    ALuint source;
+    ALCdevice* _device;
+    ALCcontext* _context;
     
     SimpleAudioEngine(){}
 public:
+    virtual ~SimpleAudioEngine();
     static SimpleAudioEngine* getInstance();
     
     void init();
-    
-private:
-    int readHeaderWav(FILE* fp,int *channel, int *bit,int *size, int* freq);
+    void test();
 };
 
 #endif /* SimpleAudioEngine_hpp */
