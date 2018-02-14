@@ -20,6 +20,7 @@
 #include "Director.hpp"
 #include "Scene.hpp"
 #include "Helper.hpp"
+#include "MeshResource.hpp"
 #include "GameObject.hpp"
 #include "Sprite.hpp"
 #include "GLProgram.hpp"
@@ -28,10 +29,5 @@
 #include "Component.hpp"
 #include "Transform.hpp"
 #include "SimpleAudioEngine.hpp"
-
-//#include <assert.h>
-//#include <vector>
-//#include <math.h>
-//#include <memory>
 
 #endif /* river_h */

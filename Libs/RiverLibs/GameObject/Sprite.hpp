@@ -23,6 +23,7 @@ class Sprite : public GameObject
     GLint _unif_texture;
     GLuint _texture_id;
     
+    std::shared_ptr<MeshResource<PositionTexture>> _meshResource;
 public:
     Sprite();
     virtual ~Sprite();

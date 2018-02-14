@@ -37,6 +37,7 @@
 		D648B2E21F8E514E00C57D9C /* Vertex.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D648B2CC1F8E514E00C57D9C /* Vertex.cpp */; };
 		D648B2E31F8E514E00C57D9C /* FileUtils.mm in Sources */ = {isa = PBXBuildFile; fileRef = D648B2D01F8E514E00C57D9C /* FileUtils.mm */; };
 		D6535F841EDFC84D00632E0B /* HelloWorldScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6535F821EDFC84D00632E0B /* HelloWorldScene.cpp */; };
+		D684F7FD203499A10032C3A6 /* MeshResource.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D684F7FB203499A10032C3A6 /* MeshResource.cpp */; };
 		D6F6FAF11EFE48490041A212 /* Assets in Resources */ = {isa = PBXBuildFile; fileRef = D6F6FAF01EFE48490041A212 /* Assets */; };
 		D6FED0F91F3B46A300E0C028 /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D6FED0F81F3B46A300E0C028 /* OpenAL.framework */; };
 /* End PBXBuildFile section */
@@ -118,6 +119,8 @@
 		D648B2D01F8E514E00C57D9C /* FileUtils.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = FileUtils.mm; sourceTree = "<group>"; };
 		D6535F821EDFC84D00632E0B /* HelloWorldScene.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; path = HelloWorldScene.cpp; sourceTree = "<group>"; };
 		D6535F831EDFC84D00632E0B /* HelloWorldScene.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = HelloWorldScene.hpp; sourceTree = "<group>"; };
+		D684F7FB203499A10032C3A6 /* MeshResource.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = MeshResource.cpp; sourceTree = "<group>"; };
+		D684F7FC203499A10032C3A6 /* MeshResource.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = MeshResource.hpp; sourceTree = "<group>"; };
 		D6F6FAF01EFE48490041A212 /* Assets */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Assets; sourceTree = "<group>"; };
 		D6FED0F81F3B46A300E0C028 /* OpenAL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenAL.framework; path = System/Library/Frameworks/OpenAL.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
@@ -316,6 +319,8 @@
 				D648B2CB1F8E514E00C57D9C /* Texture2D.mm */,
 				D648B2CC1F8E514E00C57D9C /* Vertex.cpp */,
 				D648B2CD1F8E514E00C57D9C /* Vertex.hpp */,
+				D684F7FB203499A10032C3A6 /* MeshResource.cpp */,
+				D684F7FC203499A10032C3A6 /* MeshResource.hpp */,
 			);
 			path = Renderer;
 			sourceTree = "<group>";
@@ -491,6 +496,7 @@
 				D648B2D21F8E514E00C57D9C /* Application.mm in Sources */,
 				D648B2D11F8E514E00C57D9C /* SimpleAudioEngine.cpp in Sources */,
 				D648B2D71F8E514E00C57D9C /* Transform.cpp in Sources */,
+				D684F7FD203499A10032C3A6 /* MeshResource.cpp in Sources */,
 				D61109171EC6B5A100B89DFE /* RiverEngine.xcdatamodeld in Sources */,
 				D611090B1EC6B5A000B89DFE /* main.m in Sources */,
 				D6535F841EDFC84D00632E0B /* HelloWorldScene.cpp in Sources */,

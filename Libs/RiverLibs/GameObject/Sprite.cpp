@@ -70,6 +70,15 @@ bool Sprite::init()
     _unif_matrix = _useProgram->getUnifLocation("unif_matrix");
     _unif_texture = _useProgram->getUnifLocation("unif_texture");
     
+    std::vector<PositionTexture> vertex ={
+        {{-0.5f,0.5f},{0,0}},
+        {{-0.5f,-0.5f},{0,1}},
+        {{0.5f,0.5f},{1,0}},
+        {{0.5f,-0.5f},{1,1}}
+    };
+    
+    _meshResource = MeshResource<PositionTexture>::createWithVertex(vertex);
+    
     return true;
 }
 
@@ -92,15 +101,8 @@ void Sprite::draw()
     glEnable(GL_BLEND);
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
     
-    const PositionTexture vertex[] ={
-        {{-0.5f,0.5f},{0,0}},
-        {{-0.5f,-0.5f},{0,1}},
-        {{0.5f,0.5f},{1,0}},
-        {{0.5f,-0.5f},{1,1}}
-    };
-    
-    glVertexAttribPointer(_attr_pos, 2, GL_FLOAT, GL_FALSE, sizeof(PositionTexture), (GLvoid*)vertex);
-    glVertexAttribPointer(_attr_uv, 2, GL_FLOAT, GL_FALSE, sizeof(PositionTexture), (GLvoid*)((GLubyte*)vertex + sizeof(GLfloat)*3));
+    glVertexAttribPointer(_attr_pos, 2, GL_FLOAT, GL_FALSE, sizeof(PositionTexture), (GLvoid*)_meshResource->GetVertexPointer());
+    glVertexAttribPointer(_attr_uv, 2, GL_FLOAT, GL_FALSE, sizeof(PositionTexture), (GLvoid*)((GLubyte*)_meshResource->GetVertexPointer() + sizeof(GLfloat)*3));
     
     auto app = Application::getInstance();
     
