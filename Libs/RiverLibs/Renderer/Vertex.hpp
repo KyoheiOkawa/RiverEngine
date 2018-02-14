@@ -9,8 +9,7 @@
 #ifndef Vertex_hpp
 #define Vertex_hpp
 
-#include <stdio.h>
-#include "river.h"
+#include "stdinc.h"
 
 struct PositionTexture
 {

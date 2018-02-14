@@ -9,9 +9,7 @@
 #ifndef Helper_hpp
 #define Helper_hpp
 
-#include <stdio.h>
-#include <memory>
-#include <assert.h>
+#include "stdinc.h"
 
 class ObjectInterface : public std::enable_shared_from_this<ObjectInterface>
 {

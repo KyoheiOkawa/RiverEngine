@@ -9,8 +9,7 @@
 #ifndef Vector3_hpp
 #define Vector3_hpp
 
-#include <stdio.h>
-#include <math.h>
+#include "stdinc.h"
 
 class Vector2;
 

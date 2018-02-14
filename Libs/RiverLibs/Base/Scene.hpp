@@ -9,9 +9,7 @@
 #ifndef Scene_hpp
 #define Scene_hpp
 
-#include <stdio.h>
-#include <memory>
-#include <vector>
+#include "stdinc.h"
 #include "Helper.hpp"
 
 class GameObject;

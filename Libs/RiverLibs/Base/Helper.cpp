@@ -6,4 +6,5 @@
 //  Copyright © 2017年 BiGRiVER. All rights reserved.
 //
 
-#include "Helper.hpp"
+#include "stdinc.h"
+#include "river.h"

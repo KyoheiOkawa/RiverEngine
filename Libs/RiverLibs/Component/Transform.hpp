@@ -9,8 +9,7 @@
 #ifndef Transform_hpp
 #define Transform_hpp
 
-#include <stdio.h>
-#include <memory>
+#include "stdinc.h"
 #include "Vector3.hpp"
 
 class Transform : public Component

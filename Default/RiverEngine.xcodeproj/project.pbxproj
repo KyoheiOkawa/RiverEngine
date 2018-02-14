@@ -74,6 +74,7 @@
 		D611092D1EC6B5A100B89DFE /* RiverEngineUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RiverEngineUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D61109491EC6BBBA00B89DFE /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		D611094B1EC6BBC300B89DFE /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
+		D62B198420348D0F00DE6189 /* stdinc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = stdinc.h; sourceTree = "<group>"; };
 		D648B29D1F8E512D00C57D9C /* Shaders */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Shaders; path = ../../Shaders; sourceTree = "<group>"; };
 		D648B2A21F8E514E00C57D9C /* SimpleAudioEngine.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SimpleAudioEngine.cpp; sourceTree = "<group>"; };
 		D648B2A31F8E514E00C57D9C /* SimpleAudioEngine.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = SimpleAudioEngine.hpp; sourceTree = "<group>"; };
@@ -281,6 +282,7 @@
 			isa = PBXGroup;
 			children = (
 				D648B2B81F8E514E00C57D9C /* river.h */,
+				D62B198420348D0F00DE6189 /* stdinc.h */,
 			);
 			path = Include;
 			sourceTree = "<group>";

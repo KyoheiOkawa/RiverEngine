@@ -9,7 +9,7 @@
 #ifndef Matrix4x4_hpp
 #define Matrix4x4_hpp
 
-#include <stdio.h>
+#include "stdinc.h"
 
 class Vector3;
 class Vector2;

@@ -6,9 +6,8 @@
 //  Copyright © 2017年 BiGRiVER. All rights reserved.
 //
 
-#include "GLProgram.hpp"
-#include "FileUtils.hpp"
-#include <assert.h>
+#include "stdinc.h"
+#include "river.h"
 
 const char* GLProgram::ATTRIBUTE_NAME_POSITION = "attr_pos";
 

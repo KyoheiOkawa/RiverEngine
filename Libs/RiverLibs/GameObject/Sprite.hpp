@@ -9,8 +9,7 @@
 #ifndef Sprite_hpp
 #define Sprite_hpp
 
-#include <stdio.h>
-#include <memory>
+#include "stdinc.h"
 
 class Sprite : public GameObject
 {

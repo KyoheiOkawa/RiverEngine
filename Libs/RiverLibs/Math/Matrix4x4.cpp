@@ -6,12 +6,11 @@
 //  Copyright © 2017年 BiGRiVER. All rights reserved.
 //
 
+#include "stdinc.h"
 #include "Matrix4x4.hpp"
 #include "Vector3.hpp"
 #include "Vector2.hpp"
 #include "MathMacro.h"
-#include <OpenGLES/ES2/gl.h>
-#include <OpenGLES/ES2/glext.h>
 
 Matrix4x4::Matrix4x4()
 {

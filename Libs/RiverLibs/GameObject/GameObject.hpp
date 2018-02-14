@@ -9,12 +9,7 @@
 #ifndef GameObject_hpp
 #define GameObject_hpp
 
-#include <stdio.h>
-#include <new>
-#include <memory>
-#include <map>
-#include <typeindex>
-#include <list>
+#include "stdinc.h"
 
 class Component;
 class Transform;

@@ -9,10 +9,7 @@
 #ifndef Director_hpp
 #define Director_hpp
 
-#include <stdio.h>
-#include <memory.h>
-#include <map>
-#include <string>
+#include "stdinc.h"
 
 class Scene;
 

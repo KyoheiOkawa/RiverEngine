@@ -9,13 +9,7 @@
 #ifndef GLProgram_hpp
 #define GLProgram_hpp
 
-#include <stdio.h>
-#include <new>
-#include <OpenGLES/ES2/gl.h>
-#include <OpenGLES/ES2/glext.h>
-#include <string>
-#include <unordered_map>
-#include <assert.h>
+#include "stdinc.h"
 
 struct VertexAttrib
 {

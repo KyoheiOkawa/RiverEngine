@@ -9,7 +9,7 @@
 #ifndef Component_hpp
 #define Component_hpp
 
-#include <stdio.h>
+#include "stdinc.h"
 
 class GameObject;
 
