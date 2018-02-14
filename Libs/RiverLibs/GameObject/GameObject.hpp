@@ -101,8 +101,10 @@ public:
     
     virtual bool init();
     
+    void componentUpdate();
     virtual void update(){};
     
+    void componentDraw();
     virtual void draw(){};
     
     virtual void onScreenTouched(TouchInfo& touchInfo){};

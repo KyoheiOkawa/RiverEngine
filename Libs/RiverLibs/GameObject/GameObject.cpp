@@ -62,3 +62,15 @@ std::shared_ptr<GameObject> GameObject::create()
     
     return nullptr;
 }
+
+void GameObject::componentUpdate()
+{
+    for(auto& comp : _compMap)
+        comp.second->update();
+}
+
+void GameObject::componentDraw()
+{
+    for(auto& comp : _compMap)
+        comp.second->draw();
+}

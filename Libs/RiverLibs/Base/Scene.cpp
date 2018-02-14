@@ -55,6 +55,7 @@ void Scene::gameObjectUpdate()
     
     for(auto& object : _gameObjects)
     {
+        object->componentUpdate();
         object->update();
     }
     
@@ -85,6 +86,7 @@ void Scene::gameObjectDraw()
     
     for(auto& object : _gameObjects)
     {
+        object->componentDraw();
         object->draw();
     }
 }
