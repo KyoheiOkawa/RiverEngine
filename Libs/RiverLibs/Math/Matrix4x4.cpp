@@ -149,6 +149,65 @@ Matrix4x4 Matrix4x4::create2DAffine(const Vector3 pos, const Vector2 spriteSize,
     return ret;
 }
 
+Matrix4x4 Matrix4x4::createLookAt(const Vector3 eye, const Vector3 look, const Vector3 up)
+{
+    Matrix4x4 result;
+    
+    Vector3 f = Vector3(look.x - eye.x,look.y - eye.y,look.z - eye.z);
+    f.normalize();
+    Vector3 u = up.getNormalized();
+    Vector3 s = Vector3::cross(f, u);
+    s.normalize();
+    u = Vector3::cross(s, f);
+    
+    result.matrix[0] = s.x;
+    result.matrix[4] = s.y;
+    result.matrix[8] = s.z;
+    
+    result.matrix[1] = u.x;
+    result.matrix[5] = u.y;
+    result.matrix[9] = u.z;
+    
+    result.matrix[2] = -f.x;
+    result.matrix[6] = -f.y;
+    result.matrix[10] = -f.z;
+    
+    result.matrix[12] = -Vector3::dot(s, eye);
+    result.matrix[13] = -Vector3::dot(u, eye);
+    result.matrix[14] = Vector3::dot(f, eye);
+    
+    result.matrix[3] = 0;
+    result.matrix[7] = 0;
+    result.matrix[11] = 0;
+    result.matrix[15] = 1;
+    
+    return result;
+}
+
+Matrix4x4 Matrix4x4::createPerspective(const GLfloat near, const GLfloat far, const GLfloat fovY_degree, const GLfloat aspect)
+{
+    Matrix4x4 result;
+    
+    const GLfloat f = (GLfloat) (1.0f / (tan(Deg2Rad(fovY_degree))/2.0f));
+    
+    result.matrix[0] = f / aspect;
+    result.matrix[5] = f;
+    result.matrix[10] = (far + near) / (near - far);
+    result.matrix[11] = -1;
+    result.matrix[14] = (2.0f * far * near) / (near - far);
+    result.matrix[15] = 0.0f;
+    
+    return result;
+}
+
+
+
+
+
+
+
+
+
 
 
 

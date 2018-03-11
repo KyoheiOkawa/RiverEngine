@@ -30,6 +30,7 @@ public:
     static Vector3 FORWARD();
     
     static float dot(const Vector3& v1, const Vector3& v2);
+    static Vector3 cross(const Vector3& v1,const Vector3& v2);
     static float angle(Vector3& v1, Vector3& v2);
     
     float magnitude() const;

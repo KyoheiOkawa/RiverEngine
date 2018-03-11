@@ -221,3 +221,14 @@ float Vector3::angle(Vector3& v1, Vector3& v2)
     
     return atan2(sqrt(dx * dx + dy * dy + dz * dz) + MATH_FLOAT_SMALL, dot(v1, v2));
 }
+
+Vector3 Vector3::cross(const Vector3 &v1,const Vector3 &v2)
+{
+    Vector3 ret = v1;
+    
+    return ret.cross(v2);
+}
+
+
+
+
