@@ -32,8 +32,6 @@ shared_ptr<TestObject> TestObject::create()
 
 bool TestObject::init()
 {
-    cameraPos = Vector3(3,1.5f,-5.0f);
-    
     _useProgram = Director::getInstance()->getGLProgram("PStatic");
     
     attr_pos = _useProgram->getAttribLocation("attr_pos");
@@ -49,10 +47,15 @@ bool TestObject::init()
 
 void TestObject::update()
 {
-    cameraPos.z += 0.01f;
+    static float testObjDir = 1.0f;
     
-    if(cameraPos.z > 5.0f)
-        cameraPos.z = -5.0f;
+    auto cam = Director::getInstance()->getScene()->GetMainCamera();
+    Vector3 pos = cam->GetCameraPos();
+    pos.x += 0.01f * testObjDir;
+    cam->SetCameraPos(pos);
+    
+    if(abs(pos.x) > 5.0f)
+        testObjDir *= -1.0f;
 }
 
 void TestObject::draw()
@@ -64,16 +67,8 @@ void TestObject::draw()
     glEnableVertexAttribArray(attr_pos);
     assert(glGetError()==GL_NO_ERROR);
     
-    const Vector3 camera_pos = cameraPos;
-    const Vector3 camera_look = Vector3(0,0,0);
-    const Vector3 camera_up = Vector3(0,1,0);
-    const Matrix4x4 lookAt = Matrix4x4::createLookAt(camera_pos, camera_look, camera_up);
-
-    const GLfloat prj_near = 1.0f;
-    const GLfloat prj_far = 30.0f;
-    const GLfloat prj_fovY = 45.0f;
-    const GLfloat prj_aspect = (GLfloat)(app->getSurfaceWidth()) / (GLfloat)(app->getSurfaceHeight());
-    const Matrix4x4 projection = Matrix4x4::createPerspective(prj_near, prj_far, prj_fovY, prj_aspect);
+    Matrix4x4 lookAt,projection;
+    Director::getInstance()->getScene()->GetMainCamera()->GetLookAtProjection(lookAt, projection);
 
     glUniformMatrix4fv(unif_lookat, 1, GL_FALSE, lookAt.matrix);
     assert(glGetError()==GL_NO_ERROR);
@@ -89,6 +84,21 @@ void TestObject::draw()
     };
     
     glVertexAttribPointer(attr_pos, 3, GL_FLOAT, GL_FALSE, 0, (GLvoid*) positionTriangle);
+    assert(glGetError()==GL_NO_ERROR);
+    
+    glDrawArrays(GL_TRIANGLE_STRIP, 0, 3);
+    assert(glGetError()==GL_NO_ERROR);
+    
+    glUniform4f(unif_color, 1.0f, 0.0f, 0.0f, 1.0f);
+    
+    const GLfloat positionRect[] = {
+        -0.5f,0.5f,0.0f,
+        0.5f,0.5f,0.0f,
+        -0.5f,-0.5f,0.0f,
+        0.5f,-0.5f,0.0f
+    };
+    
+    glVertexAttribPointer(attr_pos, 3, GL_FLOAT, GL_FALSE, 0, (GLvoid*) positionRect);
     assert(glGetError()==GL_NO_ERROR);
     
     glDrawArrays(GL_TRIANGLE_STRIP, 0, 3);

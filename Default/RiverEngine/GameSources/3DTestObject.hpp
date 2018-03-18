@@ -19,7 +19,6 @@ class TestObject : public GameObject
     GLint unif_color;
     GLint unif_lookat;
     GLint unif_projection;
-    Vector3 cameraPos;
     
 public:
     TestObject();

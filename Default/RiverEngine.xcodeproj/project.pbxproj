@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D600C08D205F02B5006749D9 /* Camera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D600C08B205F02B5006749D9 /* Camera.cpp */; };
 		D611090B1EC6B5A000B89DFE /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D611090A1EC6B5A000B89DFE /* main.m */; };
 		D611090E1EC6B5A000B89DFE /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D611090D1EC6B5A000B89DFE /* AppDelegate.m */; };
 		D61109111EC6B5A100B89DFE /* ViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = D61109101EC6B5A100B89DFE /* ViewController.mm */; };
@@ -61,6 +62,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		D600C08B205F02B5006749D9 /* Camera.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Camera.cpp; sourceTree = "<group>"; };
+		D600C08C205F02B5006749D9 /* Camera.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Camera.hpp; sourceTree = "<group>"; };
 		D61109061EC6B5A000B89DFE /* RiverEngine.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RiverEngine.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D611090A1EC6B5A000B89DFE /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		D611090C1EC6B5A000B89DFE /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -324,6 +327,8 @@
 				D648B2CD1F8E514E00C57D9C /* Vertex.hpp */,
 				D684F7FB203499A10032C3A6 /* MeshResource.cpp */,
 				D684F7FC203499A10032C3A6 /* MeshResource.hpp */,
+				D600C08B205F02B5006749D9 /* Camera.cpp */,
+				D600C08C205F02B5006749D9 /* Camera.hpp */,
 			);
 			path = Renderer;
 			sourceTree = "<group>";
@@ -508,6 +513,7 @@
 				D6535F841EDFC84D00632E0B /* HelloWorldScene.cpp in Sources */,
 				D648B2D51F8E514E00C57D9C /* Scene.cpp in Sources */,
 				D648B2D91F8E514E00C57D9C /* Sprite.cpp in Sources */,
+				D600C08D205F02B5006749D9 /* Camera.cpp in Sources */,
 				D648B2E21F8E514E00C57D9C /* Vertex.cpp in Sources */,
 				D648B2E31F8E514E00C57D9C /* FileUtils.mm in Sources */,
 				D648B2D41F8E514E00C57D9C /* Helper.cpp in Sources */,

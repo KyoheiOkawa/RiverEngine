@@ -13,6 +13,7 @@
 #include "Helper.hpp"
 
 class GameObject;
+class Camera;
 
 class Scene : public ObjectInterface
 {
@@ -21,6 +22,7 @@ protected:
     std::vector<std::shared_ptr<GameObject>> _waitAddObjects;
     std::vector<std::shared_ptr<GameObject>> _waitRemoveObjects;
     
+    unique_ptr<Camera> _mainCamera;
 public:
     Scene();
     virtual ~Scene();
@@ -45,6 +47,7 @@ public:
     
     void onScreenTouched(TouchInfo& touchInfo);
     
+    Camera* GetMainCamera(){return _mainCamera.get();}
 private:
     
     static bool compareDrawLayerOrder(std::shared_ptr<GameObject> left,std::shared_ptr<GameObject> right);

@@ -9,9 +9,10 @@
 #include "stdinc.h"
 #include "river.h"
 
-Scene::Scene()
+Scene::Scene():
+_mainCamera(new Camera())
 {
-    
+
 }
 
 Scene::~Scene()

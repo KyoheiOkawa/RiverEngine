@@ -18,6 +18,7 @@
 
 #include "Application.h"
 #include "Director.hpp"
+#include "Camera.hpp"
 #include "Scene.hpp"
 #include "Helper.hpp"
 #include "MeshResource.hpp"
