@@ -123,6 +123,7 @@ GLProgram* GLProgram::createWithFile(const std::string& vShaderFileName, const s
 void GLProgram::use()
 {
     glUseProgram(_program);
+    
     assert(glGetError() == GL_NO_ERROR);
 }
 

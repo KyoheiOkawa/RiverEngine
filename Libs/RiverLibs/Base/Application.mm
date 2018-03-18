@@ -52,7 +52,7 @@ void Application::update()
 void Application::rendering()
 {
     glClearColor(0.0913f, 0.0913f, 0.436f, 1.0f);
-    glClear(GL_COLOR_BUFFER_BIT);
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     
     Director::getInstance()->drawScene();
     

@@ -9,6 +9,8 @@
 #ifndef stlinc_h
 #define stlinc_h
 
+using namespace std;
+
 #include <stdio.h>
 #include <memory.h>
 #include <map>

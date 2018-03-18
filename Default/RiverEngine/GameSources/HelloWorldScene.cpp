@@ -7,6 +7,7 @@
 //
 
 #include "HelloWorldScene.hpp"
+#include "3DTestObject.hpp"
 
 HelloWorldScene::HelloWorldScene()
 {
@@ -41,10 +42,14 @@ bool HelloWorldScene::init()
     
     auto sprite = Sprite::createWithTexture("River.png");
     this->addGameObject(sprite);
-    
+
     auto sprite2 = Sprite::createWithTexture("blendTex.png");
     sprite2->getTransform()->setPosition(Vector3(0,600,0));
     this->addGameObject(sprite2);
+    
+    auto triangle = TestObject::create();
+    triangle->setDrawLayer(-1);
+    this->addGameObject(triangle);
     
     return true;
 }

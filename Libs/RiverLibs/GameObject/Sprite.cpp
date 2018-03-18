@@ -120,6 +120,10 @@ void Sprite::draw()
     
     glBindTexture(GL_TEXTURE_2D, _texture_id);
     glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
+    
+    glDisable(GL_BLEND);
+    glDisableVertexAttribArray(_attr_pos);
+    glDisableVertexAttribArray(_attr_uv);
 }
 
 void Sprite::setTexture(std::string texKey)
