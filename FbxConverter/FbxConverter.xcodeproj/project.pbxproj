@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D659331A206A40DE002C5143 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D6593319206A40DE002C5143 /* Cocoa.framework */; };
 		D683FE8220694D5F003785E4 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D683FE8120694D5F003785E4 /* main.cpp */; };
 		D683FE9B206955B6003785E4 /* libfbxsdk.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D683FE9A206955B6003785E4 /* libfbxsdk.a */; };
 /* End PBXBuildFile section */
@@ -24,6 +25,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		D6593319206A40DE002C5143 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		D683FE7E20694D5F003785E4 /* FbxConverter */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = FbxConverter; sourceTree = BUILT_PRODUCTS_DIR; };
 		D683FE8120694D5F003785E4 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		D683FE9A206955B6003785E4 /* libfbxsdk.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libfbxsdk.a; sourceTree = "<group>"; };
@@ -34,6 +36,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D659331A206A40DE002C5143 /* Cocoa.framework in Frameworks */,
 				D683FE9B206955B6003785E4 /* libfbxsdk.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -69,6 +72,7 @@
 		D683FE8820694EBB003785E4 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D6593319206A40DE002C5143 /* Cocoa.framework */,
 				D683FE9A206955B6003785E4 /* libfbxsdk.a */,
 			);
 			name = Frameworks;
