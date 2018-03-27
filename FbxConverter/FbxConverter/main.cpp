@@ -8,6 +8,7 @@
 
 #include <iostream>
 #include <string>
+#include <vector>
 #include <fbxsdk.h>
 
 using namespace std;
@@ -24,6 +25,9 @@ struct PositionNormal
 };
 
 FbxScene* InitFbxAndLoadScene(string filepath);
+vector<FbxMesh*> GetMeshes(const FbxScene* scene);
+vector<int> MakeIndices(const FbxMesh* mesh);
+vector<Vector3> GetVertexPositions(const FbxMesh* mesh,const std::vector<int>& indices);
 
 int main(int argc, const char * argv[])
 {
@@ -32,6 +36,13 @@ int main(int argc, const char * argv[])
     cin >> filePath;
     
     auto scene = InitFbxAndLoadScene(filePath);
+    auto meshes = GetMeshes(scene);
+    
+    for(auto mesh : meshes)
+    {
+        auto indices = MakeIndices(mesh);
+        auto positions = GetVertexPositions(mesh, indices);
+    }
     
     return 0;
 }
@@ -87,3 +98,98 @@ FbxScene* InitFbxAndLoadScene(string filePath)
     
     return scene;
 }
+
+vector<FbxMesh*> GetMeshes(const FbxScene* scene)
+{
+    vector<FbxMesh*> meshes;
+    
+    int numMeshes = scene->GetMemberCount<FbxMesh>();
+    cout << "Meshes : " << numMeshes << endl;
+    
+    for(int i = 0; i < numMeshes; i++)
+    {
+        auto mesh = scene->GetMember<FbxMesh>(i);
+        meshes.push_back(mesh);
+    }
+    
+    return meshes;
+}
+
+vector<int> MakeIndices(const FbxMesh* mesh)
+{
+    std::vector<int> indices;
+    
+    auto numPolygon = mesh->GetPolygonCount();
+    
+    indices.reserve(numPolygon * 3);
+    for(int i = 0; i < numPolygon; i++)
+    {
+        for(int j = 0; j < 3; j++)
+        {
+            auto index = mesh->GetPolygonVertex(i, j);
+            indices.push_back(index);
+            
+//            cout << index;
+//            if(j < 2)
+//                cout << ", ";
+        }
+        
+        //cout << endl;
+    }
+    
+    return indices;
+}
+
+vector<Vector3> GetVertexPositions(const FbxMesh* mesh,const std::vector<int>& indices)
+{
+    vector<Vector3> positions;
+    
+    auto numControlPoint = mesh->GetControlPointsCount();
+    cout << "ControlPoint Count : " << numControlPoint << endl;
+    
+    vector<FbxVector4> controlPoints;
+    controlPoints.reserve(numControlPoint);
+    for(int i = 0; i < numControlPoint; i++)
+    {
+        auto pos = mesh->GetControlPointAt(i);
+        controlPoints.push_back(pos);
+        
+        //cout << i << " : " << pos[0] << " : " << pos[1] << " : " << pos[2] << endl;
+    }
+    
+    for(auto index : indices)
+    {
+        auto cp = controlPoints[index];
+        positions.push_back({float(cp[0]),float(cp[1]),float(cp[2])});
+        
+        //cout << cp[0] << " : " << cp[1] << " : " << cp[2] << endl;
+    }
+    
+    return positions;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
