@@ -6,7 +6,9 @@
 //  Copyright © 2018年 KyoheiOkawa. All rights reserved.
 //
 
+#include <stdlib.h>
 #include <iostream>
+#include <fstream>
 #include <string>
 #include <vector>
 #include <fbxsdk.h>
@@ -28,21 +30,41 @@ FbxScene* InitFbxAndLoadScene(string filepath);
 vector<FbxMesh*> GetMeshes(const FbxScene* scene);
 vector<int> MakeIndices(const FbxMesh* mesh);
 vector<Vector3> GetVertexPositions(const FbxMesh* mesh,const std::vector<int>& indices);
+vector<int> MakeNormalIndices(const FbxMesh* mesh, const std::vector<int> indices);
+vector<Vector3> GetNormals(const FbxMesh* mesh, const vector<int>& normalIndices);
 
 int main(int argc, const char * argv[])
 {
-    cout << "Enter input file path." << endl;
-    string filePath;
-    cin >> filePath;
+    cout << "Enter input file name(exclude file type)." << endl;
+    string fileName;
+    cin >> fileName;
     
-    auto scene = InitFbxAndLoadScene(filePath);
+    auto scene = InitFbxAndLoadScene(fileName + ".fbx");
     auto meshes = GetMeshes(scene);
     
+    vector<PositionNormal> vertices;
     for(auto mesh : meshes)
     {
         auto indices = MakeIndices(mesh);
         auto positions = GetVertexPositions(mesh, indices);
+        
+        auto normalIndices = MakeNormalIndices(mesh, indices);
+        auto normals = GetNormals(mesh, normalIndices);
+        
+        int size = indices.size();
+        for(int i = 0; i < size; i++)
+        {
+            vertices.push_back({positions[i],normals[i]});
+            
+            printf("%04d : %+f, %+f, %+f",i,positions[i].x,positions[i].y,positions[i].z);
+            printf(" / %+f, %+f, %+f\n",normals[i].x,normals[i].y,normals[i].z);
+        }
     }
+    
+    string outputFile = fileName + ".mesh";
+    ofstream ofs(outputFile,ios::out | ios::binary | ios::trunc);
+    ofs.write((char*)&vertices.front(), vertices.size() * sizeof(PositionNormal));
+    ofs.close();
     
     return 0;
 }
@@ -128,13 +150,7 @@ vector<int> MakeIndices(const FbxMesh* mesh)
         {
             auto index = mesh->GetPolygonVertex(i, j);
             indices.push_back(index);
-            
-//            cout << index;
-//            if(j < 2)
-//                cout << ", ";
         }
-        
-        //cout << endl;
     }
     
     return indices;
@@ -153,24 +169,77 @@ vector<Vector3> GetVertexPositions(const FbxMesh* mesh,const std::vector<int>& i
     {
         auto pos = mesh->GetControlPointAt(i);
         controlPoints.push_back(pos);
-        
-        //cout << i << " : " << pos[0] << " : " << pos[1] << " : " << pos[2] << endl;
     }
     
     for(auto index : indices)
     {
         auto cp = controlPoints[index];
         positions.push_back({float(cp[0]),float(cp[1]),float(cp[2])});
-        
-        //cout << cp[0] << " : " << cp[1] << " : " << cp[2] << endl;
     }
     
     return positions;
 }
 
+vector<int> MakeNormalIndices(const FbxMesh* mesh, const std::vector<int> indices)
+{
+    vector<int> normalIndices;
+    
+    auto element = mesh->GetElementNormal();
+    
+    switch(element->GetMappingMode())
+    {
+        case FbxGeometryElement::eByControlPoint:
+            normalIndices = indices;
+            break;
+        case FbxGeometryElement::eByPolygonVertex:
+        {
+            int index = 0;
+            
+            auto numPolygons = mesh->GetPolygonCount();
+            for(int i = 0; i < numPolygons; i++)
+            {
+                auto numVertices = mesh->GetPolygonSize(i);
+                for(int j = 0; j < numVertices; j++)
+                {
+                    normalIndices.push_back(index++);
+                }
+            }
+            
+            break;
+        }
+    }
+    
+    return normalIndices;
+}
 
-
-
+vector<Vector3> GetNormals(const FbxMesh* mesh, const vector<int>& normalIndices)
+{
+    vector<Vector3> normals;
+    
+    auto element = mesh->GetElementNormal();
+    for(auto index : normalIndices)
+    {
+        FbxVector4 vNormal;
+        
+        switch(element->GetReferenceMode())
+        {
+            case FbxGeometryElement::eDirect:
+                vNormal = element->GetDirectArray().GetAt(index);
+                break;
+            case FbxGeometryElement::eIndexToDirect:
+                vNormal = element->GetDirectArray().GetAt(element->GetIndexArray().GetAt(index));
+                break;
+        }
+        
+        normals.push_back({
+            static_cast<float>(vNormal[0]),
+            static_cast<float>(vNormal[1]),
+            static_cast<float>(vNormal[2])
+        });
+    }
+    
+    return normals;
+}
 
 
 
