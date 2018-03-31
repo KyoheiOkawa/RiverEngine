@@ -42,9 +42,9 @@ bool TestObject::init()
     
     unif_projection = _useProgram->getUnifLocation("unif_projection");
     
-    auto mesh = MeshResource<PositionNormal>::createWithFile("Assets/Cube");
-    auto vertex = mesh->GetVertexPointer();
-    for(int i = 0; i < mesh->GetVertexCount(); i++)
+    _testMesh = MeshResource<PositionNormal>::createWithFile("Assets/Cube");
+    auto vertex = _testMesh->GetVertexPointer();
+    for(int i = 0; i < _testMesh->GetVertexCount(); i++)
     {
         printf("%04d : %+f, %+f, %+f",i,vertex[i].position[0],vertex[i].position[1],vertex[i].position[2]);
         printf(" / %+f, %+f, %+f\n",vertex[i].normal[0],vertex[i].normal[1],vertex[i].normal[2]);
@@ -86,9 +86,9 @@ void TestObject::draw()
     assert(glGetError()==GL_NO_ERROR);
     
     const GLfloat positionTriangle[] = {
-        0.0f,0.5f,-0.5f,
-        -0.5f,0.0f,-0.5f,
-        0.5f,0.0f,-0.5f
+        0.0f,0.5f,-0.55f,
+        -0.5f,0.0f,-0.55f,
+        0.5f,0.0f,-0.55f
     };
     
     glVertexAttribPointer(attr_pos, 3, GL_FLOAT, GL_FALSE, 0, (GLvoid*) positionTriangle);
@@ -99,17 +99,10 @@ void TestObject::draw()
     
     glUniform4f(unif_color, 1.0f, 0.0f, 0.0f, 1.0f);
     
-    const GLfloat positionRect[] = {
-        -0.5f,0.5f,0.0f,
-        0.5f,0.5f,0.0f,
-        -0.5f,-0.5f,0.0f,
-        0.5f,-0.5f,0.0f
-    };
-    
-    glVertexAttribPointer(attr_pos, 3, GL_FLOAT, GL_FALSE, 0, (GLvoid*) positionRect);
+    glVertexAttribPointer(attr_pos, 3, GL_FLOAT, GL_FALSE, sizeof(PositionNormal), (GLvoid*)_testMesh->GetVertexPointer());
     assert(glGetError()==GL_NO_ERROR);
     
-    glDrawArrays(GL_TRIANGLE_STRIP, 0, 3);
+    glDrawArrays(GL_TRIANGLE_STRIP, 0, (GLsizei)_testMesh->GetVertexCount());
     assert(glGetError()==GL_NO_ERROR);
     
     glDisable(GL_DEPTH_TEST);

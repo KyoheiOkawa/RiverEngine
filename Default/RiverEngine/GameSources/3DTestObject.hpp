@@ -20,6 +20,8 @@ class TestObject : public GameObject
     GLint unif_lookat;
     GLint unif_projection;
     
+    shared_ptr<MeshResource<PositionNormal>> _testMesh;
+    
 public:
     TestObject();
     virtual ~TestObject();
