@@ -13,11 +13,13 @@
 #include <vector>
 #include <fbxsdk.h>
 
+#include <OpenGL/OpenGL.h>
+
 using namespace std;
 
 struct Vector3
 {
-    float x,y,z;
+    GLfloat x,y,z;
 };
 
 struct PositionNormal
@@ -174,7 +176,7 @@ vector<Vector3> GetVertexPositions(const FbxMesh* mesh,const std::vector<int>& i
     for(auto index : indices)
     {
         auto cp = controlPoints[index];
-        positions.push_back({float(cp[0]),float(cp[1]),float(cp[2])});
+        positions.push_back({GLfloat(cp[0]),GLfloat(cp[1]),GLfloat(cp[2])});
     }
     
     return positions;
@@ -232,9 +234,9 @@ vector<Vector3> GetNormals(const FbxMesh* mesh, const vector<int>& normalIndices
         }
         
         normals.push_back({
-            static_cast<float>(vNormal[0]),
-            static_cast<float>(vNormal[1]),
-            static_cast<float>(vNormal[2])
+            static_cast<GLfloat>(vNormal[0]),
+            static_cast<GLfloat>(vNormal[1]),
+            static_cast<GLfloat>(vNormal[2])
         });
     }
     

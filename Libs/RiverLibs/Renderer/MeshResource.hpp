@@ -12,14 +12,19 @@
 #include "stdinc.h"
 #include "Helper.hpp"
 #include "Vertex.hpp"
+#include "FileUtils.hpp"
 
 template <typename  T>
 class MeshResource : public  ObjectInterface
 {
-    T* _vertex;
+    size_t _vertexCount;
+    unique_ptr<T[]> _vertex;
     
 public:
-    virtual ~MeshResource(){delete[] _vertex;}
+    virtual ~MeshResource()
+    {
+        _vertex.release();
+    }
     
     virtual bool init() override{return true;};
 
@@ -29,7 +34,8 @@ public:
         
         if(ret && ret->init())
         {
-            ret->_vertex = new T[vertex.size()];
+            ret->_vertex.reset(new T[vertex.size()]);
+            ret->_vertexCount = vertex.size();
             
             for(int i = 0; i < vertex.size(); i++)
             {
@@ -42,9 +48,33 @@ public:
         return nullptr;
     }
     
+    static std::shared_ptr<MeshResource> createWithFile(const std::string fileName)
+    {
+        auto ret = std::shared_ptr<MeshResource<T>>(new MeshResource<T>());
+        
+        if(ret && ret->init())
+        {
+            unique_ptr<char[]> meshData;
+            size_t size = FileUtils::getInstance()->loadBinary(fileName,"mesh",meshData);
+            ret->_vertexCount = size / sizeof(T);
+            
+            ret->_vertex.reset((T*)meshData.get());
+            meshData.release();
+            
+            return ret;
+        }
+        
+        return nullptr;
+    }
+    
     T* GetVertexPointer()
     {
-        return _vertex;
+        return _vertex.get();
+    }
+    
+    size_t GetVertexCount()
+    {
+        return _vertexCount;
     }
 };
 

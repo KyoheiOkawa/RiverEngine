@@ -25,9 +25,11 @@ private:
 public:
     static FileUtils* getInstance();
     
-    std::string pathForResource(std::string fileName,std::string fileType);
+    std::string pathForResource(const std::string fileName,const std::string fileType);
     
-    std::string getStringFromFile(std::string fileName,std::string fileType);
+    std::string getStringFromFile(const std::string fileName,const std::string fileType);
+    
+    size_t loadBinary(const std::string fileName,const std::string fileType,std::unique_ptr<char[]> &fileData);
 };
 
 #endif /* FileUtils_hpp */

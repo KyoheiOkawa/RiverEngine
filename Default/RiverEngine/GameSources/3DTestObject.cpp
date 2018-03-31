@@ -42,6 +42,14 @@ bool TestObject::init()
     
     unif_projection = _useProgram->getUnifLocation("unif_projection");
     
+    auto mesh = MeshResource<PositionNormal>::createWithFile("Assets/Cube");
+    auto vertex = mesh->GetVertexPointer();
+    for(int i = 0; i < mesh->GetVertexCount(); i++)
+    {
+        printf("%04d : %+f, %+f, %+f",i,vertex[i].position[0],vertex[i].position[1],vertex[i].position[2]);
+        printf(" / %+f, %+f, %+f\n",vertex[i].normal[0],vertex[i].normal[1],vertex[i].normal[2]);
+    }
+    
     return true;
 }
 

@@ -30,4 +30,12 @@ struct PositionColorTexture
     GLfloat uv[2];
 };
 
+struct PositionNormal
+{
+    GLfloat position[3
+                     ];
+    GLfloat normal[3
+                   ];
+};
+
 #endif /* Vertex_hpp */

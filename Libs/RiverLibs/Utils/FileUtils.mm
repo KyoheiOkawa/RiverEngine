@@ -26,7 +26,7 @@ FileUtils* FileUtils::getInstance()
     return _fileUtils;
 }
 
-std::string FileUtils::pathForResource(std::string fileName, std::string fileType)
+std::string FileUtils::pathForResource(const std::string fileName,const std::string fileType)
 {
     NSString* nFileName = [NSString stringWithUTF8String:fileName.c_str()];
     NSString* nFileType = [NSString stringWithUTF8String:fileType.c_str()];
@@ -40,7 +40,7 @@ std::string FileUtils::pathForResource(std::string fileName, std::string fileTyp
     return ret;
 }
 
-std::string FileUtils::getStringFromFile(std::string fileName, std::string fileType)
+std::string FileUtils::getStringFromFile(const std::string fileName,const std::string fileType)
 {
     std::string path = pathForResource(fileName, fileType);
     
@@ -60,3 +60,36 @@ std::string FileUtils::getStringFromFile(std::string fileName, std::string fileT
     
     return str;
 }
+
+size_t FileUtils::loadBinary(const std::string fileName,const std::string fileType,std::unique_ptr<char[]> &fileData)
+{
+    std::string filePath = pathForResource(fileName, fileType);
+    
+    std::ifstream ifs(filePath.c_str(),std::ios::binary | std::ios::in);
+    
+    size_t fileSize = static_cast<size_t>(ifs.seekg(0,std::ios::end).tellg());
+    ifs.seekg(0,std::ios::beg);
+    
+    fileData.reset(new char[fileSize]);
+    
+    ifs.read(fileData.get(), fileSize);
+    
+    ifs.close();
+    
+    return fileSize;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
