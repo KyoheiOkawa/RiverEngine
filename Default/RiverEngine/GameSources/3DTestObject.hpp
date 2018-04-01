@@ -16,12 +16,16 @@ class TestObject : public GameObject
     GLProgram* _useProgram;
     
     GLint attr_pos;
+    GLint attr_normal;
     GLint unif_color;
     GLint unif_lookat;
     GLint unif_projection;
+    GLint unif_world;
+    GLint unif_lightDir;
     
     shared_ptr<MeshResource<PositionNormal>> _testMesh;
     
+    float _rot = 0;
 public:
     TestObject();
     virtual ~TestObject();

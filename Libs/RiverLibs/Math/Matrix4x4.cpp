@@ -200,9 +200,17 @@ Matrix4x4 Matrix4x4::createPerspective(const GLfloat near, const GLfloat far, co
     return result;
 }
 
+Matrix4x4& Matrix4x4::operator*=(const Matrix4x4 m)
+{
+    *this = multiply(*this, m);
+    
+    return *this;
+}
 
-
-
+Matrix4x4 Matrix4x4::operator*(const Matrix4x4 m)
+{
+    return multiply(*this, m);
+}
 
 
 

@@ -9,6 +9,7 @@
 #ifndef river_h
 #define river_h
 
+#include "MathMacro.h"
 #include "Vector2.hpp"
 #include "Vector3.hpp"
 #include "Matrix4x4.hpp"

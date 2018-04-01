@@ -34,6 +34,11 @@ public:
         _position = position;
     }
     
+    void translate(Vector3 moveVec)
+    {
+        _position += moveVec;
+    }
+    
     void setRotation(Vector3 rotation)
     {
         _rotation = rotation;

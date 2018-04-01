@@ -38,5 +38,8 @@ public:
     static Matrix4x4 createLookAt(const Vector3 eye,const Vector3 look,const Vector3 up);
     
     static Matrix4x4 createPerspective(const GLfloat near, const GLfloat far, const GLfloat fovY_degree,const GLfloat aspect);
+    
+    Matrix4x4& operator*=(const Matrix4x4 m);
+    Matrix4x4 operator*(const Matrix4x4 m);
 };
 #endif /* Matrix4x4_hpp */

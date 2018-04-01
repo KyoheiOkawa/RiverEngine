@@ -32,15 +32,24 @@ shared_ptr<TestObject> TestObject::create()
 
 bool TestObject::init()
 {
+    if(!GameObject::init())
+        return false;
+    
     _useProgram = Director::getInstance()->getGLProgram("PStatic");
     
     attr_pos = _useProgram->getAttribLocation("attr_pos");
+    
+    attr_normal = _useProgram->getAttribLocation("attr_normal");
     
     unif_color = _useProgram->getUnifLocation("unif_color");
     
     unif_lookat = _useProgram->getUnifLocation("unif_lookat");
     
     unif_projection = _useProgram->getUnifLocation("unif_projection");
+    
+    unif_world = _useProgram->getUnifLocation("unif_world");
+    
+    unif_lightDir = _useProgram->getUnifLocation("unif_lightDir");
     
     _testMesh = MeshResource<PositionNormal>::createWithFile("Assets/Cube");
     auto vertex = _testMesh->GetVertexPointer();
@@ -55,15 +64,25 @@ bool TestObject::init()
 
 void TestObject::update()
 {
-    static float testObjDir = 1.0f;
+//    static float testObjDir = 1.0f;
+//
+//    auto cam = Director::getInstance()->getScene()->GetMainCamera();
+//    Vector3 pos = cam->GetCameraPos();
+//    pos.x += 0.01f * testObjDir;
+//    cam->SetCameraPos(pos);
+//
+//    if(abs(pos.x) > 5.0f)
+//        testObjDir *= -1.0f;
     
-    auto cam = Director::getInstance()->getScene()->GetMainCamera();
-    Vector3 pos = cam->GetCameraPos();
-    pos.x += 0.01f * testObjDir;
-    cam->SetCameraPos(pos);
+    float deltaTime = Application::getInstance()->getDeltaTime();
+
+    static float testObjMoveDir = 1.0f;
+    auto trans = getTransform();
+    trans->translate(Vector3(deltaTime * testObjMoveDir,0,0));
+    if(abs(trans->getPosition().x) > 1.0f)
+        testObjMoveDir *= -1.0f;
     
-    if(abs(pos.x) > 5.0f)
-        testObjDir *= -1.0f;
+    _rot += 90 * deltaTime;
 }
 
 void TestObject::draw()
@@ -73,40 +92,44 @@ void TestObject::draw()
     _useProgram->use();
     glEnable(GL_DEPTH_TEST);
     glEnableVertexAttribArray(attr_pos);
+    glEnableVertexAttribArray(attr_normal);
     assert(glGetError()==GL_NO_ERROR);
     
     Matrix4x4 lookAt,projection;
     Director::getInstance()->getScene()->GetMainCamera()->GetLookAtProjection(lookAt, projection);
+    
+    Matrix4x4 pos,scale,rot;
+    auto trans = getTransform();
+    pos = Matrix4x4::createTranslate(trans->getPosition().x, trans->getPosition().y, trans->getPosition().z);
+    scale = Matrix4x4::createScale(trans->getScale().x, trans->getScale().y, trans->getScale().z);
+    rot = Matrix4x4::createRotate(Vector3(0,1,0), _rot);
+    Matrix4x4 world = pos * scale * rot;
 
     glUniformMatrix4fv(unif_lookat, 1, GL_FALSE, lookAt.matrix);
     assert(glGetError()==GL_NO_ERROR);
     glUniformMatrix4fv(unif_projection, 1, GL_FALSE, projection.matrix);
     assert(glGetError()==GL_NO_ERROR);
+    glUniformMatrix4fv(unif_world, 1, GL_FALSE, world.matrix);
+    assert(glGetError()==GL_NO_ERROR);
     glUniform4f(unif_color, 1.0f, 1.0f, 1.0f, 1.0f);
     assert(glGetError()==GL_NO_ERROR);
     
-    const GLfloat positionTriangle[] = {
-        0.0f,0.5f,-0.55f,
-        -0.5f,0.0f,-0.55f,
-        0.5f,0.0f,-0.55f
-    };
-    
-    glVertexAttribPointer(attr_pos, 3, GL_FLOAT, GL_FALSE, 0, (GLvoid*) positionTriangle);
+    Vector3 light(-1.0f,-1.0f,-1.0f);
+    light.normalize();
+    glUniform3f(unif_lightDir, light.x, light.y, light.z);
     assert(glGetError()==GL_NO_ERROR);
-    
-    glDrawArrays(GL_TRIANGLE_STRIP, 0, 3);
-    assert(glGetError()==GL_NO_ERROR);
-    
-    glUniform4f(unif_color, 1.0f, 0.0f, 0.0f, 1.0f);
     
     glVertexAttribPointer(attr_pos, 3, GL_FLOAT, GL_FALSE, sizeof(PositionNormal), (GLvoid*)_testMesh->GetVertexPointer());
     assert(glGetError()==GL_NO_ERROR);
+    glVertexAttribPointer(attr_normal, 3, GL_FLOAT, GL_FALSE, sizeof(PositionNormal), (GLvoid*)((GLubyte*)_testMesh->GetVertexPointer() + sizeof(GLfloat)*3));
+    assert(glGetError()==GL_NO_ERROR);
     
-    glDrawArrays(GL_TRIANGLE_STRIP, 0, (GLsizei)_testMesh->GetVertexCount());
+    glDrawArrays(GL_TRIANGLES, 0, (GLsizei)_testMesh->GetVertexCount());
     assert(glGetError()==GL_NO_ERROR);
     
     glDisable(GL_DEPTH_TEST);
     glDisableVertexAttribArray(attr_pos);
+    glDisableVertexAttribArray(attr_normal);
     assert(glGetError()==GL_NO_ERROR);
 }
 
