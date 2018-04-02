@@ -6,10 +6,10 @@
 //  Copyright © 2017年 BiGRiVER. All rights reserved.
 //
 
-#include "stdinc.h"
 #include "Matrix4x4.hpp"
 #include "Vector3.hpp"
 #include "Vector2.hpp"
+#include "Quaternion.hpp"
 #include "MathMacro.h"
 
 Matrix4x4::Matrix4x4()
@@ -46,6 +46,125 @@ void Matrix4x4::transpose()
     }
 }
 
+bool Matrix4x4::decompose(Vector3* scale, Quaternion* rotation, Vector3* translation) const
+{
+    if(translation)
+    {
+        translation->x = matrix[12];
+        translation->y = matrix[13];
+        translation->z = matrix[14];
+    }
+    
+    if(scale == nullptr && rotation == nullptr)
+        return true;
+    
+    Vector3 xaxis(matrix[0],matrix[1],matrix[2]);
+    float scaleX = xaxis.magnitude();
+    
+    Vector3 yaxis(matrix[4],matrix[5],matrix[6]);
+    float scaleY = yaxis.magnitude();
+    
+    Vector3 zaxis(matrix[8],matrix[9],matrix[10]);
+    float scaleZ = zaxis.magnitude();
+    
+    float det = determinant();
+    if(det < 0)
+        scaleZ = -scaleZ;
+    
+    if(scale)
+    {
+        scale->x = scaleX;
+        scale->y = scaleY;
+        scale->z = scaleZ;
+    }
+    
+    if(rotation == nullptr)
+        return true;
+    
+    if(scaleX < MATH_TOLERANCE || scaleY < MATH_TOLERANCE || std::abs(scaleZ) < MATH_TOLERANCE)
+        return false;
+    
+    float rn;
+    
+    rn = 1.0f / scaleX;
+    xaxis.x *= rn;
+    xaxis.y *= rn;
+    xaxis.z *= rn;
+    
+    rn = 1.0f / scaleY;
+    yaxis.x *= rn;
+    yaxis.y *= rn;
+    yaxis.z *= rn;
+    
+    rn = 1.0f / scaleZ;
+    zaxis.x *= rn;
+    zaxis.y *= rn;
+    zaxis.z *= rn;
+    
+    float trace = xaxis.x * yaxis.y * zaxis.z + 1.0f;
+    
+    if(trace > MATH_EPSILON)
+    {
+        float s = 0.5f / std::sqrt(trace);
+        rotation->w = (yaxis.z - zaxis.y) * s;
+        rotation->x = 0.25f / s;
+        rotation->y = (yaxis.x + xaxis.y) * s;
+        rotation->z = (zaxis.x + xaxis.z) * s;
+    }
+    else if(yaxis.y > zaxis.z)
+    {
+        float s = 0.5f / std::sqrt(1.0f + yaxis.y - xaxis.x - zaxis.z);
+        rotation->w = (zaxis.x - xaxis.z) * s;
+        rotation->x = (yaxis.x + xaxis.y) * s;
+        rotation->y = 0.25f / s;
+        rotation->z = (zaxis.y + yaxis.z) * s;
+    }
+    else
+    {
+        float s = 0.5f / std::sqrt(1.0f + zaxis.z - xaxis.x - yaxis.y);
+        rotation->w = (xaxis.y - yaxis.x ) * s;
+        rotation->x = (zaxis.x + xaxis.z ) * s;
+        rotation->y = (zaxis.y + yaxis.z ) * s;
+        rotation->z = 0.25f / s;
+    }
+    
+    return true;
+}
+
+void Matrix4x4::getScale(Vector3 *scale) const
+{
+    decompose(scale, nullptr, nullptr);
+}
+
+bool Matrix4x4::getRotation(Quaternion *rotation) const
+{
+    return decompose(nullptr, rotation, nullptr);
+}
+
+void Matrix4x4::getTranslation(Vector3 *translation) const
+{
+    decompose(nullptr, nullptr, translation);
+}
+
+float Matrix4x4::determinant()const
+{
+    float a0 = matrix[0] * matrix[5] - matrix[1] * matrix[4];
+    float a1 = matrix[0] * matrix[6] - matrix[2] * matrix[4];
+    float a2 = matrix[0] * matrix[7] - matrix[3] * matrix[4];
+    float a3 = matrix[1] * matrix[6] - matrix[2] * matrix[5];
+    float a4 = matrix[1] * matrix[7] - matrix[3] * matrix[5];
+    float a5 = matrix[2] * matrix[7] - matrix[3] * matrix[6];
+    float b0 = matrix[8] * matrix[13] - matrix[9] * matrix[12];
+    float b1 = matrix[8] * matrix[14] - matrix[10] * matrix[12];
+    float b2 = matrix[8] * matrix[15] - matrix[11] * matrix[12];
+    float b3 = matrix[9] * matrix[14] - matrix[10] * matrix[13];
+    float b4 = matrix[9] * matrix[15] - matrix[11] * matrix[13];
+    float b5 = matrix[10] * matrix[15] - matrix[11] * matrix[14];
+    
+    // Calculate the determinant.
+    return (a0 * b5 - a1 * b4 + a2 * b3 + a3 * b2 - a4 * b1 + a5 * b0);
+}
+
 Matrix4x4 Matrix4x4::createTranslate(const float x, const float y, const float z)
 {
     Matrix4x4 ret;
@@ -68,7 +187,48 @@ Matrix4x4 Matrix4x4::createScale(const float x,const float y, float z)
     return ret;
 }
 
-Matrix4x4 Matrix4x4::createRotate(const Vector3 axis, const float rotate)
+Matrix4x4 Matrix4x4::createRotate(const Quaternion &q)
+{
+    Matrix4x4 dst;
+    
+    float x2 = q.x + q.x;
+    float y2 = q.y + q.y;
+    float z2 = q.z + q.z;
+    
+    float xx2 = q.x * x2;
+    float yy2 = q.y * y2;
+    float zz2 = q.z * z2;
+    float xy2 = q.x * y2;
+    float xz2 = q.x * z2;
+    float yz2 = q.y * z2;
+    float wx2 = q.w * x2;
+    float wy2 = q.w * y2;
+    float wz2 = q.w * z2;
+    
+    dst.matrix[0] = 1.0f - yy2 - zz2;
+    dst.matrix[1] = xy2 + wz2;
+    dst.matrix[2] = xz2 - wy2;
+    dst.matrix[3] = 0.0f;
+    
+    dst.matrix[4] = xy2 - wz2;
+    dst.matrix[5] = 1.0f - xx2 - zz2;
+    dst.matrix[6] = yz2 + wx2;
+    dst.matrix[7] = 0.0f;
+    
+    dst.matrix[8] = xz2 + wy2;
+    dst.matrix[9] = yz2 - wx2;
+    dst.matrix[10] = 1.0f - xx2 - yy2;
+    dst.matrix[11] = 0.0f;
+    
+    dst.matrix[12] = 0.0f;
+    dst.matrix[13] = 0.0f;
+    dst.matrix[14] = 0.0f;
+    dst.matrix[15] = 1.0f;
+    
+    return dst;
+}
+
+Matrix4x4 Matrix4x4::createRotate(const Vector3 axis, const float angleDeg)
 {
     Matrix4x4 ret;
     
@@ -76,8 +236,8 @@ Matrix4x4 Matrix4x4::createRotate(const Vector3 axis, const float rotate)
     const float y = axis.y;
     const float z = axis.z;
     
-    const float c = cosf(Deg2Rad(rotate));
-    const float s = sinf(Deg2Rad(rotate));
+    const float c = cosf(Deg2Rad(angleDeg));
+    const float s = sinf(Deg2Rad(angleDeg));
     {
         ret.matrix[0] = (x * x) * (1.0f - c) + c;
         ret.matrix[1] = (x * y) * (1.0f - c) - z * s;
@@ -198,6 +358,30 @@ Matrix4x4 Matrix4x4::createPerspective(const GLfloat near, const GLfloat far, co
     result.matrix[15] = 0.0f;
     
     return result;
+}
+
+void Matrix4x4::rotate(const Quaternion &q)
+{
+    rotate(q, this);
+}
+
+void Matrix4x4::rotate(const Quaternion &q, Matrix4x4 *dst) const
+{
+    Matrix4x4 r;
+    r = createRotate(q);
+    *dst = multiply(*this, r);
+}
+
+void Matrix4x4::rotate(const Vector3 &axis, float angleRad)
+{
+    rotate(axis,angleRad,this);
+}
+
+void Matrix4x4::rotate(const Vector3 &axis, float angleRad, Matrix4x4 *dst) const
+{
+    Matrix4x4 r;
+    r = createRotate(axis, Rad2Deg(angleRad));
+    *dst = multiply(*this, r);
 }
 
 Matrix4x4& Matrix4x4::operator*=(const Matrix4x4 m)

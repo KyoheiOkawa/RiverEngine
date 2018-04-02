@@ -148,7 +148,7 @@ Vector3 Vector3::operator-()
     return Vector3(-x,-y,-z);
 }
 
-Vector3 Vector3::operator+(const Vector3& u)
+Vector3 Vector3::operator+(const Vector3& u) const
 {
     Vector3 tmp;
     tmp.x = x + u.x;
@@ -158,7 +158,7 @@ Vector3 Vector3::operator+(const Vector3& u)
     return tmp;
 }
 
-Vector3 Vector3::operator-(const Vector3& u)
+Vector3 Vector3::operator-(const Vector3& u) const
 {
     Vector3 tmp;
     tmp.x = x - u.x;
@@ -168,7 +168,7 @@ Vector3 Vector3::operator-(const Vector3& u)
     return tmp;
 }
 
-Vector3 Vector3::operator*(float f)
+Vector3 Vector3::operator*(float f) const
 {
     Vector3 tmp;
     tmp.x = x*f;

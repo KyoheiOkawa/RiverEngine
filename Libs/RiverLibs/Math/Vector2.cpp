@@ -121,12 +121,12 @@ Vector2& Vector2::operator=(const Vector3& other)
     return *this;
 }
 
-Vector2 Vector2::operator-()
+Vector2 Vector2::operator-() const
 {
     return Vector2(-x,-y);
 }
 
-Vector2 Vector2::operator+(const Vector2& u)
+Vector2 Vector2::operator+(const Vector2& u) const
 {
     Vector2 tmp;
     tmp.x = x + u.x;
@@ -135,7 +135,7 @@ Vector2 Vector2::operator+(const Vector2& u)
     return tmp;
 }
 
-Vector2 Vector2::operator-(const Vector2& u)
+Vector2 Vector2::operator-(const Vector2& u) const
 {
     Vector2 tmp;
     tmp.x = x - u.x;
@@ -144,7 +144,7 @@ Vector2 Vector2::operator-(const Vector2& u)
     return tmp;
 }
 
-Vector2 Vector2::operator*(float f)
+Vector2 Vector2::operator*(float f) const
 {
     Vector2 tmp;
     tmp.x = x*f;

@@ -12,6 +12,7 @@
 #include "MathMacro.h"
 #include "Vector2.hpp"
 #include "Vector3.hpp"
+#include "Quaternion.hpp"
 #include "Matrix4x4.hpp"
 
 #include "RawPixelImage.h"

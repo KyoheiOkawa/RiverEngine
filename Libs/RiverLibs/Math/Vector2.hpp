@@ -43,10 +43,10 @@ public:
     Vector2& operator-=(Vector2 u);
     Vector2& operator*=(float s);
     Vector2& operator/=(float s);
-    Vector2 operator-();
-    Vector2 operator+(const Vector2& u);
-    Vector2 operator-(const Vector2& u);
-    Vector2 operator*(float f);
+    Vector2 operator-() const;
+    Vector2 operator+(const Vector2& u) const;
+    Vector2 operator-(const Vector2& u) const;
+    Vector2 operator*(float f) const;
 };
 
 #endif /* Vector2_hpp */

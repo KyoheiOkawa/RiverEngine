@@ -48,9 +48,9 @@ public:
     Vector3& operator*=(float s);
     Vector3& operator/=(float s);
     Vector3 operator-();
-    Vector3 operator+(const Vector3& u);
-    Vector3 operator-(const Vector3& u);
-    Vector3 operator*(float f);
+    Vector3 operator+(const Vector3& u) const;
+    Vector3 operator-(const Vector3& u) const;
+    Vector3 operator*(float f) const;
     Vector3 operator^(const Vector3& u);
     
 };
