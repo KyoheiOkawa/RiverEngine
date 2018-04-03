@@ -68,7 +68,25 @@ void SimpleAudioEngine::test()
     alDeleteBuffers(1, &bufferId);
 }
 
-
+void SimpleAudioEngine::test2()
+{
+    Wave wave;
+    FileUtils::getInstance()->loadWavFromFile("Assets/Why", wave);
+    
+    const size_t pcmFreq = wave.fmt.samples_per_sec;
+    
+    ALuint bufferId;
+    alGenBuffers(1, &bufferId);
+    
+    alBufferData(bufferId, AL_FORMAT_STEREO16, &wave.data[0], wave.data.size() * sizeof(unsigned char), pcmFreq);
+    
+    ALuint sourceId;
+    alGenSources(1, &sourceId);
+    
+    alSourcei(sourceId, AL_BUFFER, bufferId);
+    
+    alSourcePlay(sourceId);
+}
 
 
 

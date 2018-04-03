@@ -33,7 +33,9 @@ public:
     static SimpleAudioEngine* getInstance();
     
     void init();
+    
     void test();
+    void test2();
 };
 
 #endif /* SimpleAudioEngine_hpp */

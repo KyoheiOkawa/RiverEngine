@@ -38,7 +38,7 @@ bool HelloWorldScene::init()
     
     auto director = Director::getInstance();
     auto audioEngine = SimpleAudioEngine::getInstance();
-    audioEngine->test();
+    audioEngine->test2();
     
     auto sprite = Sprite::createWithTexture("River.png");
     this->addGameObject(sprite);

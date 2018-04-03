@@ -14,6 +14,12 @@
 #include <iostream>
 #include <iterator>
 
+struct WavChunk
+{
+    char ID[4];
+    int size;
+};
+
 FileUtils* FileUtils::_fileUtils = nullptr;
 
 FileUtils* FileUtils::getInstance()
@@ -79,7 +85,69 @@ size_t FileUtils::loadBinary(const std::string fileName,const std::string fileTy
     return fileSize;
 }
 
-
+bool FileUtils::loadWavFromFile(const std::string fileName,Wave& wave)
+{
+    WavChunk chunk;
+    WavFormat fmt;
+    std::vector<unsigned char> data;
+    char type[4];
+    
+    std::string filePath = pathForResource(fileName, "wav");
+    
+    std::ifstream ifs(filePath,std::ios::binary);
+    if(!ifs)
+        return false;
+    
+    ifs.read((char*)&chunk, 8);
+    if(ifs.bad() || strncmp(chunk.ID, "RIFF", 4)!=0)
+        return false;
+    
+    ifs.read((char*)type, 4);
+    if(ifs.bad() || strncmp(type, "WAVE", 4)!=0)
+        return false;
+    
+    try
+    {
+        ifs.exceptions(std::ios::badbit);
+        
+        while(ifs.read((char*)&chunk, sizeof(WavChunk)))
+        {
+            if(strncmp(chunk.ID, "fmt ", 4) == 0)
+            {
+                ifs.read((char*)&fmt, MIN(16, chunk.size));
+                
+                if(chunk.size != 16)
+                    ifs.seekg(chunk.size - 16,std::ios::cur);
+                
+                if(fmt.format_id!=1)
+                {
+                    return false;
+                }
+            }
+            else if(strncmp(chunk.ID, "data", 4)==0)
+            {
+                data.resize(chunk.size);
+                ifs.read((char*)&data[0], data.size());
+                
+                break;
+            }
+            else
+            {
+                ifs.seekg(chunk.size,std::ios::cur);
+            }
+        }
+        
+        
+    } catch (std::ios_base::failure& e)
+    {
+        return false;
+    }
+    
+    wave.fmt = fmt;
+    wave.data = data;
+    
+    return true;
+}
 
 
 
