@@ -35,6 +35,8 @@ public:
     
     virtual void draw();
     
+    virtual void onScreenTouched(TouchInfo& touchInfo);
+    
     void gameObjectUpdate();
     
     void gameObjectDraw();
@@ -44,8 +46,6 @@ public:
     bool findGameObject(const std::shared_ptr<GameObject>& obj);
     
     void removeGameObject(const std::shared_ptr<GameObject>& gameObject);
-    
-    void onScreenTouched(TouchInfo& touchInfo);
     
     Camera* GetMainCamera(){return _mainCamera.get();}
 private:

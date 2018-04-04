@@ -38,7 +38,8 @@ bool HelloWorldScene::init()
     
     auto director = Director::getInstance();
     auto audioEngine = SimpleAudioEngine::getInstance();
-    audioEngine->test2();
+    audioEngine->registerBgm("Assets/Why", "BGM_WHY");
+    audioEngine->startBgm("BGM_WHY",1.0f,AL_TRUE);
     
     auto sprite = Sprite::createWithTexture("River.png");
     this->addGameObject(sprite);
@@ -62,4 +63,19 @@ void HelloWorldScene::update()
 void HelloWorldScene::draw()
 {
     Scene::draw();
+}
+
+void HelloWorldScene::onScreenTouched(TouchInfo &touchInfo)
+{
+    Scene::onScreenTouched(touchInfo);
+    
+    if(touchInfo.type == TouchType::BEGAN)
+    {
+        auto audioEngine = SimpleAudioEngine::getInstance();
+        ALint state = audioEngine->getBgmSourceState("BGM_WHY");
+        if(state == AL_PLAYING)
+            audioEngine->pauseBgm("BGM_WHY");
+        else if(state == AL_PAUSED)
+            audioEngine->startBgm("BGM_WHY", 1.0f, AL_TRUE);
+    }
 }

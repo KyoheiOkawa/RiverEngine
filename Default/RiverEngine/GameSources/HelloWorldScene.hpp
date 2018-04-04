@@ -25,6 +25,8 @@ public:
     virtual void update();
     
     virtual void draw();
+    
+    virtual void onScreenTouched(TouchInfo& touchInfo)override;
 };
 
 
