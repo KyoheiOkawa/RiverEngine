@@ -10,14 +10,16 @@
 #define Transform_hpp
 
 #include "stdinc.h"
+#include "Component.hpp"
 #include "Vector3.hpp"
+#include "Quaternion.hpp"
 
 class Transform : public Component
 {
 protected:
     Vector3 _scale;
     Vector3 _position;
-    Vector3 _rotation;
+    Quaternion _rotation;
     Vector3 _pivot;
 public:
     explicit Transform(const std::shared_ptr<GameObject>& gameObjectPtr);
@@ -39,7 +41,9 @@ public:
         _position += moveVec;
     }
     
-    void setRotation(Vector3 rotation)
+    void rotate(Vector3 axis,float angleRad);
+    
+    void setRotation(Quaternion rotation)
     {
         _rotation = rotation;
     }
@@ -59,7 +63,7 @@ public:
         return _position;
     }
     
-    Vector3 getRotation()
+    Quaternion getRotation()
     {
         return _rotation;
     }

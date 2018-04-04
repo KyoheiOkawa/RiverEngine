@@ -10,9 +10,13 @@
 #define GameObject_hpp
 
 #include "stdinc.h"
+#include "Helper.hpp"
 
 class Component;
 class Transform;
+class Scene;
+
+struct TouchInfo;
 
 class GameObject : public ObjectInterface,public ShapeInterface
 {

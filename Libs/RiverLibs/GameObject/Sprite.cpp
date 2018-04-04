@@ -88,7 +88,10 @@ void Sprite::update()
     float delta = Application::getInstance()->getDeltaTime();
     Vector3 add = Vector3(100,100,0) * delta;
     transPtr->setPosition(transPtr->getPosition() + add);
-    transPtr->setRotation(transPtr->getRotation() + Vector3(0,0,45) * delta);
+    
+    Quaternion q = transPtr->getRotation();
+    q.z += 45 * delta;
+    transPtr->setRotation(q);
     
 }
 

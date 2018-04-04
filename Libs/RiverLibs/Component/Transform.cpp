@@ -6,8 +6,7 @@
 //  Copyright © 2017年 BiGRiVER. All rights reserved.
 //
 
-#include "stdinc.h"
-#include "river.h"
+#include "Transform.hpp"
 
 
 Transform::Transform(const std::shared_ptr<GameObject>& GameObjectPtr):
@@ -22,4 +21,11 @@ _pivot(Vector3(0.5f,0.5f,0.5f))
 Transform::~Transform()
 {
     
+}
+
+void Transform::rotate(Vector3 axis, float angleRad)
+{
+    Quaternion q = Quaternion(axis, angleRad);
+    
+    _rotation *= q;
 }

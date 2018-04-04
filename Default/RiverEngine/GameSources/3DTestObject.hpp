@@ -24,8 +24,6 @@ class TestObject : public GameObject
     GLint unif_lightDir;
     
     shared_ptr<MeshResource<PositionNormal>> _testMesh;
-    
-    float _rot = 0;
 public:
     TestObject();
     virtual ~TestObject();

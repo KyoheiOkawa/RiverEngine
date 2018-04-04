@@ -62,7 +62,7 @@ public:
     
     inline Quaternion operator*(const Quaternion& q) const;
     inline Vector3 operator*(const Vector3& v) const;
-    inline Quaternion& operator*=(const Quaternion& q);
+    Quaternion& operator*=(const Quaternion& q);
     
     static const Quaternion ZERO;
 };

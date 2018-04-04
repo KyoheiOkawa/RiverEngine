@@ -80,9 +80,12 @@ void TestObject::update()
     auto trans = getTransform();
     trans->translate(Vector3(deltaTime * testObjMoveDir,0,0));
     if(abs(trans->getPosition().x) > 1.0f)
+    {
+        trans->setPosition(Vector3(testObjMoveDir,0,0));
         testObjMoveDir *= -1.0f;
+    }
     
-    _rot += 90 * deltaTime;
+    trans->rotate(Vector3(1,1,0), Deg2Rad(90 * deltaTime));
 }
 
 void TestObject::draw()
@@ -102,7 +105,7 @@ void TestObject::draw()
     auto trans = getTransform();
     pos = Matrix4x4::createTranslate(trans->getPosition().x, trans->getPosition().y, trans->getPosition().z);
     scale = Matrix4x4::createScale(trans->getScale().x, trans->getScale().y, trans->getScale().z);
-    rot = Matrix4x4::createRotate(Vector3(0,1,0), _rot);
+    rot = Matrix4x4::createRotate(trans->getRotation());
     Matrix4x4 world = pos * scale * rot;
 
     glUniformMatrix4fv(unif_lookat, 1, GL_FALSE, lookAt.matrix);

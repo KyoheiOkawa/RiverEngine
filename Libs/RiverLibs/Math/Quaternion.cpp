@@ -225,7 +225,7 @@ inline Quaternion Quaternion::operator*(const Quaternion &q) const
     return result;
 }
 
-inline Quaternion& Quaternion::operator*=(const Quaternion &q)
+Quaternion& Quaternion::operator*=(const Quaternion &q)
 {
     multiply(q);
     return *this;

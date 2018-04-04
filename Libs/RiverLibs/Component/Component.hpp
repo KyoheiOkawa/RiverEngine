@@ -10,8 +10,7 @@
 #define Component_hpp
 
 #include "stdinc.h"
-
-class GameObject;
+#include "GameObject.hpp"
 
 class Component : public ObjectInterface,public ShapeInterface
 {
