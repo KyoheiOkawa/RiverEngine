@@ -59,9 +59,6 @@ public:
     
     void registerSe(const std::string soundName,const std::string soundKey);
     bool startSe(const std::string soundKey,const ALfloat volume);
-    
-    void test();
-    void test2();
 };
 
 #endif /* SimpleAudioEngine_hpp */

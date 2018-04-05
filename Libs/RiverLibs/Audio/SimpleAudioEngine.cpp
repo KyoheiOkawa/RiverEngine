@@ -184,57 +184,6 @@ bool SimpleAudioEngine::startSe(const std::string soundKey, const ALfloat volume
     return true;
 }
 
-void SimpleAudioEngine::test()
-{
-    const size_t pcmFreq = 44100;
-    const float keyFreq = 440.0f;
-    
-    std::array<ALshort, pcmFreq> pcmData;
-    for(size_t i = 0; i < pcmData.size(); ++i)
-    {
-        pcmData[i] = std::sin(keyFreq * M_PI * 2.0f * i / pcmFreq) * std::numeric_limits<ALshort>::max();
-    }
-    
-    ALuint bufferId;
-    alGenBuffers(1, &bufferId);
-    
-    alBufferData(bufferId, AL_FORMAT_MONO16, &pcmData[0], pcmData.size() * sizeof(ALshort), pcmFreq);
-    
-    ALuint sourceId;
-    alGenSources(1, &sourceId);
-    
-    alSourcei(sourceId, AL_BUFFER, bufferId);
-    
-    alSourcePlay(sourceId);
-    
-    std::this_thread::sleep_for(std::chrono
-                                ::seconds(1));
-    
-    alSourcei(sourceId, AL_BUFFER, 0);
-    alDeleteSources(1, &sourceId);
-    alDeleteBuffers(1, &bufferId);
-}
-
-void SimpleAudioEngine::test2()
-{
-    Wave wave;
-    FileUtils::getInstance()->loadWavFromFile("Assets/Why", wave);
-    
-    const size_t pcmFreq = wave.fmt.samples_per_sec;
-    
-    ALuint bufferId;
-    alGenBuffers(1, &bufferId);
-    
-    alBufferData(bufferId, AL_FORMAT_STEREO16, &wave.data[0], wave.data.size() * sizeof(unsigned char), pcmFreq);
-    
-    ALuint sourceId;
-    alGenSources(1, &sourceId);
-    
-    alSourcei(sourceId, AL_BUFFER, bufferId);
-    
-    alSourcePlay(sourceId);
-}
-
 
 
 
