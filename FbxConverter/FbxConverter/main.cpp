@@ -17,6 +17,11 @@
 
 using namespace std;
 
+struct Vector2
+{
+    GLfloat x,y;
+};
+
 struct Vector3
 {
     GLfloat x,y,z;
@@ -28,15 +33,34 @@ struct PositionNormal
     Vector3 normal;
 };
 
+struct PositionNormalTexture
+{
+    Vector3 position;
+    Vector3 normal;
+    Vector2 uv;
+};
+
 FbxScene* InitFbxAndLoadScene(string filepath);
 vector<FbxMesh*> GetMeshes(const FbxScene* scene);
 vector<int> MakeIndices(const FbxMesh* mesh);
 vector<Vector3> GetVertexPositions(const FbxMesh* mesh,const std::vector<int>& indices);
 vector<int> MakeNormalIndices(const FbxMesh* mesh, const std::vector<int> indices);
 vector<Vector3> GetNormals(const FbxMesh* mesh, const vector<int>& normalIndices);
+vector<int> MakeUVIndices(const FbxMesh* mesh, const std::vector<int> indices);
+vector<Vector2> GetUVs(const FbxMesh* mesh, const std::vector<int> indices);
+
+vector<PositionNormal> GetPositionNormal(vector<FbxMesh*> meshes);
+vector<PositionNormalTexture> GetPositionNormalTexture(vector<FbxMesh*> meshes);
+
+template <typename T>
+void SaveBinary(string fileName,vector<T> vertices);
 
 int main(int argc, const char * argv[])
 {
+    cout << "Choose vertex type(pn or pnt)." << endl;
+    string vertexType;
+    cin >> vertexType;
+    
     cout << "Enter input file name(exclude file type)." << endl;
     string fileName;
     cin >> fileName;
@@ -44,6 +68,22 @@ int main(int argc, const char * argv[])
     auto scene = InitFbxAndLoadScene(fileName + ".fbx");
     auto meshes = GetMeshes(scene);
     
+    if(vertexType == "pn")
+    {
+        vector<PositionNormal> vertices = GetPositionNormal(meshes);
+        SaveBinary(fileName, vertices);
+    }
+    else if(vertexType == "pnt")
+    {
+        vector<PositionNormalTexture> vertices = GetPositionNormalTexture(meshes);
+        SaveBinary(fileName, vertices);
+    }
+    
+    return 0;
+}
+
+vector<PositionNormal> GetPositionNormal(vector<FbxMesh*> meshes)
+{
     vector<PositionNormal> vertices;
     for(auto mesh : meshes)
     {
@@ -63,12 +103,44 @@ int main(int argc, const char * argv[])
         }
     }
     
+    return vertices;
+}
+
+vector<PositionNormalTexture> GetPositionNormalTexture(vector<FbxMesh*> meshes)
+{
+    vector<PositionNormalTexture> vertices;
+    for(auto mesh : meshes)
+    {
+        auto indices = MakeIndices(mesh);
+        auto positions = GetVertexPositions(mesh, indices);
+        
+        auto normalIndices = MakeNormalIndices(mesh, indices);
+        auto normals = GetNormals(mesh, normalIndices);
+        
+        auto uvIndices = MakeUVIndices(mesh, indices);
+        auto uvs = GetUVs(mesh,uvIndices);
+        
+        int size = indices.size();
+        for(int i = 0; i < size; i++)
+        {
+            vertices.push_back({positions[i],normals[i],uvs[i]});
+            
+            printf("%04d : %+f, %+f, %+f",i,positions[i].x,positions[i].y,positions[i].z);
+            printf(" / %+f, %+f, %+f",normals[i].x,normals[i].y,normals[i].z);
+            printf(" / %+f, %+f\n",uvs[i].x,uvs[i].y);
+        }
+    }
+    
+    return vertices;
+}
+
+template <typename T>
+void SaveBinary(string fileName,vector<T> vertices)
+{
     string outputFile = fileName + ".mesh";
     ofstream ofs(outputFile,ios::out | ios::binary | ios::trunc);
-    ofs.write((char*)&vertices.front(), vertices.size() * sizeof(PositionNormal));
+    ofs.write((char*)&vertices.front(), vertices.size() * sizeof(T));
     ofs.close();
-    
-    return 0;
 }
 
 FbxScene* InitFbxAndLoadScene(string filePath)
@@ -243,7 +315,75 @@ vector<Vector3> GetNormals(const FbxMesh* mesh, const vector<int>& normalIndices
     return normals;
 }
 
+vector<int> MakeUVIndices(const FbxMesh* mesh, const std::vector<int> indices)
+{
+    vector<int> uvIndices;
+    
+    auto element = mesh->GetElementUV();
+    
+    switch(element->GetMappingMode())
+    {
+        case FbxGeometryElement::eByControlPoint:
+            uvIndices = indices;
+            break;
+        case FbxGeometryElement::eByPolygonVertex:
+        {
+            int index = 0;
+            
+            auto numPolygons = mesh->GetPolygonCount();
+            for(int i = 0; i < numPolygons; i++)
+            {
+                auto numVertices = mesh->GetPolygonSize(i);
+                for(int j = 0; j < numVertices; j++)
+                {
+                    uvIndices.push_back(index++);
+                }
+            }
+            
+            break;
+        }
+    }
+    
+    return uvIndices;
+}
 
+vector<Vector2> GetUVs(const FbxMesh* mesh,const std::vector<int> indices)
+{
+    vector<Vector2> uvVec;
+    
+    int layerCount = mesh->GetLayerCount();
+    for(int i = 0; i < layerCount; i++)
+    {
+        auto layer = mesh->GetLayer(i);
+        auto elem = layer->GetUVs();
+        if(elem == 0)
+            continue;
+        
+        for(auto index : indices)
+        {
+            FbxVector2 uv;
+            
+            switch (elem->GetReferenceMode())
+            {
+                case FbxLayerElement::eDirect:
+                    uv = elem->GetDirectArray().GetAt(index);
+                    break;
+                case FbxLayerElement::eIndexToDirect:
+                    uv = elem->GetDirectArray().GetAt(elem->GetIndexArray().GetAt(index));
+                    break;
+            }
+            
+            uvVec.push_back({
+                static_cast<GLfloat>(uv[0]),
+                static_cast<GLfloat>(uv[1])
+            });
+        }
+        
+        break;
+    }
+    
+    return uvVec;
+}
 
 
 
