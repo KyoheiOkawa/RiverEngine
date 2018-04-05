@@ -323,10 +323,10 @@ vector<int> MakeUVIndices(const FbxMesh* mesh, const std::vector<int> indices)
     
     switch(element->GetMappingMode())
     {
-        case FbxGeometryElement::eByControlPoint:
+        case FbxLayerElement::eByControlPoint:
             uvIndices = indices;
             break;
-        case FbxGeometryElement::eByPolygonVertex:
+        case FbxLayerElement::eByPolygonVertex:
         {
             int index = 0;
             
