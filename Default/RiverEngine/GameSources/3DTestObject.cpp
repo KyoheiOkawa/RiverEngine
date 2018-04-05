@@ -51,13 +51,14 @@ bool TestObject::init()
     
     unif_lightDir = _useProgram->getUnifLocation("unif_lightDir");
     
-    _testMesh = MeshResource<PositionNormal>::createWithFile("Assets/Cube");
-    auto vertex = _testMesh->GetVertexPointer();
-    for(int i = 0; i < _testMesh->GetVertexCount(); i++)
-    {
-        printf("%04d : %+f, %+f, %+f",i,vertex[i].position[0],vertex[i].position[1],vertex[i].position[2]);
-        printf(" / %+f, %+f, %+f\n",vertex[i].normal[0],vertex[i].normal[1],vertex[i].normal[2]);
-    }
+    _testMesh = MeshResource<PositionNormal>::createWithFile("Assets/glass");
+    getTransform()->setScale(Vector3(0.5f,0.5f,0.5f));
+//    auto vertex = _testMesh->GetVertexPointer();
+//    for(int i = 0; i < _testMesh->GetVertexCount(); i++)
+//    {
+//        printf("%04d : %+f, %+f, %+f",i,vertex[i].position[0],vertex[i].position[1],vertex[i].position[2]);
+//        printf(" / %+f, %+f, %+f\n",vertex[i].normal[0],vertex[i].normal[1],vertex[i].normal[2]);
+//    }
     
     return true;
 }
