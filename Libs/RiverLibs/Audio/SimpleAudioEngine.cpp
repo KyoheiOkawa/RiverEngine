@@ -143,6 +143,47 @@ void SimpleAudioEngine::stopBgm(const std::string soundKey)
     alSourceStop(item->sourceIDs[0]);
 }
 
+void SimpleAudioEngine::registerSe(const std::string soundName, const std::string soundKey)
+{
+    auto item = registerSoundItem(soundName, soundKey, _seMap);
+    if(item == nullptr)
+        return;
+    
+    for(int i = 0; i < MAX_SE_SOURCE; i++)
+    {
+        alGenSources(1, &item->sourceIDs[i]);
+        alSourcei(item->sourceIDs[i], AL_BUFFER, item->bufferID);
+    }
+    
+}
+
+bool SimpleAudioEngine::startSe(const std::string soundKey, const ALfloat volume)
+{
+    SoundItem* item = findSoundItem(soundKey, _seMap);
+    assert(item);
+    
+    ALint playSource = -1;
+    for(int i = 0; i < MAX_SE_SOURCE; i++)
+    {
+        ALint state;
+        alGetSourcei(item->sourceIDs[i], AL_SOURCE_STATE, &state);
+        
+        if(state != AL_PLAYING)
+        {
+            playSource = i;
+            break;
+        }
+    }
+    
+    if(playSource == -1)
+        return false;
+    
+    alSourcei(item->sourceIDs[playSource], AL_GAIN, volume);
+    alSourcePlay(item->sourceIDs[playSource]);
+    
+    return true;
+}
+
 void SimpleAudioEngine::test()
 {
     const size_t pcmFreq = 44100;

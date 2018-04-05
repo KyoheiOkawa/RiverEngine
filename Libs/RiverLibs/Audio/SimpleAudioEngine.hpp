@@ -19,11 +19,13 @@
 #include <array>
 #include <thread>
 
+#define MAX_SE_SOURCE 10
+
 struct SoundItem
 {
     WavFormat wavFormat;
     ALuint bufferID;
-    array<ALuint, 10> sourceIDs;
+    array<ALuint, MAX_SE_SOURCE> sourceIDs;
 };
 
 class SimpleAudioEngine
@@ -35,6 +37,7 @@ private:
     ALCcontext* _context;
     
     std::map<std::string,SoundItem> _bgmMap;
+    std::map<std::string,SoundItem> _seMap;
     
     SimpleAudioEngine(){}
     
@@ -54,6 +57,8 @@ public:
     void pauseBgm(const std::string soundKey);
     void stopBgm(const std::string soundKey);
     
+    void registerSe(const std::string soundName,const std::string soundKey);
+    bool startSe(const std::string soundKey,const ALfloat volume);
     
     void test();
     void test2();
