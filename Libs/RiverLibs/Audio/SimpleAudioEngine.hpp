@@ -31,7 +31,7 @@ struct SoundItem
 class SimpleAudioEngine
 {
 private:
-    static SimpleAudioEngine* _instance;
+    static std::unique_ptr<SimpleAudioEngine> _instance;
     
     ALCdevice* _device;
     ALCcontext* _context;
@@ -40,6 +40,7 @@ private:
     std::map<std::string,SoundItem> _seMap;
     
     SimpleAudioEngine(){}
+    void deleteSourceBuffer(std::map<std::string,SoundItem>& map);
     
     SoundItem* registerSoundItem(const std::string soundName,const std::string soundKey,std::map<std::string,SoundItem>& soundMap);
     

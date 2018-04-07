@@ -99,6 +99,9 @@ void TestObject::draw()
     glEnableVertexAttribArray(attr_normal);
     assert(glGetError()==GL_NO_ERROR);
     
+    glEnable(GL_CULL_FACE);
+    glCullFace(GL_BACK);
+    
     Matrix4x4 lookAt,projection;
     Director::getInstance()->getScene()->GetMainCamera()->GetLookAtProjection(lookAt, projection);
     
@@ -132,6 +135,7 @@ void TestObject::draw()
     assert(glGetError()==GL_NO_ERROR);
     
     glDisable(GL_DEPTH_TEST);
+    glDisable(GL_CULL_FACE);
     glDisableVertexAttribArray(attr_pos);
     glDisableVertexAttribArray(attr_normal);
     assert(glGetError()==GL_NO_ERROR);

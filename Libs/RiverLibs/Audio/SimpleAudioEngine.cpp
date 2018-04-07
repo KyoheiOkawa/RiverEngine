@@ -8,20 +8,23 @@
 
 #include "SimpleAudioEngine.hpp"
 
-SimpleAudioEngine* SimpleAudioEngine::_instance = nullptr;
+std::unique_ptr<SimpleAudioEngine> SimpleAudioEngine::_instance = nullptr;
 
 SimpleAudioEngine* SimpleAudioEngine::getInstance()
 {
     if(_instance == nullptr) {
-        _instance = new SimpleAudioEngine();
+        _instance.reset(new SimpleAudioEngine());
         _instance->init();
     }
     
-    return _instance;
+    return _instance.get();
 }
 
 SimpleAudioEngine::~SimpleAudioEngine()
 {
+    deleteSourceBuffer(_bgmMap);
+    deleteSourceBuffer(_seMap);
+    
     alcMakeContextCurrent(nullptr);
     alcDestroyContext(_context);
     alcCloseDevice(_device);
@@ -30,6 +33,19 @@ SimpleAudioEngine::~SimpleAudioEngine()
     _device = nullptr;
 }
 
+void SimpleAudioEngine::deleteSourceBuffer(std::map<std::string,SoundItem>& map)
+{
+    for(auto item : map)
+    {
+        for(ALuint source : item.second.sourceIDs)
+        {
+            alSourcei(source, AL_BUFFER, 0);
+            alDeleteSources(1, &source);
+        }
+        
+        alDeleteBuffers(1, &item.second.bufferID);
+    }
+}
 SoundItem* SimpleAudioEngine::registerSoundItem(const std::string soundName,const std::string soundKey, std::map<std::string, SoundItem> &soundMap)
 {
     if(findSoundItem(soundKey, soundMap)!=nullptr)
