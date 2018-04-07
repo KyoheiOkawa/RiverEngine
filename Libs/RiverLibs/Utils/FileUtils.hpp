@@ -11,8 +11,6 @@
 
 #include "stdinc.h"
 
-#define CSTR2NSSTRING(c_str) [[NSString alloc] initWithUTF8String:c_str]
-
 struct WavFormat
 {
     unsigned short format_id;

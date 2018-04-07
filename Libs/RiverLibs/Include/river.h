@@ -29,6 +29,7 @@
 #include "GLProgram.hpp"
 #include "Vertex.hpp"
 #include "FileUtils.hpp"
+#include "UserDefaults.hpp"
 #include "Component.hpp"
 #include "Transform.hpp"
 #include "SimpleAudioEngine.hpp"

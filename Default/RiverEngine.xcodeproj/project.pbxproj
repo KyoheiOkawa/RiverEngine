@@ -40,6 +40,7 @@
 		D6535F841EDFC84D00632E0B /* HelloWorldScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6535F821EDFC84D00632E0B /* HelloWorldScene.cpp */; };
 		D684F7FD203499A10032C3A6 /* MeshResource.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D684F7FB203499A10032C3A6 /* MeshResource.cpp */; };
 		D687DFE62071B6680034DCB3 /* Quaternion.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D687DFE42071B6680034DCB3 /* Quaternion.cpp */; };
+		D687DFE9207902540034DCB3 /* UserDefaults.mm in Sources */ = {isa = PBXBuildFile; fileRef = D687DFE7207902540034DCB3 /* UserDefaults.mm */; };
 		D6DD0D7F20557906003998B7 /* 3DTestObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6DD0D7D20557906003998B7 /* 3DTestObject.cpp */; };
 		D6F6FAF11EFE48490041A212 /* Assets in Resources */ = {isa = PBXBuildFile; fileRef = D6F6FAF01EFE48490041A212 /* Assets */; };
 		D6FED0F91F3B46A300E0C028 /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D6FED0F81F3B46A300E0C028 /* OpenAL.framework */; };
@@ -128,6 +129,8 @@
 		D684F7FC203499A10032C3A6 /* MeshResource.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = MeshResource.hpp; sourceTree = "<group>"; };
 		D687DFE42071B6680034DCB3 /* Quaternion.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Quaternion.cpp; sourceTree = "<group>"; };
 		D687DFE52071B6680034DCB3 /* Quaternion.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Quaternion.hpp; sourceTree = "<group>"; };
+		D687DFE7207902540034DCB3 /* UserDefaults.mm */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; path = UserDefaults.mm; sourceTree = "<group>"; };
+		D687DFE8207902540034DCB3 /* UserDefaults.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = UserDefaults.hpp; sourceTree = "<group>"; };
 		D6DD0D7D20557906003998B7 /* 3DTestObject.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = 3DTestObject.cpp; sourceTree = "<group>"; };
 		D6DD0D7E20557906003998B7 /* 3DTestObject.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = 3DTestObject.hpp; sourceTree = "<group>"; };
 		D6F6FAF01EFE48490041A212 /* Assets */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Assets; sourceTree = "<group>"; };
@@ -343,6 +346,8 @@
 			children = (
 				D648B2CF1F8E514E00C57D9C /* FileUtils.hpp */,
 				D648B2D01F8E514E00C57D9C /* FileUtils.mm */,
+				D687DFE7207902540034DCB3 /* UserDefaults.mm */,
+				D687DFE8207902540034DCB3 /* UserDefaults.hpp */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -507,6 +512,7 @@
 				D6DD0D7F20557906003998B7 /* 3DTestObject.cpp in Sources */,
 				D648B2E11F8E514E00C57D9C /* Texture2D.mm in Sources */,
 				D611090E1EC6B5A000B89DFE /* AppDelegate.m in Sources */,
+				D687DFE9207902540034DCB3 /* UserDefaults.mm in Sources */,
 				D648B2DC1F8E514E00C57D9C /* Vector3.cpp in Sources */,
 				D648B2DA1F8E514E00C57D9C /* Matrix4x4.cpp in Sources */,
 				D648B2E01F8E514E00C57D9C /* support_gl.mm in Sources */,
