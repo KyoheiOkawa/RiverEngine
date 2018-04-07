@@ -53,6 +53,10 @@ bool HelloWorldScene::init()
     triangle->setDrawLayer(-1);
     this->addGameObject(triangle);
     
+    auto texCube = TestObject2::create();
+    texCube->setDrawLayer(-1);
+    this->addGameObject(texCube);
+    
     return true;
 }
 

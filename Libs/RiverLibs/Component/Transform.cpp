@@ -13,6 +13,7 @@ Transform::Transform(const std::shared_ptr<GameObject>& GameObjectPtr):
 Component(GameObjectPtr),
 _scale(Vector3::ONE()),
 _position(Vector3::ZERO()),
+_rotation(Quaternion::identity()),
 _pivot(Vector3(0.5f,0.5f,0.5f))
 {
     
