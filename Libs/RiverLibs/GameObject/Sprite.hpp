@@ -43,8 +43,6 @@ public:
     
     virtual void draw() override;
     
-    virtual void onScreenTouched(TouchInfo& touchInfo) override;
-    
     void setTexture(std::string texKey);
     
     Vector2 getSpriteSize(){

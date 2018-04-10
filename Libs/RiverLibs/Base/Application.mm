@@ -43,15 +43,12 @@ void Application::resized()
 
 void Application::update()
 {
-//    printf("DeltaTime:%f\n",_deltaTime);
-//    printf("FPS:%f\n",1.0f/_deltaTime);
-    
     Director::getInstance()->updateScene();
 }
 
 void Application::rendering()
 {
-    glClearColor(0.0913f, 0.0913f, 0.436f, 1.0f);
+    glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     
     Director::getInstance()->drawScene();

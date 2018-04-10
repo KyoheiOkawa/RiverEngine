@@ -43,14 +43,14 @@ struct PositionNormalTexture
 FbxScene* InitFbxAndLoadScene(string filepath);
 vector<FbxMesh*> GetMeshes(const FbxScene* scene);
 vector<int> MakeIndices(const FbxMesh* mesh);
-vector<Vector3> GetVertexPositions(const FbxMesh* mesh,const std::vector<int>& indices);
+vector<Vector3> GetVertexPositions(const FbxMesh* mesh,const std::vector<int>& indices, const float scale);
 vector<int> MakeNormalIndices(const FbxMesh* mesh, const std::vector<int> indices);
 vector<Vector3> GetNormals(const FbxMesh* mesh, const vector<int>& normalIndices);
 vector<int> MakeUVIndices(const FbxMesh* mesh, const std::vector<int> indices);
 vector<Vector2> GetUVs(const FbxMesh* mesh, const std::vector<int> indices);
 
-vector<PositionNormal> GetPositionNormal(vector<FbxMesh*> meshes);
-vector<PositionNormalTexture> GetPositionNormalTexture(vector<FbxMesh*> meshes);
+vector<PositionNormal> GetPositionNormal(vector<FbxMesh*> meshes,const float scale = 1.0f);
+vector<PositionNormalTexture> GetPositionNormalTexture(vector<FbxMesh*> meshes,const float scale = 1.0f);
 
 template <typename T>
 void SaveBinary(string fileName,vector<T> vertices);
@@ -65,30 +65,34 @@ int main(int argc, const char * argv[])
     string fileName;
     cin >> fileName;
     
+    cout << "Enter model scale(default 1.0)." << endl;
+    float scale;
+    cin >> scale;
+    
     auto scene = InitFbxAndLoadScene(fileName + ".fbx");
     auto meshes = GetMeshes(scene);
     
     if(vertexType == "pn")
     {
-        vector<PositionNormal> vertices = GetPositionNormal(meshes);
+        vector<PositionNormal> vertices = GetPositionNormal(meshes,scale);
         SaveBinary(fileName, vertices);
     }
     else if(vertexType == "pnt")
     {
-        vector<PositionNormalTexture> vertices = GetPositionNormalTexture(meshes);
+        vector<PositionNormalTexture> vertices = GetPositionNormalTexture(meshes,scale);
         SaveBinary(fileName, vertices);
     }
     
     return 0;
 }
 
-vector<PositionNormal> GetPositionNormal(vector<FbxMesh*> meshes)
+vector<PositionNormal> GetPositionNormal(vector<FbxMesh*> meshes,const float scale)
 {
     vector<PositionNormal> vertices;
     for(auto mesh : meshes)
     {
         auto indices = MakeIndices(mesh);
-        auto positions = GetVertexPositions(mesh, indices);
+        auto positions = GetVertexPositions(mesh, indices,scale);
         
         auto normalIndices = MakeNormalIndices(mesh, indices);
         auto normals = GetNormals(mesh, normalIndices);
@@ -106,13 +110,13 @@ vector<PositionNormal> GetPositionNormal(vector<FbxMesh*> meshes)
     return vertices;
 }
 
-vector<PositionNormalTexture> GetPositionNormalTexture(vector<FbxMesh*> meshes)
+vector<PositionNormalTexture> GetPositionNormalTexture(vector<FbxMesh*> meshes,const float scale)
 {
     vector<PositionNormalTexture> vertices;
     for(auto mesh : meshes)
     {
         auto indices = MakeIndices(mesh);
-        auto positions = GetVertexPositions(mesh, indices);
+        auto positions = GetVertexPositions(mesh, indices,scale);
         
         auto normalIndices = MakeNormalIndices(mesh, indices);
         auto normals = GetNormals(mesh, normalIndices);
@@ -230,7 +234,7 @@ vector<int> MakeIndices(const FbxMesh* mesh)
     return indices;
 }
 
-vector<Vector3> GetVertexPositions(const FbxMesh* mesh,const std::vector<int>& indices)
+vector<Vector3> GetVertexPositions(const FbxMesh* mesh,const std::vector<int>& indices,const float scale)
 {
     vector<Vector3> positions;
     
@@ -248,7 +252,7 @@ vector<Vector3> GetVertexPositions(const FbxMesh* mesh,const std::vector<int>& i
     for(auto index : indices)
     {
         auto cp = controlPoints[index];
-        positions.push_back({GLfloat(cp[0]),GLfloat(cp[1]),GLfloat(cp[2])});
+        positions.push_back({GLfloat(cp[0] * scale),GLfloat(cp[1] * scale),GLfloat(cp[2] * scale)});
     }
     
     return positions;

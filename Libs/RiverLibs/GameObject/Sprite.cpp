@@ -84,15 +84,7 @@ bool Sprite::init()
 
 void Sprite::update()
 {
-    auto transPtr = getTransform();
-    float delta = Application::getInstance()->getDeltaTime();
-    Vector3 add = Vector3(100,100,0) * delta;
-    transPtr->setPosition(transPtr->getPosition() + add);
-    
-    Quaternion q = transPtr->getRotation();
-    q.z += 45 * delta;
-    transPtr->setRotation(q);
-    
+
 }
 
 void Sprite::draw()
@@ -139,13 +131,4 @@ void Sprite::setTexture(std::string texKey)
     
     _spriteSize.x = texInfo->width;
     _spriteSize.y = texInfo->height;
-}
-
-void Sprite::onScreenTouched(TouchInfo& touchInfo)
-{
-    if(touchInfo.type == TouchType::BEGAN)
-    {
-        auto transPtr = getTransform();
-        transPtr->setPosition(Vector3(touchInfo.posX,touchInfo.posY,0));
-    }
 }
