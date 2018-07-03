@@ -10,6 +10,7 @@
 		D600C08D205F02B5006749D9 /* Camera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D600C08B205F02B5006749D9 /* Camera.cpp */; };
 		D610EC6720EB1EF400C9E7BF /* Table.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D610EC6520EB1EF400C9E7BF /* Table.cpp */; };
 		D610EC6A20EB325400C9E7BF /* Glass.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D610EC6820EB325400C9E7BF /* Glass.cpp */; };
+		D610EC6D20EB383C00C9E7BF /* Project.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D610EC6B20EB383C00C9E7BF /* Project.cpp */; };
 		D611090B1EC6B5A000B89DFE /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D611090A1EC6B5A000B89DFE /* main.m */; };
 		D611090E1EC6B5A000B89DFE /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D611090D1EC6B5A000B89DFE /* AppDelegate.m */; };
 		D61109111EC6B5A100B89DFE /* ViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = D61109101EC6B5A100B89DFE /* ViewController.mm */; };
@@ -72,6 +73,8 @@
 		D610EC6620EB1EF400C9E7BF /* Table.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Table.hpp; sourceTree = "<group>"; };
 		D610EC6820EB325400C9E7BF /* Glass.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Glass.cpp; sourceTree = "<group>"; };
 		D610EC6920EB325400C9E7BF /* Glass.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Glass.hpp; sourceTree = "<group>"; };
+		D610EC6B20EB383C00C9E7BF /* Project.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Project.cpp; sourceTree = "<group>"; };
+		D610EC6C20EB383C00C9E7BF /* Project.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Project.hpp; sourceTree = "<group>"; };
 		D61109061EC6B5A000B89DFE /* RiverEngine.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RiverEngine.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D611090A1EC6B5A000B89DFE /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		D611090C1EC6B5A000B89DFE /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -369,6 +372,8 @@
 				D610EC6620EB1EF400C9E7BF /* Table.hpp */,
 				D610EC6820EB325400C9E7BF /* Glass.cpp */,
 				D610EC6920EB325400C9E7BF /* Glass.hpp */,
+				D610EC6B20EB383C00C9E7BF /* Project.cpp */,
+				D610EC6C20EB383C00C9E7BF /* Project.hpp */,
 			);
 			path = GameSources;
 			sourceTree = "<group>";
@@ -530,6 +535,7 @@
 				D648B2D21F8E514E00C57D9C /* Application.mm in Sources */,
 				D648B2D11F8E514E00C57D9C /* SimpleAudioEngine.cpp in Sources */,
 				D648B2D71F8E514E00C57D9C /* Transform.cpp in Sources */,
+				D610EC6D20EB383C00C9E7BF /* Project.cpp in Sources */,
 				D684F7FD203499A10032C3A6 /* MeshResource.cpp in Sources */,
 				D61109171EC6B5A100B89DFE /* RiverEngine.xcdatamodeld in Sources */,
 				D611090B1EC6B5A000B89DFE /* main.m in Sources */,

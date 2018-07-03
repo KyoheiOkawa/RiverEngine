@@ -60,7 +60,7 @@ bool Glass::init()
 
 void Glass::update()
 {
-
+    physicUpdate();
 }
 
 void Glass::draw()
@@ -114,4 +114,65 @@ void Glass::draw()
     glDisableVertexAttribArray(attr_pos);
     glDisableVertexAttribArray(attr_normal);
     assert(glGetError()==GL_NO_ERROR);
+}
+
+void Glass::onScreenTouched(TouchInfo &info)
+{
+    float delta = Application::getInstance()->getDeltaTime();
+    
+    switch(info.type)
+    {
+        case TouchType::BEGAN:
+        {
+            _touchParam._start.x = info.posX;
+            _touchParam._start.y = info.posY;
+            
+            _touchParam._frickTime = 0.0f;
+        }
+        break;
+        case TouchType::MOVED:
+        {
+            _touchParam._frickTime += delta;
+        }
+        break;
+        case TouchType::ENDED:
+        {
+            _touchParam._end.x = info.posX;
+            _touchParam._end.y = info.posY;
+            
+            if(_touchParam._frickTime >= _touchParam._maxFrickTime)
+                break;
+            
+            Vector2 dir = _touchParam._end - _touchParam._start;
+            float slideLen = dir.magnitude();
+
+            //フリックした長さが短い場合は滑らせない
+            float minLen = 100.0f;
+            if(slideLen <= minLen)
+                break;
+            
+            float power = slideLen * _touchParam._slidePower;
+            float speed = 1.0f / ((1.0f-_touchParam._maxFrickTime)+_touchParam._frickTime);
+            
+            _physicParam._velocity.x = dir.getNormalized().x * power * speed;
+            _physicParam._velocity.z = dir.getNormalized().y * power * speed;
+        }
+        break;
+    }
+}
+
+void Glass::physicUpdate()
+{
+    float delta = Application::getInstance()->getDeltaTime();
+    
+    if(delta > 1.0f)
+        return;
+    
+    auto trans = getTransform();
+    Vector3 nowPos = trans->getPosition();
+    
+    nowPos += _physicParam._velocity * delta;
+    
+    _physicParam._velocity *= _physicParam._friction;
+    trans->setPosition(nowPos);
 }

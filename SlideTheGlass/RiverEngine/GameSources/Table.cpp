@@ -53,7 +53,7 @@ bool Table::init()
     
     unif_lightDir = _useProgram->getUnifLocation("unif_lightDir");
     
-    _mesh = MeshResource<PositionNormal>::createWithFile("Assets/Table");
+    _mesh = MeshResource<PositionNormalTexture>::createWithFile("Assets/Table");
     
     auto texInfo = Director::getInstance()->getRegesterdTextureInfo("TABLE_TX");
     textureId = texInfo->id;
@@ -101,7 +101,7 @@ void Table::draw()
     glUniform3f(unif_lightDir, light.x, light.y, light.z);
     assert(glGetError()==GL_NO_ERROR);
     
-    glVertexAttribPointer(attr_pos, 3, GL_FLOAT, GL_FALSE, sizeof(PositionNormalTexture), (GLvoid*)_mesh->GetVertexPointer());
+    glVertexAttribPointer(attr_pos, 3, GL_FLOAT, GL_FALSE, sizeof(PositionNormalTexture), (GLvoid*)((GLubyte*)_mesh->GetVertexPointer()));
     assert(glGetError()==GL_NO_ERROR);
     glVertexAttribPointer(attr_normal, 3, GL_FLOAT, GL_FALSE, sizeof(PositionNormalTexture), (GLvoid*)((GLubyte*)_mesh->GetVertexPointer() + sizeof(GLfloat)*3));
     assert(glGetError()==GL_NO_ERROR);
@@ -109,7 +109,7 @@ void Table::draw()
     assert(glGetError()==GL_NO_ERROR);
     
     glBindTexture(GL_TEXTURE_2D, textureId);
-    
+
     glDrawArrays(GL_TRIANGLES, 0, (GLsizei)_mesh->GetVertexCount());
     assert(glGetError()==GL_NO_ERROR);
     

@@ -25,7 +25,7 @@ class Table : public GameObject
     GLint unif_lightDir;
     GLuint textureId;
     
-    shared_ptr<MeshResource<PositionNormal>> _mesh;
+    shared_ptr<MeshResource<PositionNormalTexture>> _mesh;
 public:
     Table();
     virtual ~Table();

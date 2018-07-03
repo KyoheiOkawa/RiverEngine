@@ -9,7 +9,7 @@
 #include "Camera.hpp"
 
 Camera::Camera():
-_cameraPos(Vector3(0.0f,1.45f,2.5f)),
+_cameraPos(Vector3(0.0f,1.75f,2.3f)),
 _lookAt(Vector3(0.0f,0.5f,-1.6f)),
 _cameraUp(Vector3(0.0f,1.0f,0.0f)),
 _near(1.0f),
