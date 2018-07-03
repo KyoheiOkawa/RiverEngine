@@ -45,7 +45,6 @@ bool MainScene::init()
     addGameObject(table);
     
     auto glass = Glass::create();
-    glass->getTransform()->setPosition(Vector3(0,0.78f,0.75f));
     addGameObject(glass);
     
     return true;

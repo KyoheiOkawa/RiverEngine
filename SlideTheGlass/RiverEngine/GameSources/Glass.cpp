@@ -55,6 +55,10 @@ bool Glass::init()
     
     _meshTransform = Matrix4x4::createScale(0.25f, 0.25f, 0.25f);
     
+    auto trans = getTransform();
+    _defaultPosition = Vector3(0,0.78f,0.75f);
+    trans->setPosition(_defaultPosition);
+    
     return true;
 }
 
@@ -119,6 +123,7 @@ void Glass::draw()
 void Glass::onScreenTouched(TouchInfo &info)
 {
     float delta = Application::getInstance()->getDeltaTime();
+    auto trans = getTransform();
     
     switch(info.type)
     {
@@ -133,6 +138,13 @@ void Glass::onScreenTouched(TouchInfo &info)
         case TouchType::MOVED:
         {
             _touchParam._frickTime += delta;
+            
+            Vector3 dir;
+            dir.x = info.posX - _touchParam._start.x;
+            dir.y = _defaultPosition.y;
+            dir.z = info.posY - _touchParam._start.y;
+            
+            trans->setPosition(_defaultPosition+dir*_touchParam._touchMoveGlassRadius);
         }
         break;
         case TouchType::ENDED:

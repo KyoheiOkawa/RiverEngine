@@ -23,6 +23,7 @@ public:
         
         const float _maxFrickTime = 0.5f;
         const float _slidePower = 0.005f;
+        const float _touchMoveGlassRadius = 0.0001f;
         
         TouchParam():
         _start(Vector2(0,0)),
@@ -49,6 +50,8 @@ private:
     
     PhysicParam _physicParam;
     TouchParam _touchParam;
+    
+    Vector3 _defaultPosition;
     
     void physicUpdate();
 public:
