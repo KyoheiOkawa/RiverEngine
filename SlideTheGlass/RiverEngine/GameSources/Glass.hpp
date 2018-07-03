@@ -1,17 +1,17 @@
 //
-//  Table.hpp
+//  Glass.hpp
 //  RiverEngine
 //
 //  Created by 大川恭平 on 2018/07/03.
 //  Copyright © 2018年 BiGRiVER. All rights reserved.
 //
 
-#ifndef Table_hpp
-#define Table_hpp
+#ifndef Glass_hpp
+#define Glass_hpp
 
 #include "river.h"
 
-class Table : public GameObject
+class Glass : public GameObject
 {
     GLProgram* _useProgram;
     
@@ -26,15 +26,17 @@ class Table : public GameObject
     GLuint textureId;
     
     shared_ptr<MeshResource<PositionNormal>> _mesh;
-public:
-    Table();
-    virtual ~Table();
     
-    static std::shared_ptr<Table> create();
+    Matrix4x4 _meshTransform;
+public:
+    Glass();
+    virtual ~Glass();
+    
+    static std::shared_ptr<Glass> create();
     
     virtual bool init() override;
     virtual void update() override;
     virtual void draw() override;
 };
 
-#endif /* Table_hpp */
+#endif /* Glass_hpp */

@@ -9,6 +9,7 @@
 #include "MainScene.hpp"
 #include "3DTestObject.hpp"
 #include "Table.hpp"
+#include "Glass.hpp"
 
 MainScene::MainScene()
 {
@@ -42,6 +43,10 @@ bool MainScene::init()
     auto table = Table::create();
     table->getTransform()->setPosition(Vector3(-0.5f,0,0));
     addGameObject(table);
+    
+    auto glass = Glass::create();
+    glass->getTransform()->setPosition(Vector3(0,0.78f,0.75f));
+    addGameObject(glass);
     
     return true;
 }

@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		D600C08D205F02B5006749D9 /* Camera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D600C08B205F02B5006749D9 /* Camera.cpp */; };
 		D610EC6720EB1EF400C9E7BF /* Table.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D610EC6520EB1EF400C9E7BF /* Table.cpp */; };
+		D610EC6A20EB325400C9E7BF /* Glass.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D610EC6820EB325400C9E7BF /* Glass.cpp */; };
 		D611090B1EC6B5A000B89DFE /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D611090A1EC6B5A000B89DFE /* main.m */; };
 		D611090E1EC6B5A000B89DFE /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D611090D1EC6B5A000B89DFE /* AppDelegate.m */; };
 		D61109111EC6B5A100B89DFE /* ViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = D61109101EC6B5A100B89DFE /* ViewController.mm */; };
@@ -69,6 +70,8 @@
 		D600C08C205F02B5006749D9 /* Camera.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Camera.hpp; sourceTree = "<group>"; };
 		D610EC6520EB1EF400C9E7BF /* Table.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Table.cpp; sourceTree = "<group>"; };
 		D610EC6620EB1EF400C9E7BF /* Table.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Table.hpp; sourceTree = "<group>"; };
+		D610EC6820EB325400C9E7BF /* Glass.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Glass.cpp; sourceTree = "<group>"; };
+		D610EC6920EB325400C9E7BF /* Glass.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Glass.hpp; sourceTree = "<group>"; };
 		D61109061EC6B5A000B89DFE /* RiverEngine.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RiverEngine.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D611090A1EC6B5A000B89DFE /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		D611090C1EC6B5A000B89DFE /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -364,6 +367,8 @@
 				D6DD0D7E20557906003998B7 /* 3DTestObject.hpp */,
 				D610EC6520EB1EF400C9E7BF /* Table.cpp */,
 				D610EC6620EB1EF400C9E7BF /* Table.hpp */,
+				D610EC6820EB325400C9E7BF /* Glass.cpp */,
+				D610EC6920EB325400C9E7BF /* Glass.hpp */,
 			);
 			path = GameSources;
 			sourceTree = "<group>";
@@ -509,6 +514,7 @@
 				D61109111EC6B5A100B89DFE /* ViewController.mm in Sources */,
 				D648B2DB1F8E514E00C57D9C /* Vector2.cpp in Sources */,
 				D648B2D31F8E514E00C57D9C /* Director.cpp in Sources */,
+				D610EC6A20EB325400C9E7BF /* Glass.cpp in Sources */,
 				D648B2DF1F8E514E00C57D9C /* RawPixelImage.mm in Sources */,
 				D648B2D81F8E514E00C57D9C /* GameObject.cpp in Sources */,
 				D687DFE62071B6680034DCB3 /* Quaternion.cpp in Sources */,

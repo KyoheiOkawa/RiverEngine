@@ -1,26 +1,26 @@
 //
-//  Table.cpp
+//  Glass.cpp
 //  RiverEngine
 //
 //  Created by 大川恭平 on 2018/07/03.
 //  Copyright © 2018年 BiGRiVER. All rights reserved.
 //
 
-#include "Table.hpp"
+#include "Glass.hpp"
 
-Table::Table()
+Glass::Glass()
 {
     
 }
 
-Table::~Table()
+Glass::~Glass()
 {
     
 }
 
-shared_ptr<Table> Table::create()
+shared_ptr<Glass> Glass::create()
 {
-    shared_ptr<Table> ret(new Table());
+    shared_ptr<Glass> ret(new Glass());
     
     if(ret && ret->init())
     {
@@ -30,18 +30,16 @@ shared_ptr<Table> Table::create()
     return nullptr;
 }
 
-bool Table::init()
+bool Glass::init()
 {
     if(!GameObject::init())
         return false;
     
-    _useProgram = Director::getInstance()->getGLProgram("PNTStatic");
+    _useProgram = Director::getInstance()->getGLProgram("PNStatic");
     
     attr_pos = _useProgram->getAttribLocation("attr_pos");
     
     attr_normal = _useProgram->getAttribLocation("attr_normal");
-    
-    attr_uv = _useProgram->getAttribLocation("attr_uv");
     
     unif_color = _useProgram->getUnifLocation("unif_color");
     
@@ -53,20 +51,19 @@ bool Table::init()
     
     unif_lightDir = _useProgram->getUnifLocation("unif_lightDir");
     
-    _mesh = MeshResource<PositionNormal>::createWithFile("Assets/Table");
+    _mesh = MeshResource<PositionNormal>::createWithFile("Assets/glass");
     
-    auto texInfo = Director::getInstance()->getRegesterdTextureInfo("TABLE_TX");
-    textureId = texInfo->id;
+    _meshTransform = Matrix4x4::createScale(0.25f, 0.25f, 0.25f);
     
     return true;
 }
 
-void Table::update()
+void Glass::update()
 {
 
 }
 
-void Table::draw()
+void Glass::draw()
 {
     auto app = Application::getInstance();
     
@@ -74,8 +71,10 @@ void Table::draw()
     glEnable(GL_DEPTH_TEST);
     glEnableVertexAttribArray(attr_pos);
     glEnableVertexAttribArray(attr_normal);
-    glEnableVertexAttribArray(attr_uv);
     assert(glGetError()==GL_NO_ERROR);
+    
+    glEnable(GL_CULL_FACE);
+    glCullFace(GL_BACK);
     
     Matrix4x4 lookAt,projection;
     Director::getInstance()->getScene()->GetMainCamera()->GetLookAtProjection(lookAt, projection);
@@ -86,6 +85,7 @@ void Table::draw()
     scale = Matrix4x4::createScale(trans->getScale().x, trans->getScale().y, trans->getScale().z);
     rot = Matrix4x4::createRotate(trans->getRotation());
     Matrix4x4 world = pos * scale * rot;
+    world *= _meshTransform;
     
     glUniformMatrix4fv(unif_lookat, 1, GL_FALSE, lookAt.matrix);
     assert(glGetError()==GL_NO_ERROR);
@@ -96,26 +96,22 @@ void Table::draw()
     glUniform4f(unif_color, 1.0f, 1.0f, 1.0f, 1.0f);
     assert(glGetError()==GL_NO_ERROR);
     
-    Vector3 light(-1.0f,-1.0f,1.0f);
+    Vector3 light(-1.0f,-1.0f,-1.0f);
     light.normalize();
     glUniform3f(unif_lightDir, light.x, light.y, light.z);
     assert(glGetError()==GL_NO_ERROR);
     
-    glVertexAttribPointer(attr_pos, 3, GL_FLOAT, GL_FALSE, sizeof(PositionNormalTexture), (GLvoid*)_mesh->GetVertexPointer());
+    glVertexAttribPointer(attr_pos, 3, GL_FLOAT, GL_FALSE, sizeof(PositionNormal), (GLvoid*)_mesh->GetVertexPointer());
     assert(glGetError()==GL_NO_ERROR);
-    glVertexAttribPointer(attr_normal, 3, GL_FLOAT, GL_FALSE, sizeof(PositionNormalTexture), (GLvoid*)((GLubyte*)_mesh->GetVertexPointer() + sizeof(GLfloat)*3));
+    glVertexAttribPointer(attr_normal, 3, GL_FLOAT, GL_FALSE, sizeof(PositionNormal), (GLvoid*)((GLubyte*)_mesh->GetVertexPointer() + sizeof(GLfloat)*3));
     assert(glGetError()==GL_NO_ERROR);
-    glVertexAttribPointer(attr_uv, 2, GL_FLOAT, GL_FALSE, sizeof(PositionNormalTexture), (GLvoid*)((GLubyte*)_mesh->GetVertexPointer() + sizeof(GLfloat)*6));
-    assert(glGetError()==GL_NO_ERROR);
-    
-    glBindTexture(GL_TEXTURE_2D, textureId);
     
     glDrawArrays(GL_TRIANGLES, 0, (GLsizei)_mesh->GetVertexCount());
     assert(glGetError()==GL_NO_ERROR);
     
     glDisable(GL_DEPTH_TEST);
+    glDisable(GL_CULL_FACE);
     glDisableVertexAttribArray(attr_pos);
     glDisableVertexAttribArray(attr_normal);
-    glDisableVertexAttribArray(attr_uv);
     assert(glGetError()==GL_NO_ERROR);
 }
