@@ -35,7 +35,7 @@ bool TestObject::init()
     if(!GameObject::init())
         return false;
     
-    _useProgram = Director::getInstance()->getGLProgram("PStatic");
+    _useProgram = Director::getInstance()->getGLProgram("PNStatic");
     
     attr_pos = _useProgram->getAttribLocation("attr_pos");
     
@@ -51,7 +51,7 @@ bool TestObject::init()
     
     unif_lightDir = _useProgram->getUnifLocation("unif_lightDir");
     
-    _testMesh = MeshResource<PositionNormal>::createWithFile("Assets/glass");
+    _testMesh = MeshResource<PositionNormal>::createWithFile("Assets/Table");
     getTransform()->setPosition(Vector3(0,1.0f,0.0f));
 //    auto vertex = _testMesh->GetVertexPointer();
 //    for(int i = 0; i < _testMesh->GetVertexCount(); i++)
@@ -168,7 +168,7 @@ bool TestObject2::init()
     if(!GameObject::init())
         return false;
     
-    _useProgram = Director::getInstance()->getGLProgram("PSTtatic");
+    _useProgram = Director::getInstance()->getGLProgram("PNTStatic");
     
     attr_pos = _useProgram->getAttribLocation("attr_pos");
     
@@ -186,9 +186,9 @@ bool TestObject2::init()
     
     unif_lightDir = _useProgram->getUnifLocation("unif_lightDir");
     
-    _testMesh = MeshResource<PositionNormal>::createWithFile("Assets/PNTCube");
+    _testMesh = MeshResource<PositionNormal>::createWithFile("Assets/Table");
     
-    auto texInfo = Director::getInstance()->getRegesterdTextureInfo("River.png");
+    auto texInfo = Director::getInstance()->getRegesterdTextureInfo("TABLE_TX");
     textureId = texInfo->id;
     
     getTransform()->setPosition(Vector3(0.0f,-1.0f,0.0f));

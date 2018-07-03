@@ -8,6 +8,7 @@
 
 #include "MainScene.hpp"
 #include "3DTestObject.hpp"
+#include "Table.hpp"
 
 MainScene::MainScene()
 {
@@ -35,6 +36,12 @@ bool MainScene::init()
 {
     if(!Scene::init())
         return false;
+    
+    Director::getInstance()->registerTexture("TABLE_TX", "TableTx.jpg");
+    
+    auto table = Table::create();
+    table->getTransform()->setPosition(Vector3(-0.5f,0,0));
+    addGameObject(table);
     
     return true;
 }
