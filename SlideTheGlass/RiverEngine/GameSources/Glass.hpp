@@ -18,12 +18,13 @@ public:
     struct TouchParam
     {
         Vector2 _start;
+        Vector2 _fulcrum;
         Vector2 _end;
         float _frickTime;
         
         const float _maxFrickTime = 0.5f;
         const float _slidePower = 0.005f;
-        const float _touchMoveGlassRadius = 0.0001f;
+        const float _touchMoveGlassRadius = 0.0003f;
         
         TouchParam():
         _start(Vector2(0,0)),
