@@ -10,6 +10,7 @@
 #include "3DTestObject.hpp"
 #include "Table.hpp"
 #include "Glass.hpp"
+#include "STGWord.hpp"
 
 MainScene::MainScene()
 {
@@ -38,11 +39,19 @@ bool MainScene::init()
     if(!Scene::init())
         return false;
     
-    Director::getInstance()->registerTexture("TABLE_TX", "TableTx.jpg");
+    Director::getInstance()->registerTexture("TABLE_TX", "table.png");
+    Director::getInstance()->registerTexture("STG_TX", "STG.png");
     
     auto table = Table::create();
-    table->getTransform()->setPosition(Vector3(-0.5f,0,0));
+    table->getTransform()->setPosition(Vector3(0,-0.5f,0));
+    table->getTransform()->setScale(Vector3(1.75f,1.75f,1.75f));
+    table->getTransform()->setRotation(Quaternion(Vector3(0,1,0), Deg2Rad(270)));
     addGameObject(table);
+    
+    auto stg = STGWord::create();
+    stg->getTransform()->setPosition(Vector3(0,1.0f,-1.5f));
+    stg->getTransform()->setScale(Vector3(0.5f,0.5f,0.5f));
+    addGameObject(stg);
     
     auto glass = Glass::create();
     addGameObject(glass);

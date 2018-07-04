@@ -56,7 +56,7 @@ bool Glass::init()
     _meshTransform = Matrix4x4::createScale(0.25f, 0.25f, 0.25f);
     
     auto trans = getTransform();
-    _defaultPosition = Vector3(0,0.78f,0.75f);
+    _defaultPosition = Vector3(0,0.8f,0.75f);
     trans->setPosition(_defaultPosition);
     
     return true;

@@ -101,7 +101,8 @@ void Scene::onScreenTouched(TouchInfo& touchInfo)
 {
     for(auto& object : _gameObjects)
     {
-        object->onScreenTouched(touchInfo);
+        if(object)
+            object->onScreenTouched(touchInfo);
     }
 }
 

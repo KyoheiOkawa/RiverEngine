@@ -1,26 +1,26 @@
 //
-//  Table.cpp
+//  STGWord.cpp
 //  RiverEngine
 //
-//  Created by 大川恭平 on 2018/07/03.
+//  Created by 大川恭平 on 2018/07/04.
 //  Copyright © 2018年 BiGRiVER. All rights reserved.
 //
 
-#include "Table.hpp"
+#include "STGWord.hpp"
 
-Table::Table()
+STGWord::STGWord()
 {
     
 }
 
-Table::~Table()
+STGWord::~STGWord()
 {
     
 }
 
-shared_ptr<Table> Table::create()
+shared_ptr<STGWord> STGWord::create()
 {
-    shared_ptr<Table> ret(new Table());
+    shared_ptr<STGWord> ret(new STGWord());
     
     if(ret && ret->init())
     {
@@ -30,7 +30,7 @@ shared_ptr<Table> Table::create()
     return nullptr;
 }
 
-bool Table::init()
+bool STGWord::init()
 {
     if(!GameObject::init())
         return false;
@@ -53,20 +53,24 @@ bool Table::init()
     
     unif_lightDir = _useProgram->getUnifLocation("unif_lightDir");
     
-    _mesh = MeshResource<PositionNormalTexture>::createWithFile("Assets/table");
+    _mesh = MeshResource<PositionNormalTexture>::createWithFile("Assets/SlideTheGlass_Word");
     
-    auto texInfo = Director::getInstance()->getRegesterdTextureInfo("TABLE_TX");
+    auto texInfo = Director::getInstance()->getRegesterdTextureInfo("STG_TX");
     textureId = texInfo->id;
     
     return true;
 }
 
-void Table::update()
+void STGWord::update()
 {
-
+//    float deltaTime = Application::getInstance()->getDeltaTime();
+//    
+//    auto trans = getTransform();
+//    
+//    trans->rotate(Vector3(0,1,0), Deg2Rad(90 * deltaTime));
 }
 
-void Table::draw()
+void STGWord::draw()
 {
     auto app = Application::getInstance();
     
@@ -96,7 +100,7 @@ void Table::draw()
     glUniform4f(unif_color, 1.0f, 1.0f, 1.0f, 1.0f);
     assert(glGetError()==GL_NO_ERROR);
     
-    Vector3 light(-1.0f,-1.0f,1.0f);
+    Vector3 light(-1.0f,-1.0f,-1.0f);
     light.normalize();
     glUniform3f(unif_lightDir, light.x, light.y, light.z);
     assert(glGetError()==GL_NO_ERROR);
@@ -109,7 +113,7 @@ void Table::draw()
     assert(glGetError()==GL_NO_ERROR);
     
     glBindTexture(GL_TEXTURE_2D, textureId);
-
+    
     glDrawArrays(GL_TRIANGLES, 0, (GLsizei)_mesh->GetVertexCount());
     assert(glGetError()==GL_NO_ERROR);
     

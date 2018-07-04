@@ -44,6 +44,7 @@
 		D684F7FD203499A10032C3A6 /* MeshResource.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D684F7FB203499A10032C3A6 /* MeshResource.cpp */; };
 		D687DFE62071B6680034DCB3 /* Quaternion.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D687DFE42071B6680034DCB3 /* Quaternion.cpp */; };
 		D687DFE9207902540034DCB3 /* UserDefaults.mm in Sources */ = {isa = PBXBuildFile; fileRef = D687DFE7207902540034DCB3 /* UserDefaults.mm */; };
+		D69E04AF20EC72D100A0A789 /* STGWord.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D69E04AD20EC72D100A0A789 /* STGWord.cpp */; };
 		D6DD0D7F20557906003998B7 /* 3DTestObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6DD0D7D20557906003998B7 /* 3DTestObject.cpp */; };
 		D6F6FAF11EFE48490041A212 /* Assets in Resources */ = {isa = PBXBuildFile; fileRef = D6F6FAF01EFE48490041A212 /* Assets */; };
 		D6FED0F91F3B46A300E0C028 /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D6FED0F81F3B46A300E0C028 /* OpenAL.framework */; };
@@ -140,6 +141,8 @@
 		D687DFE52071B6680034DCB3 /* Quaternion.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Quaternion.hpp; sourceTree = "<group>"; };
 		D687DFE7207902540034DCB3 /* UserDefaults.mm */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; path = UserDefaults.mm; sourceTree = "<group>"; };
 		D687DFE8207902540034DCB3 /* UserDefaults.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = UserDefaults.hpp; sourceTree = "<group>"; };
+		D69E04AD20EC72D100A0A789 /* STGWord.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = STGWord.cpp; sourceTree = "<group>"; };
+		D69E04AE20EC72D100A0A789 /* STGWord.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = STGWord.hpp; sourceTree = "<group>"; };
 		D6DD0D7D20557906003998B7 /* 3DTestObject.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = 3DTestObject.cpp; sourceTree = "<group>"; };
 		D6DD0D7E20557906003998B7 /* 3DTestObject.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = 3DTestObject.hpp; sourceTree = "<group>"; };
 		D6F6FAF01EFE48490041A212 /* Assets */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Assets; sourceTree = "<group>"; };
@@ -374,6 +377,8 @@
 				D610EC6920EB325400C9E7BF /* Glass.hpp */,
 				D610EC6B20EB383C00C9E7BF /* Project.cpp */,
 				D610EC6C20EB383C00C9E7BF /* Project.hpp */,
+				D69E04AD20EC72D100A0A789 /* STGWord.cpp */,
+				D69E04AE20EC72D100A0A789 /* STGWord.hpp */,
 			);
 			path = GameSources;
 			sourceTree = "<group>";
@@ -517,6 +522,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D61109111EC6B5A100B89DFE /* ViewController.mm in Sources */,
+				D69E04AF20EC72D100A0A789 /* STGWord.cpp in Sources */,
 				D648B2DB1F8E514E00C57D9C /* Vector2.cpp in Sources */,
 				D648B2D31F8E514E00C57D9C /* Director.cpp in Sources */,
 				D610EC6A20EB325400C9E7BF /* Glass.cpp in Sources */,
