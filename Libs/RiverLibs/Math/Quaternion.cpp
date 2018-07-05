@@ -218,13 +218,6 @@ float Quaternion::toAxisAngle(Vector3* axis) const
     return (2.0f * std::acos(q.w));
 }
 
-inline Quaternion Quaternion::operator*(const Quaternion &q) const
-{
-    Quaternion result(*this);
-    result.multiply(q);
-    return result;
-}
-
 Quaternion& Quaternion::operator*=(const Quaternion &q)
 {
     multiply(q);

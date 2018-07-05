@@ -70,9 +70,9 @@ private:
     State _state = State::STAY;
     
     void physicUpdate();
-    void SlideInput(TouchInfo& info);
-    void PullToDefaultPos();
-    void Respawn();
+    void slideInput(TouchInfo& info);
+    void pullToDefaultPos();
+    void respawn();
 public:
     Glass();
     virtual ~Glass();

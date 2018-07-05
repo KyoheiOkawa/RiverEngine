@@ -60,7 +60,12 @@ public:
     
     float toAxisAngle(Vector3* e) const;
     
-    inline Quaternion operator*(const Quaternion& q) const;
+    inline Quaternion operator*(const Quaternion& q) const
+    {
+        Quaternion result(*this);
+        result.multiply(q);
+        return result;
+    }
     inline Vector3 operator*(const Vector3& v) const;
     Quaternion& operator*=(const Quaternion& q);
     

@@ -68,7 +68,7 @@ void Glass::update()
     
     if(!_touchParam._isTouching &&
        (_state==State::STAY || _state==State::PULL))
-        PullToDefaultPos();
+        pullToDefaultPos();
     
     if(_state == State::SLIDE)
     {
@@ -84,7 +84,7 @@ void Glass::update()
     switch (_state)
     {
         case State::RESPAWN:
-            Respawn();
+            respawn();
             break;
     }
     
@@ -158,10 +158,10 @@ void Glass::onScreenTouched(TouchInfo &info)
             break;
     }
     
-    SlideInput(info);
+    slideInput(info);
 }
 
-void Glass::SlideInput(TouchInfo& info)
+void Glass::slideInput(TouchInfo& info)
 {
     if((_state != State::STAY) &&
        (_state != State::PULL))
@@ -243,7 +243,7 @@ void Glass::physicUpdate()
     trans->setPosition(nowPos);
 }
 
-void Glass::PullToDefaultPos()
+void Glass::pullToDefaultPos()
 {
     float delta = Application::getInstance()->getDeltaTime();
     auto trans = getTransform();
@@ -263,7 +263,7 @@ void Glass::PullToDefaultPos()
     }
 }
 
-void Glass::Respawn()
+void Glass::respawn()
 {
     float delta = Application::getInstance()->getDeltaTime();
     auto trans = getTransform();

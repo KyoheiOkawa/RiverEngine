@@ -14,6 +14,7 @@
 #include "Vector3.hpp"
 #include "Quaternion.hpp"
 #include "Matrix4x4.hpp"
+#include "Lerp.hpp"
 
 #include "RawPixelImage.h"
 #include "Texture2D.h"
@@ -33,5 +34,6 @@
 #include "Component.hpp"
 #include "Transform.hpp"
 #include "SimpleAudioEngine.hpp"
+#include "Action.hpp"
 
 #endif /* river_h */

@@ -20,6 +20,8 @@
 		D611091C1EC6B5A100B89DFE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D611091A1EC6B5A100B89DFE /* LaunchScreen.storyboard */; };
 		D611094A1EC6BBBA00B89DFE /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D61109491EC6BBBA00B89DFE /* UIKit.framework */; };
 		D611094C1EC6BBC300B89DFE /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D611094B1EC6BBC300B89DFE /* OpenGLES.framework */; };
+		D616ED9820EDB43000E0F166 /* Action.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D616ED9620EDB43000E0F166 /* Action.cpp */; };
+		D616ED9B20EDC5B200E0F166 /* Lerp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D616ED9920EDC5B200E0F166 /* Lerp.cpp */; };
 		D648B29E1F8E512D00C57D9C /* Shaders in Resources */ = {isa = PBXBuildFile; fileRef = D648B29D1F8E512D00C57D9C /* Shaders */; };
 		D648B2D11F8E514E00C57D9C /* SimpleAudioEngine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D648B2A21F8E514E00C57D9C /* SimpleAudioEngine.cpp */; };
 		D648B2D21F8E514E00C57D9C /* Application.mm in Sources */ = {isa = PBXBuildFile; fileRef = D648B2A61F8E514E00C57D9C /* Application.mm */; };
@@ -91,6 +93,10 @@
 		D611092D1EC6B5A100B89DFE /* RiverEngineUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RiverEngineUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D61109491EC6BBBA00B89DFE /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		D611094B1EC6BBC300B89DFE /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
+		D616ED9620EDB43000E0F166 /* Action.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Action.cpp; sourceTree = "<group>"; };
+		D616ED9720EDB43000E0F166 /* Action.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Action.hpp; sourceTree = "<group>"; };
+		D616ED9920EDC5B200E0F166 /* Lerp.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Lerp.cpp; sourceTree = "<group>"; };
+		D616ED9A20EDC5B200E0F166 /* Lerp.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Lerp.hpp; sourceTree = "<group>"; };
 		D62B198420348D0F00DE6189 /* stdinc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = stdinc.h; sourceTree = "<group>"; };
 		D648B29D1F8E512D00C57D9C /* Shaders */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Shaders; path = ../../Shaders; sourceTree = "<group>"; };
 		D648B2A21F8E514E00C57D9C /* SimpleAudioEngine.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SimpleAudioEngine.cpp; sourceTree = "<group>"; };
@@ -290,6 +296,8 @@
 				D648B2AF1F8E514E00C57D9C /* Component.hpp */,
 				D648B2B01F8E514E00C57D9C /* Transform.cpp */,
 				D648B2B11F8E514E00C57D9C /* Transform.hpp */,
+				D616ED9620EDB43000E0F166 /* Action.cpp */,
+				D616ED9720EDB43000E0F166 /* Action.hpp */,
 			);
 			path = Component;
 			sourceTree = "<group>";
@@ -326,6 +334,8 @@
 				D648B2C01F8E514E00C57D9C /* Vector3.hpp */,
 				D687DFE42071B6680034DCB3 /* Quaternion.cpp */,
 				D687DFE52071B6680034DCB3 /* Quaternion.hpp */,
+				D616ED9920EDC5B200E0F166 /* Lerp.cpp */,
+				D616ED9A20EDC5B200E0F166 /* Lerp.hpp */,
 			);
 			path = Math;
 			sourceTree = "<group>";
@@ -536,9 +546,11 @@
 				D611090E1EC6B5A000B89DFE /* AppDelegate.m in Sources */,
 				D687DFE9207902540034DCB3 /* UserDefaults.mm in Sources */,
 				D648B2DC1F8E514E00C57D9C /* Vector3.cpp in Sources */,
+				D616ED9820EDB43000E0F166 /* Action.cpp in Sources */,
 				D648B2DA1F8E514E00C57D9C /* Matrix4x4.cpp in Sources */,
 				D648B2E01F8E514E00C57D9C /* support_gl.mm in Sources */,
 				D648B2D21F8E514E00C57D9C /* Application.mm in Sources */,
+				D616ED9B20EDC5B200E0F166 /* Lerp.cpp in Sources */,
 				D648B2D11F8E514E00C57D9C /* SimpleAudioEngine.cpp in Sources */,
 				D648B2D71F8E514E00C57D9C /* Transform.cpp in Sources */,
 				D610EC6D20EB383C00C9E7BF /* Project.cpp in Sources */,
