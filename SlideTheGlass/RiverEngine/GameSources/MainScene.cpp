@@ -49,7 +49,7 @@ bool MainScene::init()
     addGameObject(table);
     
     auto stg = STGWord::create();
-    stg->getTransform()->setPosition(Vector3(0,1.0f,-1.5f));
+    stg->getTransform()->setPosition(Vector3(0,1.25f,-1.5f));
     stg->getTransform()->setScale(Vector3(0.5f,0.5f,0.5f));
     addGameObject(stg);
     

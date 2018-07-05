@@ -65,6 +65,16 @@ bool Glass::init()
 void Glass::update()
 {
     physicUpdate();
+    
+    if(!_touchParam._isTouching &&
+       (_state==State::STAY || _state==State::PULL))
+        PullToDefaultPos();
+    
+    if(_state == State::SLIDE)
+    {
+    if(_physicParam._velocity.magnitude() < 0.01f)
+        _state = State::STAY;
+    }
 }
 
 void Glass::draw()
@@ -122,6 +132,27 @@ void Glass::draw()
 
 void Glass::onScreenTouched(TouchInfo &info)
 {
+    switch (info.type) {
+        case TouchType::BEGAN:
+            _touchParam._isTouching = true;
+            break;
+        case TouchType::MOVED:
+            
+            break;
+        case TouchType::ENDED:
+            _touchParam._isTouching = false;
+            break;
+    }
+    
+    SlideInput(info);
+}
+
+void Glass::SlideInput(TouchInfo& info)
+{
+    if((_state != State::STAY) &&
+       (_state != State::PULL))
+        return;
+    
     float delta = Application::getInstance()->getDeltaTime();
     auto trans = getTransform();
     
@@ -134,12 +165,14 @@ void Glass::onScreenTouched(TouchInfo &info)
             _touchParam._fulcrum = _touchParam._start;
             
             _touchParam._frickTime = 0.0f;
+            
+            _touchParam._touchStartGlassPos = trans->getPosition();
         }
-        break;
+            break;
         case TouchType::MOVED:
         {
             _touchParam._frickTime += delta;
-
+            
             if(_touchParam._frickTime >= _touchParam._maxFrickTime)
             {
                 _touchParam._frickTime = 0.0f;
@@ -152,9 +185,9 @@ void Glass::onScreenTouched(TouchInfo &info)
             dir.y = _defaultPosition.y;
             dir.z = info.posY - _touchParam._start.y;
             
-            trans->setPosition(_defaultPosition+dir*_touchParam._touchMoveGlassRadius);
+            trans->setPosition(_touchParam._touchStartGlassPos+dir*_touchParam._touchMoveGlassRadius);
         }
-        break;
+            break;
         case TouchType::ENDED:
         {
             _touchParam._end.x = info.posX;
@@ -162,11 +195,13 @@ void Glass::onScreenTouched(TouchInfo &info)
             
             Vector2 dir = _touchParam._end - _touchParam._fulcrum;
             float slideLen = dir.magnitude();
-
+            
             //フリックした長さが短い場合は滑らせない
             float minLen = 100.0f;
             if(slideLen <= minLen)
                 break;
+            
+            _state = State::SLIDE;
             
             float power = slideLen * _touchParam._slidePower;
             float speed = 1.0f / ((1.0f-_touchParam._maxFrickTime)+_touchParam._frickTime);
@@ -174,7 +209,7 @@ void Glass::onScreenTouched(TouchInfo &info)
             _physicParam._velocity.x = dir.getNormalized().x * power;
             _physicParam._velocity.z = dir.getNormalized().y * power;
         }
-        break;
+            break;
     }
 }
 
@@ -192,4 +227,24 @@ void Glass::physicUpdate()
     
     _physicParam._velocity *= _physicParam._friction;
     trans->setPosition(nowPos);
+}
+
+void Glass::PullToDefaultPos()
+{
+    float delta = Application::getInstance()->getDeltaTime();
+    auto trans = getTransform();
+    Vector3 dir = _defaultPosition - trans->getPosition();
+    
+    if(dir.magnitude() > 0.001f)
+    {
+        _state = State::PULL;
+        
+        Vector3 nowPos = trans->getPosition();
+        nowPos += dir * delta * _pullPower;
+        trans->setPosition(nowPos);
+    }
+    else
+    {
+        _state = State::STAY;
+    }
 }

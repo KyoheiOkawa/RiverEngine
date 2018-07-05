@@ -20,16 +20,27 @@ public:
         Vector2 _start;
         Vector2 _fulcrum;
         Vector2 _end;
+        //タッチ開始時のグラスの位置
+        Vector3 _touchStartGlassPos;
         float _frickTime;
+        bool _isTouching;
         
         const float _maxFrickTime = 0.5f;
-        const float _slidePower = 0.005f;
+        const float _slidePower = 0.008f;
         const float _touchMoveGlassRadius = 0.0003f;
         
         TouchParam():
         _start(Vector2(0,0)),
         _end(Vector2(0,0)),
-        _frickTime(0.0f){}
+        _frickTime(0.0f),
+        _isTouching(false){}
+    };
+    
+    enum State
+    {
+        STAY,
+        PULL,
+        SLIDE
     };
 private:
     
@@ -51,10 +62,15 @@ private:
     
     PhysicParam _physicParam;
     TouchParam _touchParam;
+    float _pullPower = 5.0f;
     
     Vector3 _defaultPosition;
     
+    State _state = State::STAY;
+    
     void physicUpdate();
+    void SlideInput(TouchInfo& info);
+    void PullToDefaultPos();
 public:
     Glass();
     virtual ~Glass();
