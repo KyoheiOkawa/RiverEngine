@@ -72,9 +72,23 @@ void Glass::update()
     
     if(_state == State::SLIDE)
     {
-    if(_physicParam._velocity.magnitude() < 0.01f)
-        _state = State::STAY;
+        if(_physicParam._velocity.magnitude() < 0.01f)
+        {
+            _state = State::RESPAWN;
+            Vector3 setPos = _defaultPosition;
+            setPos.y += 1.5f;
+            getTransform()->setPosition(setPos);
+        }
     }
+    
+    switch (_state)
+    {
+        case State::RESPAWN:
+            Respawn();
+            break;
+    }
+    
+    //printf("%f\n",getTransform()->getPosition().y);
 }
 
 void Glass::draw()
@@ -245,6 +259,21 @@ void Glass::PullToDefaultPos()
     }
     else
     {
+        _state = State::STAY;
+    }
+}
+
+void Glass::Respawn()
+{
+    float delta = Application::getInstance()->getDeltaTime();
+    auto trans = getTransform();
+    
+    _physicParam._velocity.y -= 9.8f * delta;
+    
+    if(trans->getPosition().y <= _defaultPosition.y)
+    {
+        trans->setPosition(_defaultPosition);
+        _physicParam._velocity = Vector3::ZERO();
         _state = State::STAY;
     }
 }

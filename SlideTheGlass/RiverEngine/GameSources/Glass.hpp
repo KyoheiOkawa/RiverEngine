@@ -40,7 +40,8 @@ public:
     {
         STAY,
         PULL,
-        SLIDE
+        SLIDE,
+        RESPAWN
     };
 private:
     
@@ -71,6 +72,7 @@ private:
     void physicUpdate();
     void SlideInput(TouchInfo& info);
     void PullToDefaultPos();
+    void Respawn();
 public:
     Glass();
     virtual ~Glass();
