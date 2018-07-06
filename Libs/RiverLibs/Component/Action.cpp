@@ -8,12 +8,13 @@
 
 #include "Action.hpp"
 
-RotateBy::RotateBy(const std::shared_ptr<GameObject>& gameObjectPtr,const Vector3 axis,const float rad,const float time):
+RotateBy::RotateBy(const std::shared_ptr<GameObject>& gameObjectPtr,const Vector3 axis,const float rad,const float time,const Lerp::rate lerpRate):
 ActionObj(gameObjectPtr),
 _axis(axis),
 _rad(rad),
 _time(time),
-_timeCount(0.0f)
+_timeCount(0.0f),
+_lerpRate(lerpRate)
 {
     
 }
@@ -26,7 +27,7 @@ void RotateBy::update()
     float delta = Application::getInstance()->getDeltaTime();
     _timeCount += delta;
 
-    float lerpRad = Lerp::CalculateLerp(0.0f, _rad, 0.0f, _time, _timeCount, Lerp::Linear);
+    float lerpRad = Lerp::CalculateLerp(0.0f, _rad, 0.0f, _time, _timeCount, _lerpRate);
     Quaternion qt = _startQuat * Quaternion(_axis, lerpRad);
 
     _gameObject.lock()->getTransform()->setRotation(qt);
@@ -72,15 +73,21 @@ void Action::update()
     }
 }
 
-void Action::addRotateBy(const float time, const Vector3 axis, const float rad)
+void Action::addRotateBy(const float time, const Vector3 axis, const float rad,const Lerp::rate lerpRate)
 {
-    auto rotateBy = ObjectFactory::create<RotateBy>(_gameObject.lock(),axis,rad,time);
+    auto rotateBy = ObjectFactory::create<RotateBy>(_gameObject.lock(),axis,rad,time,lerpRate);
     _actions.push_back(rotateBy);
 }
 
 void Action::run()
 {
     _isRun = true;
+}
+
+void Action::stop()
+{
+    _isRun = false;
+    _index = 0;
 }
 
 void Action::actionClear()

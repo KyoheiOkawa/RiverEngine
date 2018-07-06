@@ -34,8 +34,9 @@ class RotateBy : public ActionObj
     Vector3 _axis;
     float _rad;
     Quaternion _startQuat;
+    Lerp::rate _lerpRate;
 public:
-    RotateBy(const std::shared_ptr<GameObject>& gameObjectPtr,const Vector3 axis,const float rad,const float time);
+    RotateBy(const std::shared_ptr<GameObject>& gameObjectPtr,const Vector3 axis,const float rad,const float time,const Lerp::rate lerpRate = Lerp::rate::Linear);
     virtual ~RotateBy(){}
     
     virtual void update() override;
@@ -55,8 +56,10 @@ public:
     
     virtual void update() override;
     
-    void addRotateBy(const float time, const Vector3 axis,const float rad);
+    void addRotateBy(const float time, const Vector3 axis,const float rad,const Lerp::rate lerpRate = Lerp::rate::Linear);
     void run();
+    void stop();
+    bool getIsRunning(){return _isRun;}
     void actionClear();
     bool getFinished(){return !_isRun;}
 };

@@ -59,6 +59,8 @@ bool Glass::init()
     _defaultPosition = Vector3(0,0.8f,0.75f);
     trans->setPosition(_defaultPosition);
     
+    auto action = addComponent<Action>();
+    
     return true;
 }
 
@@ -72,12 +74,20 @@ void Glass::update()
     
     if(_state == State::SLIDE)
     {
-        if(_physicParam._velocity.magnitude() < 0.01f)
+        Vector3 nowPos = getTransform()->getPosition();
+        Vector3 velocityXZ = _physicParam._velocity;
+        velocityXZ.y = 0.0f;
+        auto action = getComponent<Action>();
+        if((nowPos.x > -0.5f && nowPos.x < 0.5f) &&
+           (nowPos.z > -1.1f && nowPos.z < 1.055))
         {
-            _state = State::RESPAWN;
-            Vector3 setPos = _defaultPosition;
-            setPos.y += 1.5f;
-            getTransform()->setPosition(setPos);
+            if(velocityXZ.magnitude() < 0.01f)
+                startRespawn();
+        }
+        else
+        {
+            if(getTransform()->getPosition().y < -2.0f)
+                startRespawn();
         }
     }
     
@@ -86,9 +96,12 @@ void Glass::update()
         case State::RESPAWN:
             respawn();
             break;
+        case State::SLIDE:
+            fall();
+            break;
     }
     
-    //printf("%f\n",getTransform()->getPosition().y);
+    //printf("%f\n",Rad2Deg(getTransform()->getRotation().toRotVec().z));
 }
 
 void Glass::draw()
@@ -276,4 +289,74 @@ void Glass::respawn()
         _physicParam._velocity = Vector3::ZERO();
         _state = State::STAY;
     }
+}
+
+void Glass::fall()
+{
+    float delta = Application::getInstance()->getDeltaTime();
+    auto trans = getTransform();
+    Vector3 nowPos = trans->getPosition();
+    
+    if((nowPos.x > -0.5f && nowPos.x < 0.5f) &&
+       (nowPos.z > -1.1f && nowPos.z < 1.055))
+        return;
+    else
+    {
+        
+    }
+    
+    auto action = getComponent<Action>();
+    if(!action->getIsRunning())
+    {
+        if(nowPos.x < -0.5f)
+        {
+            action->addRotateBy(1.0f, Vector3::FORWARD(), Deg2Rad(120),Lerp::Easein);
+            action->run();
+        }
+        else if(nowPos.x > 0.5f)
+        {
+            action->addRotateBy(1.0f, Vector3::FORWARD(), Deg2Rad(-120),Lerp::Easein);
+            action->run();
+        }
+        else if(nowPos.z < -1.1f)
+        {
+            action->addRotateBy(1.0f, Vector3::RIGHT(), Deg2Rad(-120),Lerp::Easein);
+            action->run();
+        }
+        else if(nowPos.z > 1.055f)
+        {
+            action->addRotateBy(1.0f, Vector3::RIGHT(), Deg2Rad(120),Lerp::Easein);
+            action->run();
+        }
+    }
+
+    if((nowPos.x > -0.58f && nowPos.x < -0.5f)   ||
+        (nowPos.x < 0.58f && nowPos.x > 0.5f)    ||
+        (nowPos.z > -1.14f  && nowPos.z < -1.1f) ||
+        (nowPos.z < 1.12f && nowPos.z > 1.055f))
+    {
+        Vector3 nowRot = trans->getRotation().toRotVec();
+        if(fabsf(Rad2Deg(nowRot.z)) > 85.0f ||
+           fabsf(Rad2Deg(nowRot.x)) > 85.0f)
+        {
+            _physicParam._velocity.y -= 9.8f * delta;
+        }
+    }
+    else
+    {
+        _physicParam._velocity.y -= 9.8f * delta;
+    }
+}
+
+void Glass::startRespawn()
+{
+    _state = State::RESPAWN;
+    Vector3 setPos = _defaultPosition;
+    setPos.y += 1.5f;
+    getTransform()->setPosition(setPos);
+    getTransform()->setRotation(Quaternion::identity());
+    
+    auto action = getComponent<Action>();
+    action->stop();
+    action->actionClear();
 }

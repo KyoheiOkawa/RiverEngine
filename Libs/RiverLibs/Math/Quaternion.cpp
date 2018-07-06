@@ -9,6 +9,7 @@
 #include "Quaternion.hpp"
 #include "Vector3.hpp"
 #include "Matrix4x4.hpp"
+#include "MathMacro.h"
 
 const Quaternion Quaternion::ZERO(0.0f,0.0f,0.0f,0.0f);
 
@@ -216,6 +217,33 @@ float Quaternion::toAxisAngle(Vector3* axis) const
     axis->normalize();
     
     return (2.0f * std::acos(q.w));
+}
+
+Vector3 Quaternion::toRotVec() const
+{
+    Quaternion temp = *this;
+    temp.normalize();
+    Matrix4x4 mt = Matrix4x4::createRotate(temp);
+    Vector3 rot;
+    if(mt.matrix[6] == 1.0f)
+    {
+        rot.x = PI / 2.0f;
+        rot.y = 0.0f;
+        rot.z = -atan2(mt.matrix[5], mt.matrix[0]);
+    }
+    else if(mt.matrix[6] == -1.0f)
+    {
+        rot.x = -PI / 2.0f;
+        rot.y = 0.0f;
+        rot.z = -atan2(mt.matrix[5], mt.matrix[0]);
+    }
+    else
+    {
+        rot.x = -asin(mt.matrix[6]);
+        rot.y = -atan2(-mt.matrix[2], mt.matrix[10]);
+        rot.z = atan2(mt.matrix[4], mt.matrix[0]);
+    }
+    return rot;
 }
 
 Quaternion& Quaternion::operator*=(const Quaternion &q)

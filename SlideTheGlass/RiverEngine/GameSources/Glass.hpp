@@ -73,6 +73,10 @@ private:
     void slideInput(TouchInfo& info);
     void pullToDefaultPos();
     void respawn();
+    //手前1.055/1.12 奥-1.1/-1.14 左-0.5/-0.58　右0.5/0.58
+    void fall();
+    
+    void startRespawn();
 public:
     Glass();
     virtual ~Glass();

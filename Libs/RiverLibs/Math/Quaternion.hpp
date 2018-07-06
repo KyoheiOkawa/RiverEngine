@@ -60,6 +60,8 @@ public:
     
     float toAxisAngle(Vector3* e) const;
     
+    Vector3 toRotVec() const;
+    
     inline Quaternion operator*(const Quaternion& q) const
     {
         Quaternion result(*this);
