@@ -23,6 +23,8 @@
 		D616ED9820EDB43000E0F166 /* Action.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D616ED9620EDB43000E0F166 /* Action.cpp */; };
 		D616ED9B20EDC5B200E0F166 /* Lerp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D616ED9920EDC5B200E0F166 /* Lerp.cpp */; };
 		D634AEF220F44C5E00DC2E2D /* MathMacro.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D634AEF120F44C5E00DC2E2D /* MathMacro.cpp */; };
+		D634AEF520F4554200DC2E2D /* NumberSprite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D634AEF320F4554200DC2E2D /* NumberSprite.cpp */; };
+		D634AEF820F4599300DC2E2D /* Util.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D634AEF620F4599300DC2E2D /* Util.cpp */; };
 		D648B29E1F8E512D00C57D9C /* Shaders in Resources */ = {isa = PBXBuildFile; fileRef = D648B29D1F8E512D00C57D9C /* Shaders */; };
 		D648B2D11F8E514E00C57D9C /* SimpleAudioEngine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D648B2A21F8E514E00C57D9C /* SimpleAudioEngine.cpp */; };
 		D648B2D21F8E514E00C57D9C /* Application.mm in Sources */ = {isa = PBXBuildFile; fileRef = D648B2A61F8E514E00C57D9C /* Application.mm */; };
@@ -100,6 +102,10 @@
 		D616ED9A20EDC5B200E0F166 /* Lerp.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Lerp.hpp; sourceTree = "<group>"; };
 		D62B198420348D0F00DE6189 /* stdinc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = stdinc.h; sourceTree = "<group>"; };
 		D634AEF120F44C5E00DC2E2D /* MathMacro.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = MathMacro.cpp; sourceTree = "<group>"; };
+		D634AEF320F4554200DC2E2D /* NumberSprite.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = NumberSprite.cpp; sourceTree = "<group>"; };
+		D634AEF420F4554200DC2E2D /* NumberSprite.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = NumberSprite.hpp; sourceTree = "<group>"; };
+		D634AEF620F4599300DC2E2D /* Util.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Util.cpp; sourceTree = "<group>"; };
+		D634AEF720F4599300DC2E2D /* Util.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Util.hpp; sourceTree = "<group>"; };
 		D648B29D1F8E512D00C57D9C /* Shaders */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Shaders; path = ../../Shaders; sourceTree = "<group>"; };
 		D648B2A21F8E514E00C57D9C /* SimpleAudioEngine.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SimpleAudioEngine.cpp; sourceTree = "<group>"; };
 		D648B2A31F8E514E00C57D9C /* SimpleAudioEngine.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = SimpleAudioEngine.hpp; sourceTree = "<group>"; };
@@ -311,6 +317,8 @@
 				D648B2B41F8E514E00C57D9C /* GameObject.hpp */,
 				D648B2B51F8E514E00C57D9C /* Sprite.cpp */,
 				D648B2B61F8E514E00C57D9C /* Sprite.hpp */,
+				D634AEF320F4554200DC2E2D /* NumberSprite.cpp */,
+				D634AEF420F4554200DC2E2D /* NumberSprite.hpp */,
 			);
 			path = GameObject;
 			sourceTree = "<group>";
@@ -373,6 +381,8 @@
 				D648B2D01F8E514E00C57D9C /* FileUtils.mm */,
 				D687DFE7207902540034DCB3 /* UserDefaults.mm */,
 				D687DFE8207902540034DCB3 /* UserDefaults.hpp */,
+				D634AEF620F4599300DC2E2D /* Util.cpp */,
+				D634AEF720F4599300DC2E2D /* Util.hpp */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -545,6 +555,7 @@
 				D648B2D61F8E514E00C57D9C /* Component.cpp in Sources */,
 				D648B2DE1F8E514E00C57D9C /* GLProgram.cpp in Sources */,
 				D6DD0D7F20557906003998B7 /* 3DTestObject.cpp in Sources */,
+				D634AEF820F4599300DC2E2D /* Util.cpp in Sources */,
 				D648B2E11F8E514E00C57D9C /* Texture2D.mm in Sources */,
 				D611090E1EC6B5A000B89DFE /* AppDelegate.m in Sources */,
 				D687DFE9207902540034DCB3 /* UserDefaults.mm in Sources */,
@@ -565,6 +576,7 @@
 				D648B2D51F8E514E00C57D9C /* Scene.cpp in Sources */,
 				D648B2D91F8E514E00C57D9C /* Sprite.cpp in Sources */,
 				D610EC6720EB1EF400C9E7BF /* Table.cpp in Sources */,
+				D634AEF520F4554200DC2E2D /* NumberSprite.cpp in Sources */,
 				D600C08D205F02B5006749D9 /* Camera.cpp in Sources */,
 				D648B2E21F8E514E00C57D9C /* Vertex.cpp in Sources */,
 				D648B2E31F8E514E00C57D9C /* FileUtils.mm in Sources */,

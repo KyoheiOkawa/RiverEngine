@@ -41,20 +41,26 @@ bool MainScene::init()
     
     Director::getInstance()->registerTexture("TABLE_TX", "table.png");
     Director::getInstance()->registerTexture("STG_TX", "STG.png");
+    Director::getInstance()->registerTexture("NUMBERS_TX", "Numbers.png");
     
     auto table = Table::create();
     table->getTransform()->setPosition(Vector3(0,-0.5f,0));
     table->getTransform()->setScale(Vector3(1.75f,1.75f,1.75f));
     table->getTransform()->setRotation(Quaternion(Vector3(0,1,0), Deg2Rad(270)));
     addGameObject(table);
-    
+
     auto stg = STGWord::create();
     stg->getTransform()->setPosition(Vector3(0,1.25f,-1.5f));
     stg->getTransform()->setScale(Vector3(0.5f,0.5f,0.5f));
     addGameObject(stg);
-    
+
     auto glass = Glass::create();
     addGameObject(glass);
+    
+    auto number = NumberSprite::create("NUMBERS_TX", 75876);
+    number->getTransform()->setPosition(Vector3(320.0f,320.0f,0.0f));
+    addGameObject(number);
+    number->setDrawLayer(5);
     
     return true;
 }
