@@ -47,19 +47,17 @@ bool NumberSprite::init()
     _unif_matrix = _useProgram->getUnifLocation("unif_matrix");
     _unif_texture = _useProgram->getUnifLocation("unif_texture");
     
-    unsigned int digit = MyUtil::getDigit(_number);
     auto texInfo = Director::getInstance()->getRegesterdTextureInfo(_texKey);
     _texture_id = texInfo->id;
     _spriteSize.x = texInfo->height;
     _spriteSize.y = texInfo->height;
     
+    unsigned int digit = MyUtil::getDigit(_number);
     vector<int> eachNumbers = MyUtil::extractTotalDigitsSpotCount(_number, digit);
-    Vector3 center;
     bool isEven = (digit % 2 == 0);
     std::vector<PositionTexture> vertex;
     if(!isEven)
     {
-        center = Vector3(0,0,0);
         unsigned int centerIndex = calcOddCenterIndex(digit);
         vertex.push_back({{-0.5f,0.5f},{eachNumbers[centerIndex] * 0.1f,0.0f}});
         vertex.push_back({{-0.5f,-0.5f},{eachNumbers[centerIndex] * 0.1f,1.0f}});
@@ -75,7 +73,7 @@ bool NumberSprite::init()
             for(int i = 0; i < half; i++)
             {
                 unsigned int plusI = i + 1;
-                float diff = plusI * 0.6f;
+                float diff = plusI;
                 vertex.push_back({{-0.5f+diff,0.5f},{eachNumbers[centerIndex-plusI] * 0.1f,0.0f}});
                 vertex.push_back({{-0.5f+diff,-0.5f},{eachNumbers[centerIndex-plusI] * 0.1f,1.0f}});
                 vertex.push_back({{0.5f+diff,0.5f},{(eachNumbers[centerIndex-plusI] + 1) * 0.1f,0.0f}});
@@ -87,7 +85,7 @@ bool NumberSprite::init()
             for(int i = 0; i < half; i++)
             {
                 unsigned int plusI = i + 1;
-                float diff = plusI * 0.6f;
+                float diff = plusI;
                 vertex.push_back({{-0.5f-diff,0.5f},{eachNumbers[centerIndex+plusI] * 0.1f,0.0f}});
                 vertex.push_back({{-0.5f-diff,-0.5f},{eachNumbers[centerIndex+plusI] * 0.1f,1.0f}});
                 vertex.push_back({{0.5f-diff,0.5f},{(eachNumbers[centerIndex+plusI] + 1) * 0.1f,0.0f}});
@@ -99,7 +97,18 @@ bool NumberSprite::init()
     }
     else
     {
-        center = Vector3(0.5f,0,0);
+        float startX = -(float)digit / 2.0f;
+        for(int i = 0; i < digit; i++)
+        {
+            float diff = i;
+            unsigned numIndex = (digit-1)-i;
+            vertex.push_back({{startX+diff,0.5f},{eachNumbers[numIndex] * 0.1f,0.0f}});
+            vertex.push_back({{startX+diff,-0.5f},{eachNumbers[numIndex] * 0.1f,1.0f}});
+            vertex.push_back({{(startX+1.0f)+diff,0.5f},{(eachNumbers[numIndex] + 1) * 0.1f,0.0f}});
+            vertex.push_back({{(startX+1.0f)+diff,0.5f},{(eachNumbers[numIndex] + 1) * 0.1f,0.0f}});
+            vertex.push_back({{startX+diff,-0.5f},{eachNumbers[numIndex] * 0.1f,1.0f}});
+            vertex.push_back({{(startX+1.0f)+diff,-0.5f},{(eachNumbers[numIndex] + 1) * 0.1f,1.0f}});
+        }
     }
     
     _meshResource = MeshResource<PositionTexture>::createWithVertex(vertex);
