@@ -138,5 +138,6 @@ std::shared_ptr<TextureInfo> Director::getRegesterdTextureInfo(std::string texKe
 
 void Director::onScreenTouched(TouchInfo& touchInfo)
 {
-    _scene->onScreenTouched(touchInfo);
+    if(_scene)
+        _scene->onScreenTouched(touchInfo);
 }

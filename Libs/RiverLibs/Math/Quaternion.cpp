@@ -225,17 +225,18 @@ Vector3 Quaternion::toRotVec() const
     temp.normalize();
     Matrix4x4 mt = Matrix4x4::createRotate(temp);
     Vector3 rot;
-    if(mt.matrix[6] == 1.0f)
-    {
-        rot.x = PI / 2.0f;
-        rot.y = 0.0f;
-        rot.z = -atan2(mt.matrix[5], mt.matrix[0]);
-    }
-    else if(mt.matrix[6] == -1.0f)
+
+    if(MathFunc::Approximately(mt.matrix[6], 1.0f))
     {
         rot.x = -PI / 2.0f;
         rot.y = 0.0f;
-        rot.z = -atan2(mt.matrix[5], mt.matrix[0]);
+        rot.z = -atan2(mt.matrix[1], mt.matrix[0]);
+    }
+    else if(MathFunc::Approximately(mt.matrix[6], -1.0f))
+    {
+        rot.x = PI / 2.0f;
+        rot.y = 0.0f;
+        rot.z = -atan2(mt.matrix[1], mt.matrix[0]);
     }
     else
     {

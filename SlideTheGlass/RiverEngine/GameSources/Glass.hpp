@@ -69,6 +69,8 @@ private:
     
     State _state = State::STAY;
     
+    bool _isRunFallAction = false;
+    
     void physicUpdate();
     void slideInput(TouchInfo& info);
     void pullToDefaultPos();

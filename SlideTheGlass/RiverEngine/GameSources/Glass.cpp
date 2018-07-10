@@ -101,7 +101,8 @@ void Glass::update()
             break;
     }
     
-    //printf("%f\n",Rad2Deg(getTransform()->getRotation().toRotVec().z));
+//    printf("%f\n",Rad2Deg(getTransform()->getRotation().toRotVec().x));
+//    printf((getComponent<Action>()->getIsRunning())?"true\n" : "false\n");
 }
 
 void Glass::draw()
@@ -235,6 +236,8 @@ void Glass::slideInput(TouchInfo& info)
             
             _physicParam._velocity.x = dir.getNormalized().x * power;
             _physicParam._velocity.z = dir.getNormalized().y * power;
+            
+            _isRunFallAction = false;
         }
             break;
     }
@@ -300,33 +303,33 @@ void Glass::fall()
     if((nowPos.x > -0.5f && nowPos.x < 0.5f) &&
        (nowPos.z > -1.1f && nowPos.z < 1.055))
         return;
-    else
-    {
-        
-    }
     
     auto action = getComponent<Action>();
-    if(!action->getIsRunning())
+    if(!action->getIsRunning() && !_isRunFallAction)
     {
         if(nowPos.x < -0.5f)
         {
-            action->addRotateBy(1.0f, Vector3::FORWARD(), Deg2Rad(120),Lerp::Easein);
+            action->addRotateBy(1.0f, Vector3::FORWARD(), Deg2Rad(90),Lerp::Easein);
             action->run();
+            _isRunFallAction = true;
         }
         else if(nowPos.x > 0.5f)
         {
-            action->addRotateBy(1.0f, Vector3::FORWARD(), Deg2Rad(-120),Lerp::Easein);
+            action->addRotateBy(1.0f, Vector3::FORWARD(), Deg2Rad(-90),Lerp::Easein);
             action->run();
+            _isRunFallAction = true;
         }
         else if(nowPos.z < -1.1f)
         {
-            action->addRotateBy(1.0f, Vector3::RIGHT(), Deg2Rad(-120),Lerp::Easein);
+            action->addRotateBy(1.0f, Vector3::RIGHT(), Deg2Rad(-90),Lerp::Easein);
             action->run();
+            _isRunFallAction = true;
         }
         else if(nowPos.z > 1.055f)
         {
-            action->addRotateBy(1.0f, Vector3::RIGHT(), Deg2Rad(120),Lerp::Easein);
+            action->addRotateBy(1.0f, Vector3::RIGHT(), Deg2Rad(90),Lerp::Easein);
             action->run();
+            _isRunFallAction = true;
         }
     }
 
@@ -336,8 +339,8 @@ void Glass::fall()
         (nowPos.z < 1.12f && nowPos.z > 1.055f))
     {
         Vector3 nowRot = trans->getRotation().toRotVec();
-        if(fabsf(Rad2Deg(nowRot.z)) > 85.0f ||
-           fabsf(Rad2Deg(nowRot.x)) > 85.0f)
+        if(fabsf(Rad2Deg(nowRot.z)) > 60.0f ||
+           fabsf(Rad2Deg(nowRot.x)) > 60.0f)
         {
             _physicParam._velocity.y -= 9.8f * delta;
         }

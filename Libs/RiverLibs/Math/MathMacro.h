@@ -19,4 +19,9 @@
 #define MATH_PIOVER2                1.57079632679489661923f
 #define MATH_EPSILON                0.000001f
 
+namespace MathFunc
+{
+    bool Approximately(float a,float b);
+}
+
 #endif /* MathMacro_h */
