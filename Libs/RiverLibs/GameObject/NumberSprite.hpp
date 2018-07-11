@@ -26,6 +26,9 @@ class NumberSprite : public GameObject
     string _texKey;
     unsigned int _number;
     
+    ///数字と数字の間の距離
+    float _numDistance = 0.6f;
+    
     std::shared_ptr<MeshResource<PositionTexture>> _meshResource;
     
     unsigned int calcOddCenterIndex(unsigned int digit){return ((digit-1)/2);}

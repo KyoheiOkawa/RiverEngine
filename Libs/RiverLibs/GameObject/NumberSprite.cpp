@@ -73,7 +73,7 @@ bool NumberSprite::init()
             for(int i = 0; i < half; i++)
             {
                 unsigned int plusI = i + 1;
-                float diff = plusI;
+                float diff = plusI * _numDistance;
                 vertex.push_back({{-0.5f+diff,0.5f},{eachNumbers[centerIndex-plusI] * 0.1f,0.0f}});
                 vertex.push_back({{-0.5f+diff,-0.5f},{eachNumbers[centerIndex-plusI] * 0.1f,1.0f}});
                 vertex.push_back({{0.5f+diff,0.5f},{(eachNumbers[centerIndex-plusI] + 1) * 0.1f,0.0f}});
@@ -85,7 +85,7 @@ bool NumberSprite::init()
             for(int i = 0; i < half; i++)
             {
                 unsigned int plusI = i + 1;
-                float diff = plusI;
+                float diff = plusI * _numDistance;
                 vertex.push_back({{-0.5f-diff,0.5f},{eachNumbers[centerIndex+plusI] * 0.1f,0.0f}});
                 vertex.push_back({{-0.5f-diff,-0.5f},{eachNumbers[centerIndex+plusI] * 0.1f,1.0f}});
                 vertex.push_back({{0.5f-diff,0.5f},{(eachNumbers[centerIndex+plusI] + 1) * 0.1f,0.0f}});
@@ -97,17 +97,28 @@ bool NumberSprite::init()
     }
     else
     {
-        float startX = -(float)digit / 2.0f;
-        for(int i = 0; i < digit; i++)
+        unsigned int half = digit / 2.0f;
+        //右
+        for(int i = 0; i < half; i++)
         {
-            float diff = i;
-            unsigned numIndex = (digit-1)-i;
-            vertex.push_back({{startX+diff,0.5f},{eachNumbers[numIndex] * 0.1f,0.0f}});
-            vertex.push_back({{startX+diff,-0.5f},{eachNumbers[numIndex] * 0.1f,1.0f}});
-            vertex.push_back({{(startX+1.0f)+diff,0.5f},{(eachNumbers[numIndex] + 1) * 0.1f,0.0f}});
-            vertex.push_back({{(startX+1.0f)+diff,0.5f},{(eachNumbers[numIndex] + 1) * 0.1f,0.0f}});
-            vertex.push_back({{startX+diff,-0.5f},{eachNumbers[numIndex] * 0.1f,1.0f}});
-            vertex.push_back({{(startX+1.0f)+diff,-0.5f},{(eachNumbers[numIndex] + 1) * 0.1f,1.0f}});
+            float diff = i * _numDistance - ((1.0-_numDistance)/2.0f);
+            vertex.push_back({{diff,0.5f},{eachNumbers[half-i] * 0.1f,0.0f}});
+            vertex.push_back({{diff,-0.5f},{eachNumbers[half-i] * 0.1f,1.0f}});
+            vertex.push_back({{1.0f+diff,0.5f},{(eachNumbers[half-i] + 1) * 0.1f,0.0f}});
+            vertex.push_back({{1.0f+diff,0.5f},{(eachNumbers[half-i] + 1) * 0.1f,0.0f}});
+            vertex.push_back({{diff,-0.5f},{eachNumbers[half-i] * 0.1f,1.0f}});
+            vertex.push_back({{1.0f+diff,-0.5f},{(eachNumbers[half-i] + 1) * 0.1f,1.0f}});
+        }
+        //左
+        for(int i = 0; i < half; i++)
+        {
+            float diff = i * _numDistance - ((1.0-_numDistance)/2.0f);
+            vertex.push_back({{-1.0f-diff,0.5f},{eachNumbers[half+i] * 0.1f,0.0f}});
+            vertex.push_back({{-1.0f-diff,-0.5f},{eachNumbers[half+i] * 0.1f,1.0f}});
+            vertex.push_back({{-diff,0.5f},{(eachNumbers[half+i] + 1) * 0.1f,0.0f}});
+            vertex.push_back({{-diff,0.5f},{(eachNumbers[half+i] + 1) * 0.1f,0.0f}});
+            vertex.push_back({{-1.0f-diff,-0.5f},{eachNumbers[half+i] * 0.1f,1.0f}});
+            vertex.push_back({{-diff,-0.5f},{(eachNumbers[half+i] + 1) * 0.1f,1.0f}});
         }
     }
     

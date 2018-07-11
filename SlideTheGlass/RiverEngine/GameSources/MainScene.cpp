@@ -57,7 +57,7 @@ bool MainScene::init()
     auto glass = Glass::create();
     addGameObject(glass);
     
-    auto number = NumberSprite::create("NUMBERS_TX", 757);
+    auto number = NumberSprite::create("NUMBERS_TX", 1111);
     number->getTransform()->setPosition(Vector3(320.0f,320.0f,0.0f));
     addGameObject(number);
     number->setDrawLayer(5);
