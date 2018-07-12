@@ -20,13 +20,13 @@ struct PositionTexture
 struct PositionColor
 {
     GLfloat position[3];
-    GLbyte color[3];
+    GLubyte color[4];
 };
 
 struct PositionColorTexture
 {
     GLfloat position[3];
-    GLbyte color[3];
+    GLubyte color[4];
     GLfloat uv[2];
 };
 

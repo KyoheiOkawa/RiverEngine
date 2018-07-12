@@ -43,6 +43,12 @@ bool MainScene::init()
     Director::getInstance()->registerTexture("STG_TX", "STG.png");
     Director::getInstance()->registerTexture("NUMBERS_TX", "Numbers.png");
     
+    auto director = Director::getInstance();
+    auto audioEngine = SimpleAudioEngine::getInstance();
+    audioEngine->registerBgm("Assets/Why", "BGM_WHY");
+    audioEngine->registerSe("Assets/cursor", "SE_CURSOR");
+    audioEngine->startBgm("BGM_WHY",1.0f,AL_TRUE);
+    
     auto table = Table::create();
     table->getTransform()->setPosition(Vector3(0,-0.5f,0));
     table->getTransform()->setScale(Vector3(1.75f,1.75f,1.75f));
@@ -57,8 +63,10 @@ bool MainScene::init()
     auto glass = Glass::create();
     addGameObject(glass);
     
-    _testNumber = NumberSprite::create("NUMBERS_TX", 99900);
-    _testNumber->getTransform()->setPosition(Vector3(320.0f,320.0f,0.0f));
+    float width = Application::getInstance()->getSurfaceWidth();
+    float height = Application::getInstance()->getSurfaceHeight();
+    _testNumber = NumberSprite::create("NUMBERS_TX", 0);
+    _testNumber->getTransform()->setPosition(Vector3(width/ 2.0f,70.0f,0.0f));
     addGameObject(_testNumber);
     _testNumber->setDrawLayer(5);
     
@@ -68,7 +76,7 @@ bool MainScene::init()
 void MainScene::update()
 {
     _testCount++;
-    if(_testCount > 2)
+    if(_testCount > 10)
     {
         _testCount = 0;
         unsigned int setCount = _testNumber->getNumber();

@@ -39,6 +39,7 @@ void Director::createDefaultGLPrograms()
     _programMap["PTSprite"] = GLProgram::createWithFile("Shaders/PTSprite", "Shaders/PTSprite");
     _programMap["PNStatic"] = GLProgram::createWithFile("Shaders/PNStatic", "Shaders/PNStatic");
     _programMap["PNTStatic"] = GLProgram::createWithFile("Shaders/PNTStatic", "Shaders/PNTStatic");
+    _programMap["PCStatic"] = GLProgram::createWithFile("Shaders/PCStatic", "Shaders/PCStatic");
 }
 
 GLProgram* Director::getGLProgram(std::string name)

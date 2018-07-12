@@ -50,6 +50,8 @@
 		D687DFE62071B6680034DCB3 /* Quaternion.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D687DFE42071B6680034DCB3 /* Quaternion.cpp */; };
 		D687DFE9207902540034DCB3 /* UserDefaults.mm in Sources */ = {isa = PBXBuildFile; fileRef = D687DFE7207902540034DCB3 /* UserDefaults.mm */; };
 		D69E04AF20EC72D100A0A789 /* STGWord.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D69E04AD20EC72D100A0A789 /* STGWord.cpp */; };
+		D6D2D7C920F6E38000382DD6 /* PrimitiveDraws.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6D2D7C720F6E38000382DD6 /* PrimitiveDraws.cpp */; };
+		D6D2D7CC20F6E45A00382DD6 /* Color4.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6D2D7CA20F6E45A00382DD6 /* Color4.cpp */; };
 		D6DD0D7F20557906003998B7 /* 3DTestObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6DD0D7D20557906003998B7 /* 3DTestObject.cpp */; };
 		D6F6FAF11EFE48490041A212 /* Assets in Resources */ = {isa = PBXBuildFile; fileRef = D6F6FAF01EFE48490041A212 /* Assets */; };
 		D6FED0F91F3B46A300E0C028 /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D6FED0F81F3B46A300E0C028 /* OpenAL.framework */; };
@@ -157,6 +159,10 @@
 		D687DFE8207902540034DCB3 /* UserDefaults.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = UserDefaults.hpp; sourceTree = "<group>"; };
 		D69E04AD20EC72D100A0A789 /* STGWord.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = STGWord.cpp; sourceTree = "<group>"; };
 		D69E04AE20EC72D100A0A789 /* STGWord.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = STGWord.hpp; sourceTree = "<group>"; };
+		D6D2D7C720F6E38000382DD6 /* PrimitiveDraws.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = PrimitiveDraws.cpp; sourceTree = "<group>"; };
+		D6D2D7C820F6E38000382DD6 /* PrimitiveDraws.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = PrimitiveDraws.hpp; sourceTree = "<group>"; };
+		D6D2D7CA20F6E45A00382DD6 /* Color4.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Color4.cpp; sourceTree = "<group>"; };
+		D6D2D7CB20F6E45A00382DD6 /* Color4.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Color4.hpp; sourceTree = "<group>"; };
 		D6DD0D7D20557906003998B7 /* 3DTestObject.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = 3DTestObject.cpp; sourceTree = "<group>"; };
 		D6DD0D7E20557906003998B7 /* 3DTestObject.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = 3DTestObject.hpp; sourceTree = "<group>"; };
 		D6F6FAF01EFE48490041A212 /* Assets */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Assets; sourceTree = "<group>"; };
@@ -347,6 +353,8 @@
 				D616ED9920EDC5B200E0F166 /* Lerp.cpp */,
 				D616ED9A20EDC5B200E0F166 /* Lerp.hpp */,
 				D634AEF120F44C5E00DC2E2D /* MathMacro.cpp */,
+				D6D2D7CA20F6E45A00382DD6 /* Color4.cpp */,
+				D6D2D7CB20F6E45A00382DD6 /* Color4.hpp */,
 			);
 			path = Math;
 			sourceTree = "<group>";
@@ -370,6 +378,8 @@
 				D684F7FC203499A10032C3A6 /* MeshResource.hpp */,
 				D600C08B205F02B5006749D9 /* Camera.cpp */,
 				D600C08C205F02B5006749D9 /* Camera.hpp */,
+				D6D2D7C720F6E38000382DD6 /* PrimitiveDraws.cpp */,
+				D6D2D7C820F6E38000382DD6 /* PrimitiveDraws.hpp */,
 			);
 			path = Renderer;
 			sourceTree = "<group>";
@@ -545,6 +555,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D61109111EC6B5A100B89DFE /* ViewController.mm in Sources */,
+				D6D2D7C920F6E38000382DD6 /* PrimitiveDraws.cpp in Sources */,
 				D69E04AF20EC72D100A0A789 /* STGWord.cpp in Sources */,
 				D648B2DB1F8E514E00C57D9C /* Vector2.cpp in Sources */,
 				D648B2D31F8E514E00C57D9C /* Director.cpp in Sources */,
@@ -581,6 +592,7 @@
 				D648B2E21F8E514E00C57D9C /* Vertex.cpp in Sources */,
 				D648B2E31F8E514E00C57D9C /* FileUtils.mm in Sources */,
 				D648B2D41F8E514E00C57D9C /* Helper.cpp in Sources */,
+				D6D2D7CC20F6E45A00382DD6 /* Color4.cpp in Sources */,
 				D648B2DD1F8E514E00C57D9C /* GLES20View.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -156,6 +156,8 @@ void Glass::draw()
     glDisableVertexAttribArray(attr_pos);
     glDisableVertexAttribArray(attr_normal);
     assert(glGetError()==GL_NO_ERROR);
+    
+    PrimitiveDraws::drawPlaneCircle(trans->getPosition() + Vector3(0,0.1f,0), 0.25f, Color4(1,1,1,0.6f));
 }
 
 void Glass::onScreenTouched(TouchInfo &info)

@@ -15,6 +15,7 @@
 #include "Quaternion.hpp"
 #include "Matrix4x4.hpp"
 #include "Lerp.hpp"
+#include "Color4.hpp"
 
 #include "RawPixelImage.h"
 #include "Texture2D.h"
@@ -30,6 +31,7 @@
 #include "NumberSprite.hpp"
 #include "GLProgram.hpp"
 #include "Vertex.hpp"
+#include "PrimitiveDraws.hpp"
 #include "Util.hpp"
 #include "FileUtils.hpp"
 #include "UserDefaults.hpp"
