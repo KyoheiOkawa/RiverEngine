@@ -14,6 +14,8 @@
 
 class MainScene : public Scene
 {
+    unsigned int _testCount = 0;
+    shared_ptr<NumberSprite> _testNumber;
 public:
     MainScene();
     virtual ~MainScene();

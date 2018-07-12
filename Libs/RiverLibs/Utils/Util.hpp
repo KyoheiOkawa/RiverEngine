@@ -13,7 +13,7 @@ namespace  MyUtil
 {
     int getDigit(int number);
     
-    std::vector<int> extractTotalDigitsSpotCount(int number,int digit);
+    std::vector<unsigned int> extractTotalDigitsSpotCount(unsigned int number,unsigned int digit);
 }
 
 #endif /* Util_hpp */

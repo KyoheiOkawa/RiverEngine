@@ -57,17 +57,24 @@ bool MainScene::init()
     auto glass = Glass::create();
     addGameObject(glass);
     
-    auto number = NumberSprite::create("NUMBERS_TX", 1111);
-    number->getTransform()->setPosition(Vector3(320.0f,320.0f,0.0f));
-    addGameObject(number);
-    number->setDrawLayer(5);
+    _testNumber = NumberSprite::create("NUMBERS_TX", 99900);
+    _testNumber->getTransform()->setPosition(Vector3(320.0f,320.0f,0.0f));
+    addGameObject(_testNumber);
+    _testNumber->setDrawLayer(5);
     
     return true;
 }
 
 void MainScene::update()
 {
-    
+    _testCount++;
+    if(_testCount > 2)
+    {
+        _testCount = 0;
+        unsigned int setCount = _testNumber->getNumber();
+        setCount++;
+        _testNumber->changeNumber(setCount);
+    }
 }
 
 void MainScene::draw()

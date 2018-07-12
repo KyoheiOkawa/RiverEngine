@@ -16,9 +16,9 @@ namespace MyUtil
         return std::to_string(number).length();
     }
     
-    std::vector<int> extractTotalDigitsSpotCount(int number,int digit)
+    std::vector<unsigned int> extractTotalDigitsSpotCount(unsigned int number,unsigned int digit)
     {
-        vector<int> result;
+        vector<unsigned int> result;
         
         for (int i = 0; i < digit; i++)
         {

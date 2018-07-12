@@ -32,6 +32,7 @@ class NumberSprite : public GameObject
     std::shared_ptr<MeshResource<PositionTexture>> _meshResource;
     
     unsigned int calcOddCenterIndex(unsigned int digit){return ((digit-1)/2);}
+    void updateMeshResource();
 public:
     NumberSprite();
     virtual ~NumberSprite();
@@ -48,6 +49,9 @@ public:
     virtual void update() override;
     
     virtual void draw() override;
+    
+    unsigned int getNumber(){return _number;}
+    void changeNumber(unsigned int num);
 };
 
 #endif /* NumberSprite_hpp */

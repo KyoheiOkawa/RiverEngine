@@ -52,19 +52,26 @@ bool NumberSprite::init()
     _spriteSize.x = texInfo->height;
     _spriteSize.y = texInfo->height;
     
+    updateMeshResource();
+    
+    return true;
+}
+
+void NumberSprite::updateMeshResource()
+{
     unsigned int digit = MyUtil::getDigit(_number);
-    vector<int> eachNumbers = MyUtil::extractTotalDigitsSpotCount(_number, digit);
+    vector<unsigned int> eachNumbers = MyUtil::extractTotalDigitsSpotCount(_number, digit);
     bool isEven = (digit % 2 == 0);
     std::vector<PositionTexture> vertex;
     if(!isEven)
     {
         unsigned int centerIndex = calcOddCenterIndex(digit);
-        vertex.push_back({{-0.5f,0.5f},{eachNumbers[centerIndex] * 0.1f,0.0f}});
-        vertex.push_back({{-0.5f,-0.5f},{eachNumbers[centerIndex] * 0.1f,1.0f}});
-        vertex.push_back({{0.5f,0.5f},{(eachNumbers[centerIndex] + 1) * 0.1f,0.0f}});
-        vertex.push_back({{0.5f,0.5f},{(eachNumbers[centerIndex] + 1) * 0.1f,0.0f}});
-        vertex.push_back({{-0.5f,-0.5f},{eachNumbers[centerIndex] * 0.1f,1.0f}});
-        vertex.push_back({{0.5f,-0.5f},{(eachNumbers[centerIndex] + 1) * 0.1f,1.0f}});
+        vertex.push_back({{-0.5f,0.5f},{(float)eachNumbers[centerIndex] * 0.1f,0.0f}});
+        vertex.push_back({{-0.5f,-0.5f},{(float)eachNumbers[centerIndex] * 0.1f,1.0f}});
+        vertex.push_back({{0.5f,0.5f},{((float)eachNumbers[centerIndex] + 1) * 0.1f,0.0f}});
+        vertex.push_back({{0.5f,0.5f},{((float)eachNumbers[centerIndex] + 1) * 0.1f,0.0f}});
+        vertex.push_back({{-0.5f,-0.5f},{(float)eachNumbers[centerIndex] * 0.1f,1.0f}});
+        vertex.push_back({{0.5f,-0.5f},{((float)eachNumbers[centerIndex] + 1) * 0.1f,1.0f}});
         
         if(digit > 0)
         {
@@ -74,24 +81,24 @@ bool NumberSprite::init()
             {
                 unsigned int plusI = i + 1;
                 float diff = plusI * _numDistance;
-                vertex.push_back({{-0.5f+diff,0.5f},{eachNumbers[centerIndex-plusI] * 0.1f,0.0f}});
-                vertex.push_back({{-0.5f+diff,-0.5f},{eachNumbers[centerIndex-plusI] * 0.1f,1.0f}});
-                vertex.push_back({{0.5f+diff,0.5f},{(eachNumbers[centerIndex-plusI] + 1) * 0.1f,0.0f}});
-                vertex.push_back({{0.5f+diff,0.5f},{(eachNumbers[centerIndex-plusI] + 1) * 0.1f,0.0f}});
-                vertex.push_back({{-0.5f+diff,-0.5f},{eachNumbers[centerIndex-plusI] * 0.1f,1.0f}});
-                vertex.push_back({{0.5f+diff,-0.5f},{(eachNumbers[centerIndex-plusI] + 1) * 0.1f,1.0f}});
+                vertex.push_back({{-0.5f+diff,0.5f},{(float)eachNumbers[centerIndex-plusI] * 0.1f,0.0f}});
+                vertex.push_back({{-0.5f+diff,-0.5f},{(float)eachNumbers[centerIndex-plusI] * 0.1f,1.0f}});
+                vertex.push_back({{0.5f+diff,0.5f},{((float)eachNumbers[centerIndex-plusI] + 1) * 0.1f,0.0f}});
+                vertex.push_back({{0.5f+diff,0.5f},{((float)eachNumbers[centerIndex-plusI] + 1) * 0.1f,0.0f}});
+                vertex.push_back({{-0.5f+diff,-0.5f},{(float)eachNumbers[centerIndex-plusI] * 0.1f,1.0f}});
+                vertex.push_back({{0.5f+diff,-0.5f},{((float)eachNumbers[centerIndex-plusI] + 1) * 0.1f,1.0f}});
             }
             //左
             for(int i = 0; i < half; i++)
             {
                 unsigned int plusI = i + 1;
                 float diff = plusI * _numDistance;
-                vertex.push_back({{-0.5f-diff,0.5f},{eachNumbers[centerIndex+plusI] * 0.1f,0.0f}});
-                vertex.push_back({{-0.5f-diff,-0.5f},{eachNumbers[centerIndex+plusI] * 0.1f,1.0f}});
-                vertex.push_back({{0.5f-diff,0.5f},{(eachNumbers[centerIndex+plusI] + 1) * 0.1f,0.0f}});
-                vertex.push_back({{0.5f-diff,0.5f},{(eachNumbers[centerIndex+plusI] + 1) * 0.1f,0.0f}});
-                vertex.push_back({{-0.5f-diff,-0.5f},{eachNumbers[centerIndex+plusI] * 0.1f,1.0f}});
-                vertex.push_back({{0.5f-diff,-0.5f},{(eachNumbers[centerIndex+plusI] + 1) * 0.1f,1.0f}});
+                vertex.push_back({{-0.5f-diff,0.5f},{(float)eachNumbers[centerIndex+plusI] * 0.1f,0.0f}});
+                vertex.push_back({{-0.5f-diff,-0.5f},{(float)eachNumbers[centerIndex+plusI] * 0.1f,1.0f}});
+                vertex.push_back({{0.5f-diff,0.5f},{((float)eachNumbers[centerIndex+plusI] + 1) * 0.1f,0.0f}});
+                vertex.push_back({{0.5f-diff,0.5f},{((float)eachNumbers[centerIndex+plusI] + 1) * 0.1f,0.0f}});
+                vertex.push_back({{-0.5f-diff,-0.5f},{(float)eachNumbers[centerIndex+plusI] * 0.1f,1.0f}});
+                vertex.push_back({{0.5f-diff,-0.5f},{((float)eachNumbers[centerIndex+plusI] + 1) * 0.1f,1.0f}});
             }
         }
     }
@@ -102,29 +109,29 @@ bool NumberSprite::init()
         for(int i = 0; i < half; i++)
         {
             float diff = i * _numDistance - ((1.0-_numDistance)/2.0f);
-            vertex.push_back({{diff,0.5f},{eachNumbers[half-i] * 0.1f,0.0f}});
-            vertex.push_back({{diff,-0.5f},{eachNumbers[half-i] * 0.1f,1.0f}});
-            vertex.push_back({{1.0f+diff,0.5f},{(eachNumbers[half-i] + 1) * 0.1f,0.0f}});
-            vertex.push_back({{1.0f+diff,0.5f},{(eachNumbers[half-i] + 1) * 0.1f,0.0f}});
-            vertex.push_back({{diff,-0.5f},{eachNumbers[half-i] * 0.1f,1.0f}});
-            vertex.push_back({{1.0f+diff,-0.5f},{(eachNumbers[half-i] + 1) * 0.1f,1.0f}});
+            int index = (half-1) - i;
+            vertex.push_back({{diff,0.5f},{(float)eachNumbers[index] * 0.1f,0.0f}});
+            vertex.push_back({{diff,-0.5f},{(float)eachNumbers[index] * 0.1f,1.0f}});
+            vertex.push_back({{1.0f+diff,0.5f},{((float)eachNumbers[index] + 1) * 0.1f,0.0f}});
+            vertex.push_back({{1.0f+diff,0.5f},{((float)eachNumbers[index] + 1) * 0.1f,0.0f}});
+            vertex.push_back({{diff,-0.5f},{(float)eachNumbers[index] * 0.1f,1.0f}});
+            vertex.push_back({{1.0f+diff,-0.5f},{((float)eachNumbers[index] + 1) * 0.1f,1.0f}});
         }
         //左
         for(int i = 0; i < half; i++)
         {
             float diff = i * _numDistance - ((1.0-_numDistance)/2.0f);
-            vertex.push_back({{-1.0f-diff,0.5f},{eachNumbers[half+i] * 0.1f,0.0f}});
-            vertex.push_back({{-1.0f-diff,-0.5f},{eachNumbers[half+i] * 0.1f,1.0f}});
-            vertex.push_back({{-diff,0.5f},{(eachNumbers[half+i] + 1) * 0.1f,0.0f}});
-            vertex.push_back({{-diff,0.5f},{(eachNumbers[half+i] + 1) * 0.1f,0.0f}});
-            vertex.push_back({{-1.0f-diff,-0.5f},{eachNumbers[half+i] * 0.1f,1.0f}});
-            vertex.push_back({{-diff,-0.5f},{(eachNumbers[half+i] + 1) * 0.1f,1.0f}});
+            int index = half + i;
+            vertex.push_back({{-1.0f-diff,0.5f},{(float)eachNumbers[index] * 0.1f,0.0f}});
+            vertex.push_back({{-1.0f-diff,-0.5f},{(float)eachNumbers[index] * 0.1f,1.0f}});
+            vertex.push_back({{-diff,0.5f},{((float)eachNumbers[index] + 1) * 0.1f,0.0f}});
+            vertex.push_back({{-diff,0.5f},{((float)eachNumbers[index] + 1) * 0.1f,0.0f}});
+            vertex.push_back({{-1.0f-diff,-0.5f},{(float)eachNumbers[index] * 0.1f,1.0f}});
+            vertex.push_back({{-diff,-0.5f},{((float)eachNumbers[index] + 1) * 0.1f,1.0f}});
         }
     }
     
     _meshResource = MeshResource<PositionTexture>::createWithVertex(vertex);
-    
-    return true;
 }
 
 void NumberSprite::update()
@@ -164,4 +171,10 @@ void NumberSprite::draw()
     glDisable(GL_BLEND);
     glDisableVertexAttribArray(_attr_pos);
     glDisableVertexAttribArray(_attr_uv);
+}
+
+void NumberSprite::changeNumber(unsigned int num)
+{
+    _number = num;
+    updateMeshResource();
 }
