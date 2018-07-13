@@ -48,6 +48,10 @@ public:
     void removeGameObject(const std::shared_ptr<GameObject>& gameObject);
     
     Camera* GetMainCamera(){return _mainCamera.get();}
+    
+    vector<shared_ptr<GameObject>> findGameObjects(string tag);
+    shared_ptr<GameObject> findGameObject(string tag);
+    
 private:
     
     static bool compareDrawLayerOrder(std::shared_ptr<GameObject> left,std::shared_ptr<GameObject> right);

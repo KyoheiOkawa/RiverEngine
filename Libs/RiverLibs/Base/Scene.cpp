@@ -127,3 +127,33 @@ bool Scene::compareDrawLayerOrder(std::shared_ptr<GameObject> left, std::shared_
 {
     return left->getDrawLayer() < right->getDrawLayer();
 }
+
+vector<shared_ptr<GameObject>> Scene::findGameObjects(std::string tag)
+{
+    vector<shared_ptr<GameObject>> result;
+    auto it = _gameObjects.begin();
+    while(it != _gameObjects.end())
+    {
+        auto obj = *it;
+        if(obj->findTag(tag))
+        {
+            result.push_back(obj);
+        }
+        
+        it++;
+    }
+    
+    return result;
+}
+
+shared_ptr<GameObject> Scene::findGameObject(std::string tag)
+{
+    auto it = std::find_if(_gameObjects.begin(), _gameObjects.end(), [tag](shared_ptr<GameObject> obj){
+        return obj->findTag(tag);
+    });
+    
+    if(it != _gameObjects.end())
+        return *it;
+    
+    return nullptr;
+}

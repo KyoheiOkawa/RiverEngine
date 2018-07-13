@@ -38,19 +38,13 @@ bool Glass::init()
     _useProgram = Director::getInstance()->getGLProgram("PNStatic");
     
     attr_pos = _useProgram->getAttribLocation("attr_pos");
-    
     attr_normal = _useProgram->getAttribLocation("attr_normal");
     
     unif_color = _useProgram->getUnifLocation("unif_color");
-    
     unif_lookat = _useProgram->getUnifLocation("unif_lookat");
-    
     unif_projection = _useProgram->getUnifLocation("unif_projection");
-    
     unif_world = _useProgram->getUnifLocation("unif_world");
-    
     unif_lightDir = _useProgram->getUnifLocation("unif_lightDir");
-    
     _mesh = MeshResource<PositionNormal>::createWithFile("Assets/glass");
     
     _meshTransform = Matrix4x4::createScale(0.25f, 0.25f, 0.25f);
@@ -60,6 +54,8 @@ bool Glass::init()
     trans->setPosition(_defaultPosition);
     
     auto action = addComponent<Action>();
+    
+    addTag("Glass");
     
     return true;
 }
@@ -157,7 +153,7 @@ void Glass::draw()
     glDisableVertexAttribArray(attr_normal);
     assert(glGetError()==GL_NO_ERROR);
     
-    PrimitiveDraws::drawPlaneCircle(trans->getPosition() + Vector3(0,0.1f,0), 0.25f, Color4(1,1,1,0.6f));
+    //PrimitiveDraws::drawPlaneCircle(trans->getPosition() + Vector3(0,0.1f,0), 0.25f, Color4(1,1,1,0.6f));
 }
 
 void Glass::onScreenTouched(TouchInfo &info)

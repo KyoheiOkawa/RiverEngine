@@ -20,13 +20,14 @@ struct TouchInfo;
 
 class GameObject : public ObjectInterface,public ShapeInterface
 {
-protected:
+private:
     std::shared_ptr<Scene> _scene;
     std::map<std::type_index,std::shared_ptr<Component>> _compMap;
     std::list<std::type_index> _compOrder;
     std::shared_ptr<Transform> _transform;
     int _drawLayer = 0;
-private:
+    std::set<string> _tags;
+
     std::shared_ptr<Component> searchComponent(std::type_index typeId)const;
     
     void addMakedComponent(std::type_index typeId, const std::shared_ptr<Component>& ptr);
@@ -112,6 +113,9 @@ public:
     virtual void draw(){};
     
     virtual void onScreenTouched(TouchInfo& touchInfo){};
+    
+    void addTag(string tag);
+    bool findTag(string tag);
 };
 
 

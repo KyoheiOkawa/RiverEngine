@@ -16,6 +16,7 @@ using namespace std;
 #include <stdio.h>
 #include <memory.h>
 #include <map>
+#include <set>
 #include <string>
 #include <assert.h>
 #include <vector>

@@ -74,3 +74,20 @@ void GameObject::componentDraw()
     for(auto& comp : _compMap)
         comp.second->draw();
 }
+
+void GameObject::addTag(std::string tag)
+{
+    _tags.insert(tag);
+}
+
+bool GameObject::findTag(std::string tag)
+{
+    auto itr = std::find_if(_tags.begin(), _tags.end(), [tag](string str){
+                return str == tag;
+            });
+
+    if(itr != _tags.end())
+        return true;
+    
+    return false;
+}
