@@ -10,6 +10,7 @@
 
 JudgePocket::JudgePocket():
 _defaultRadius(0.3f),
+_hightScoreRadius(0.05f),
 _radius(_defaultRadius),
 _defaultColor(Color4(0.2f,0.8f,0.2f,0.5f)),
 _color(_defaultColor),
@@ -39,6 +40,10 @@ bool JudgePocket::init()
     auto trans = getTransform();
     trans->setPosition(Vector3(0.1f,0.8f,0.0f));
     
+    auto action = addComponent<Action>();
+    action->addMoveTo(3.0f, Vector3(0,0.8f,0.75f));
+    action->run();
+    
     return true;
 }
 
@@ -51,6 +56,7 @@ void JudgePocket::draw()
 {
     auto trans = getTransform();
     PrimitiveDraws::drawPlaneCircle(trans->getPosition(), _radius, _color);
+    PrimitiveDraws::drawPlaneCircle(trans->getPosition()+Vector3(0,0.005f,0.0f), _hightScoreRadius, _highScoreColor);
 }
 
 void JudgePocket::updateCircleColor()
@@ -74,6 +80,18 @@ bool JudgePocket::isInPocket(Vector3 pos)
     Vector3 nowPos = getTransform()->getPosition();
     float length = (nowPos - pos).magnitude();
     if(length <= _radius + _glassRadius)
+    {
+        return true;
+    }
+    
+    return false;
+}
+
+bool JudgePocket::isInHighScorePocket(Vector3 pos)
+{
+    Vector3 nowPos = getTransform()->getPosition();
+    float length = (nowPos - pos).magnitude();
+    if(length <= _hightScoreRadius + _glassRadius)
     {
         return true;
     }

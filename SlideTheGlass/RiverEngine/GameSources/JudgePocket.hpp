@@ -20,6 +20,7 @@
 class JudgePocket : public GameObject
 {
     const float _defaultRadius;
+    const float _hightScoreRadius;
     float _radius;
     Color4 _color;
     const Color4 _defaultColor;

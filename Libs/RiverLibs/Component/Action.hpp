@@ -43,6 +43,21 @@ public:
     virtual void run() override;
 };
 
+class MoveTo : public ActionObj
+{
+    float _time;
+    float _timeCount;
+    Vector3 _startPos;
+    Vector3 _endPos;
+    Lerp::rate _lerpRate;
+public:
+    MoveTo(const std::shared_ptr<GameObject>& gameObjectPtr,const Vector3 endPos, const float time,Lerp::rate lerpRate = Lerp::rate::Linear);
+    virtual ~MoveTo(){}
+    
+    virtual void update() override;
+    virtual void run() override;
+};
+
 class Action : public Component
 {
     vector<shared_ptr<ActionObj>> _actions;
@@ -57,6 +72,8 @@ public:
     virtual void update() override;
     
     void addRotateBy(const float time, const Vector3 axis,const float rad,const Lerp::rate lerpRate = Lerp::rate::Linear);
+    void addMoveTo(const float time, const Vector3 endPos,const Lerp::rate lerpRate = Lerp::rate::Linear);
+    
     void run();
     void stop();
     bool getIsRunning(){return _isRun;}

@@ -45,6 +45,39 @@ void RotateBy::run()
     _startQuat = _gameObject.lock()->getTransform()->getRotation();
 }
 
+MoveTo::MoveTo(const std::shared_ptr<GameObject>& gameObjectPtr,const Vector3 endPos, const float time,Lerp::rate lerpRate):
+ActionObj(gameObjectPtr),
+_endPos(endPos),
+_time(time),
+_lerpRate(lerpRate)
+{
+    
+}
+
+void MoveTo::update()
+{
+    if(_isArrived)
+        return;
+    
+    float delta = Application::getInstance()->getDeltaTime();
+    _timeCount += delta;
+    
+    Vector3 lerpPos = Lerp::CalculateLerp(_startPos, _endPos, 0.0f, _time, _timeCount, _lerpRate);
+    _gameObject.lock()->getTransform()->setPosition(lerpPos);
+    
+    if(_timeCount > _time)
+    {
+        _timeCount = 0.0f;
+        _isArrived = true;
+        _gameObject.lock()->getTransform()->setPosition(_endPos);
+    }
+}
+
+void MoveTo::run()
+{
+    _startPos = _gameObject.lock()->getTransform()->getPosition();
+}
+
 Action::Action(const std::shared_ptr<GameObject>& gameObjectPtr):
 Component(gameObjectPtr)
 {
@@ -79,8 +112,18 @@ void Action::addRotateBy(const float time, const Vector3 axis, const float rad,c
     _actions.push_back(rotateBy);
 }
 
+void Action::addMoveTo(const float time, const Vector3 endPos,const Lerp::rate lerpRate)
+{
+    auto moveTo = ObjectFactory::create<MoveTo>(_gameObject.lock(),endPos,time,lerpRate);
+    _actions.push_back(moveTo);
+}
+
 void Action::run()
 {
+    if(_actions.size() == 0)
+        return;
+    
+    _actions[0]->run();
     _isRun = true;
 }
 
