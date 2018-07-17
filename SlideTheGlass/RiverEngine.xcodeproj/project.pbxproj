@@ -52,6 +52,7 @@
 		D69E04AF20EC72D100A0A789 /* STGWord.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D69E04AD20EC72D100A0A789 /* STGWord.cpp */; };
 		D6D2D7C920F6E38000382DD6 /* PrimitiveDraws.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6D2D7C720F6E38000382DD6 /* PrimitiveDraws.cpp */; };
 		D6D2D7CC20F6E45A00382DD6 /* Color4.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6D2D7CA20F6E45A00382DD6 /* Color4.cpp */; };
+		D6DB598C20FDBE4A00B9F09C /* Random.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6DB598A20FDBE4A00B9F09C /* Random.cpp */; };
 		D6DD0D7F20557906003998B7 /* 3DTestObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6DD0D7D20557906003998B7 /* 3DTestObject.cpp */; };
 		D6E627F220F8867400208325 /* JudgePocket.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6E627F020F8867400208325 /* JudgePocket.cpp */; };
 		D6F6FAF11EFE48490041A212 /* Assets in Resources */ = {isa = PBXBuildFile; fileRef = D6F6FAF01EFE48490041A212 /* Assets */; };
@@ -164,6 +165,8 @@
 		D6D2D7C820F6E38000382DD6 /* PrimitiveDraws.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = PrimitiveDraws.hpp; sourceTree = "<group>"; };
 		D6D2D7CA20F6E45A00382DD6 /* Color4.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Color4.cpp; sourceTree = "<group>"; };
 		D6D2D7CB20F6E45A00382DD6 /* Color4.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Color4.hpp; sourceTree = "<group>"; };
+		D6DB598A20FDBE4A00B9F09C /* Random.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Random.cpp; sourceTree = "<group>"; };
+		D6DB598B20FDBE4A00B9F09C /* Random.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Random.hpp; sourceTree = "<group>"; };
 		D6DD0D7D20557906003998B7 /* 3DTestObject.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = 3DTestObject.cpp; sourceTree = "<group>"; };
 		D6DD0D7E20557906003998B7 /* 3DTestObject.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = 3DTestObject.hpp; sourceTree = "<group>"; };
 		D6E627F020F8867400208325 /* JudgePocket.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = JudgePocket.cpp; sourceTree = "<group>"; };
@@ -358,6 +361,8 @@
 				D634AEF120F44C5E00DC2E2D /* MathMacro.cpp */,
 				D6D2D7CA20F6E45A00382DD6 /* Color4.cpp */,
 				D6D2D7CB20F6E45A00382DD6 /* Color4.hpp */,
+				D6DB598A20FDBE4A00B9F09C /* Random.cpp */,
+				D6DB598B20FDBE4A00B9F09C /* Random.hpp */,
 			);
 			path = Math;
 			sourceTree = "<group>";
@@ -565,6 +570,7 @@
 				D648B2DB1F8E514E00C57D9C /* Vector2.cpp in Sources */,
 				D648B2D31F8E514E00C57D9C /* Director.cpp in Sources */,
 				D610EC6A20EB325400C9E7BF /* Glass.cpp in Sources */,
+				D6DB598C20FDBE4A00B9F09C /* Random.cpp in Sources */,
 				D648B2DF1F8E514E00C57D9C /* RawPixelImage.mm in Sources */,
 				D648B2D81F8E514E00C57D9C /* GameObject.cpp in Sources */,
 				D687DFE62071B6680034DCB3 /* Quaternion.cpp in Sources */,

@@ -99,6 +99,7 @@ void Glass::update()
     
 //    printf("%f\n",Rad2Deg(getTransform()->getRotation().toRotVec().x));
 //    printf((getComponent<Action>()->getIsRunning())?"true\n" : "false\n");
+    //printf("%f\n",Random::getInstance()->range(0.0f, 1.0f));
 }
 
 void Glass::draw()

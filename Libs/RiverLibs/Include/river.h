@@ -16,6 +16,7 @@
 #include "Matrix4x4.hpp"
 #include "Lerp.hpp"
 #include "Color4.hpp"
+#include "Random.hpp"
 
 #include "RawPixelImage.h"
 #include "Texture2D.h"
