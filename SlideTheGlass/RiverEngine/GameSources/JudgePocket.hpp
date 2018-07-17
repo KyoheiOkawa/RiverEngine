@@ -11,8 +11,26 @@
 
 #include "river.h"
 
+//デーブル４隅の位置x,z
+//左奥　-0.5f -1.1f
+//右奥  0.5f -1.1f
+//左前　-0.5f -1.055f
+//右前　0.5f 1.055f
+
 class JudgePocket : public GameObject
 {
+    const float _defaultRadius;
+    float _radius;
+    Color4 _color;
+    const Color4 _defaultColor;
+    const Color4 _highScoreColor;
+    const Color4 _onColor;
+    
+    weak_ptr<GameObject> _glass;
+    //グラスの下の部分の半径
+    const float _glassRadius;
+    ///グラスが円の中にあるとき色変更
+    void updateCircleColor();
 public:
     JudgePocket();
     ~JudgePocket(){}
@@ -22,6 +40,14 @@ public:
     virtual bool init() override;
     virtual void update() override;
     virtual void draw() override;
+    
+    ///ランダムなところに円を動かす
+    void moveRandom();
+    ///渡された値が円の中に入っているかどうか
+    bool isInPocket(Vector3 pos);
+    ///ハイスコアポケットの中に渡された値が入っているかどうか
+    bool isInHighScorePocket(Vector3 pos);
+    
 };
 
 #endif /* JudgePocket_hpp */

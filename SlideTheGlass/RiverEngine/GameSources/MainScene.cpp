@@ -11,6 +11,7 @@
 #include "Table.hpp"
 #include "Glass.hpp"
 #include "STGWord.hpp"
+#include "JudgePocket.hpp"
 
 MainScene::MainScene()
 {
@@ -59,6 +60,9 @@ bool MainScene::init()
     stg->getTransform()->setPosition(Vector3(0,1.25f,-1.5f));
     stg->getTransform()->setScale(Vector3(0.5f,0.5f,0.5f));
     addGameObject(stg);
+    
+    auto judgePocket = JudgePocket::create();
+    addGameObject(judgePocket);
 
     auto glass = Glass::create();
     addGameObject(glass);
