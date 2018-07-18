@@ -359,11 +359,13 @@ void Glass::startRespawn()
     judgePocket->moveRandom();
     
     auto trans = getTransform();
-    if(judgePocket->isInPocket(trans->getPosition()))
-    {
-        auto scene = getDynamicScene<MainScene>();
+    auto scene = getDynamicScene<MainScene>();
+    if(judgePocket->isInHighScorePocket(trans->getPosition()))
+        scene->addScore(10);
+    else if(judgePocket->isInPocket(trans->getPosition()))
         scene->addScore(1);
-    }
+    else
+        scene->resetScore();
     
     _state = State::RESPAWN;
     Vector3 setPos = _defaultPosition;

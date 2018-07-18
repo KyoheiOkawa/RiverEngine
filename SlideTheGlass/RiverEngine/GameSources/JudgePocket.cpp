@@ -7,6 +7,7 @@
 //
 
 #include "JudgePocket.hpp"
+#include "MainScene.hpp"
 
 JudgePocket::JudgePocket():
 _defaultRadius(0.3f),
@@ -39,7 +40,7 @@ bool JudgePocket::init()
     GameObject::init();
     
     auto trans = getTransform();
-    trans->setPosition(Vector3(0.1f,0.85f,0.0f));
+    trans->setPosition(Vector3(0.1f,0.8f,0.0f));
     
     auto action = addComponent<Action>();
     
@@ -59,7 +60,10 @@ void JudgePocket::draw()
 {
     auto trans = getTransform();
     PrimitiveDraws::drawPlaneCircle(trans->getPosition(), _radius, _color);
-    PrimitiveDraws::drawPlaneCircle(trans->getPosition()+Vector3(0,0.005f,0.0f), _hightScoreRadius, _highScoreColor);
+    
+    auto scene = getDynamicScene<MainScene>();
+    if(scene->getScore() % 5 == 0 && scene->getScore() != 0)
+        PrimitiveDraws::drawPlaneCircle(trans->getPosition()+Vector3(0,0.005f,0.0f), _hightScoreRadius, _highScoreColor);
 }
 
 void JudgePocket::updateCircleColor()
@@ -108,6 +112,10 @@ bool JudgePocket::isInPocket(Vector3 pos)
 
 bool JudgePocket::isInHighScorePocket(Vector3 pos)
 {
+    auto scene = getDynamicScene<MainScene>();
+    if(scene->getScore() % 5 != 0 || scene->getScore() == 0)
+        return false;
+    
     Vector3 nowPos = getTransform()->getPosition();
     float length = (nowPos - pos).magnitude();
     if(length <= _hightScoreRadius + _glassRadius)
