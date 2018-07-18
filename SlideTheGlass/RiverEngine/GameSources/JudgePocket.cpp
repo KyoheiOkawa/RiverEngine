@@ -17,7 +17,7 @@ _color(_defaultColor),
 _highScoreColor(Color4(0.94f,0.98f,0.13f,0.5f)),
 _onColor(Color4(0.8f,0.2,0.2f,0.5f)),
 _glassRadius(0.05f),
-_randomMoveSpeedSec(1.0f)
+_randomMoveSpeedSec(0.5f)
 {
     
 }

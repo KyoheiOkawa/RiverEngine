@@ -14,8 +14,8 @@
 
 class MainScene : public Scene
 {
-    unsigned int _testCount = 0;
-    shared_ptr<NumberSprite> _testNumber;
+    unsigned int _nowScore = 0;
+    shared_ptr<NumberSprite> _scoreNumber;
 public:
     MainScene();
     virtual ~MainScene();
@@ -29,6 +29,18 @@ public:
     virtual void draw() override;
     
     virtual void onScreenTouched(TouchInfo& touchInfo)override;
+    
+    void addScore(unsigned int score)
+    {
+        _nowScore += score;
+        _scoreNumber->changeNumber(_nowScore);
+    }
+    void resetScore()
+    {
+        _nowScore = 0;
+        _scoreNumber->changeNumber(_nowScore);
+    }
+    unsigned int getScore(){return _nowScore;}
 };
 
 

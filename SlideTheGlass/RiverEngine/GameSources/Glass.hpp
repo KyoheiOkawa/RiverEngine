@@ -12,6 +12,8 @@
 #include "river.h"
 #include "Project.hpp"
 
+class JudgePocket;
+
 class Glass : public GameObject
 {
 public:

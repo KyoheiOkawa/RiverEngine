@@ -8,6 +8,7 @@
 
 #include "Glass.hpp"
 #include "JudgePocket.hpp"
+#include "MainScene.hpp"
 
 Glass::Glass()
 {
@@ -353,6 +354,17 @@ void Glass::fall()
 
 void Glass::startRespawn()
 {
+    auto obj = getScene()->findGameObject("JudgePocket");
+    auto judgePocket = dynamic_pointer_cast<JudgePocket>(obj);
+    judgePocket->moveRandom();
+    
+    auto trans = getTransform();
+    if(judgePocket->isInPocket(trans->getPosition()))
+    {
+        auto scene = getDynamicScene<MainScene>();
+        scene->addScore(1);
+    }
+    
     _state = State::RESPAWN;
     Vector3 setPos = _defaultPosition;
     setPos.y += 1.5f;
@@ -362,8 +374,4 @@ void Glass::startRespawn()
     auto action = getComponent<Action>();
     action->stop();
     action->actionClear();
-    
-    auto obj = getScene()->findGameObject("JudgePocket");
-    auto judgePocket = dynamic_pointer_cast<JudgePocket>(obj);
-    judgePocket->moveRandom();
 }

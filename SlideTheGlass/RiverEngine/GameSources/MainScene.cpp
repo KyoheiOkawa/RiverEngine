@@ -69,24 +69,17 @@ bool MainScene::init()
     
     float width = Application::getInstance()->getSurfaceWidth();
     float height = Application::getInstance()->getSurfaceHeight();
-    _testNumber = NumberSprite::create("NUMBERS_TX", 0);
-    _testNumber->getTransform()->setPosition(Vector3(width/ 2.0f,70.0f,0.0f));
-    addGameObject(_testNumber);
-    _testNumber->setDrawLayer(5);
+    _scoreNumber = NumberSprite::create("NUMBERS_TX", 0);
+    _scoreNumber->getTransform()->setPosition(Vector3(width/ 2.0f,70.0f,0.0f));
+    addGameObject(_scoreNumber);
+    _scoreNumber->setDrawLayer(5);
     
     return true;
 }
 
 void MainScene::update()
 {
-    _testCount++;
-    if(_testCount > 10)
-    {
-        _testCount = 0;
-        unsigned int setCount = _testNumber->getNumber();
-        setCount++;
-        _testNumber->changeNumber(setCount);
-    }
+
 }
 
 void MainScene::draw()

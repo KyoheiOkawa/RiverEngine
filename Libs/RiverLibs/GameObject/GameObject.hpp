@@ -94,6 +94,16 @@ public:
         return _scene;
     }
     
+    template <typename T>
+    std::shared_ptr<T> getDynamicScene()
+    {
+        auto ret = dynamic_pointer_cast<T>(_scene);
+        if(ret)
+            return ret;
+        
+        return nullptr;
+    }
+    
     void setDrawLayer(int layer){
         _drawLayer = layer;
     }
