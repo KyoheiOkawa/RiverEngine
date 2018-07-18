@@ -7,6 +7,7 @@
 //
 
 #include "Glass.hpp"
+#include "JudgePocket.hpp"
 
 Glass::Glass()
 {
@@ -361,4 +362,8 @@ void Glass::startRespawn()
     auto action = getComponent<Action>();
     action->stop();
     action->actionClear();
+    
+    auto obj = getScene()->findGameObject("JudgePocket");
+    auto judgePocket = dynamic_pointer_cast<JudgePocket>(obj);
+    judgePocket->moveRandom();
 }

@@ -16,7 +16,8 @@ _defaultColor(Color4(0.2f,0.8f,0.2f,0.5f)),
 _color(_defaultColor),
 _highScoreColor(Color4(0.94f,0.98f,0.13f,0.5f)),
 _onColor(Color4(0.8f,0.2,0.2f,0.5f)),
-_glassRadius(0.05f)
+_glassRadius(0.05f),
+_randomMoveSpeedSec(1.0f)
 {
     
 }
@@ -38,11 +39,13 @@ bool JudgePocket::init()
     GameObject::init();
     
     auto trans = getTransform();
-    trans->setPosition(Vector3(0.1f,0.8f,0.0f));
+    trans->setPosition(Vector3(0.1f,0.85f,0.0f));
     
     auto action = addComponent<Action>();
-    action->addMoveTo(3.0f, Vector3(0,0.8f,0.75f));
-    action->run();
+    
+    addTag("JudgePocket");
+    
+    moveRandom();
     
     return true;
 }
@@ -73,6 +76,22 @@ void JudgePocket::updateCircleColor()
         _color = _onColor;
     else
         _color = _defaultColor;
+}
+
+void JudgePocket::moveRandom()
+{
+    auto trans = getTransform();
+    Vector3 setPos = trans->getPosition();
+    
+    setPos.x = Random::getInstance()->range(-0.5f+_radius, 0.5f-_radius);
+    setPos.z = Random::getInstance()->range(-1.1f+_radius*2, 0.0f+_radius);
+    
+    auto action = getComponent<Action>();
+    action->stop();
+    action->actionClear();
+    
+    action->addMoveTo(_randomMoveSpeedSec, setPos);
+    action->run();
 }
 
 bool JudgePocket::isInPocket(Vector3 pos)

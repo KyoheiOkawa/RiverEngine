@@ -11,7 +11,7 @@
 
 #include "river.h"
 
-//デーブル４隅の位置x,z
+//テーブル４隅の位置x,z
 //左奥　-0.5f -1.1f
 //右奥  0.5f -1.1f
 //左前　-0.5f -1.055f
@@ -26,6 +26,7 @@ class JudgePocket : public GameObject
     const Color4 _defaultColor;
     const Color4 _highScoreColor;
     const Color4 _onColor;
+    const float _randomMoveSpeedSec;
     
     weak_ptr<GameObject> _glass;
     //グラスの下の部分の半径

@@ -60,12 +60,12 @@ bool MainScene::init()
     stg->getTransform()->setPosition(Vector3(0,1.25f,-1.5f));
     stg->getTransform()->setScale(Vector3(0.5f,0.5f,0.5f));
     addGameObject(stg);
-    
-    auto judgePocket = JudgePocket::create();
-    addGameObject(judgePocket);
 
     auto glass = Glass::create();
     addGameObject(glass);
+    
+    auto judgePocket = JudgePocket::create();
+    addGameObject(judgePocket);
     
     float width = Application::getInstance()->getSurfaceWidth();
     float height = Application::getInstance()->getSurfaceHeight();
