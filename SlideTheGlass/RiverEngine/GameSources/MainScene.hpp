@@ -16,6 +16,10 @@ class MainScene : public Scene
 {
     unsigned int _nowScore = 0;
     shared_ptr<NumberSprite> _scoreNumber;
+    
+    const unsigned int _maxLeftGlassCount = 3;
+    unsigned int _leftGlassCount = 3;
+    vector<shared_ptr<Sprite>> _leftGlassSprites;
 public:
     MainScene();
     virtual ~MainScene();
@@ -41,6 +45,35 @@ public:
         _scoreNumber->changeNumber(_nowScore);
     }
     unsigned int getScore(){return _nowScore;}
+    
+    void decLeftGlass()
+    {
+        if(_leftGlassCount <= 0)
+            _leftGlassCount = 0;
+        else
+            _leftGlassCount--;
+        
+        refleshLeftGlassSprites();
+    }
+    
+    void incLeftGlass()
+    {
+        _leftGlassCount++;
+        if(_leftGlassCount > _maxLeftGlassCount)
+            _leftGlassCount = _maxLeftGlassCount;
+        
+        refleshLeftGlassSprites();
+    }
+    
+    void resetLeftGlassCount()
+    {
+        _leftGlassCount = _maxLeftGlassCount;
+        refleshLeftGlassSprites();
+    }
+    
+    unsigned int getLeftGlassCount(){return _leftGlassCount;}
+    
+    void refleshLeftGlassSprites();
 };
 
 

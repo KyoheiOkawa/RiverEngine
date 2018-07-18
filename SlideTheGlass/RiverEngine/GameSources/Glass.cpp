@@ -361,11 +361,24 @@ void Glass::startRespawn()
     auto trans = getTransform();
     auto scene = getDynamicScene<MainScene>();
     if(judgePocket->isInHighScorePocket(trans->getPosition()))
+    {
         scene->addScore(10);
+        scene->incLeftGlass();
+    }
     else if(judgePocket->isInPocket(trans->getPosition()))
+    {
         scene->addScore(1);
+        scene->incLeftGlass();
+    }
     else
-        scene->resetScore();
+    {
+        scene->decLeftGlass();
+        if(scene->getLeftGlassCount() <= 0)
+        {
+            scene->resetScore();
+            scene->resetLeftGlassCount();
+        }
+    }
     
     _state = State::RESPAWN;
     Vector3 setPos = _defaultPosition;

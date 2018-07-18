@@ -43,6 +43,8 @@ bool MainScene::init()
     Director::getInstance()->registerTexture("TABLE_TX", "table.png");
     Director::getInstance()->registerTexture("STG_TX", "STG.png");
     Director::getInstance()->registerTexture("NUMBERS_TX", "Numbers.png");
+    Director::getInstance()->registerTexture("GLASS_SP", "GlassSprite.png");
+    Director::getInstance()->registerTexture("GLASS_NONE_SP", "GlassBatsu.png");
     
     auto director = Director::getInstance();
     auto audioEngine = SimpleAudioEngine::getInstance();
@@ -74,6 +76,15 @@ bool MainScene::init()
     addGameObject(_scoreNumber);
     _scoreNumber->setDrawLayer(5);
     
+    for(int i = 0; i < _maxLeftGlassCount; i++)
+    {
+        auto sp = Sprite::createWithTexture("GLASS_SP");
+        sp->getTransform()->setPosition(Vector3(40.0f+80*i,height-70.0f,0.0f));
+        sp->getTransform()->setScale(Vector3(0.5f,0.5f,0.5f));
+        addGameObject(sp);
+        _leftGlassSprites.push_back(sp);
+    }
+    
     return true;
 }
 
@@ -90,4 +101,15 @@ void MainScene::draw()
 void MainScene::onScreenTouched(TouchInfo &touchInfo)
 {
     Scene::onScreenTouched(touchInfo);
+}
+
+void MainScene::refleshLeftGlassSprites()
+{
+    for(int i = _maxLeftGlassCount - 1; i >= 0; i--)
+    {
+        if(i+1 > _leftGlassCount)
+            _leftGlassSprites[i]->setTexture("GLASS_NONE_SP");
+        else
+            _leftGlassSprites[i]->setTexture("GLASS_SP");
+    }
 }
