@@ -22,6 +22,7 @@ class JudgePocket : public GameObject
     const float _defaultRadius;
     const float _hightScoreRadius;
     float _radius;
+    const float _minRadius;
     Color4 _color;
     const Color4 _defaultColor;
     const Color4 _highScoreColor;
@@ -50,6 +51,7 @@ public:
     ///ハイスコアポケットの中に渡された値が入っているかどうか
     bool isInHighScorePocket(Vector3 pos);
     
+    void reset();
 };
 
 #endif /* JudgePocket_hpp */

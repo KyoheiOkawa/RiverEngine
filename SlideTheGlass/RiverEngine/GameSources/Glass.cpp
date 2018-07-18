@@ -182,6 +182,8 @@ void Glass::slideInput(TouchInfo& info)
        (_state != State::PULL))
         return;
     
+    
+    
     float delta = Application::getInstance()->getDeltaTime();
     auto trans = getTransform();
     
@@ -196,10 +198,15 @@ void Glass::slideInput(TouchInfo& info)
             _touchParam._frickTime = 0.0f;
             
             _touchParam._touchStartGlassPos = trans->getPosition();
+            
+            _touchParam._isTouchStart = true;
         }
             break;
         case TouchType::MOVED:
         {
+            if(!_touchParam._isTouchStart)
+                break;
+            
             _touchParam._frickTime += delta;
             
             if(_touchParam._frickTime >= _touchParam._maxFrickTime)
@@ -219,6 +226,9 @@ void Glass::slideInput(TouchInfo& info)
             break;
         case TouchType::ENDED:
         {
+            if(!_touchParam._isTouchStart)
+                break;
+            
             _touchParam._end.x = info.posX;
             _touchParam._end.y = info.posY;
             
@@ -239,6 +249,8 @@ void Glass::slideInput(TouchInfo& info)
             _physicParam._velocity.z = dir.getNormalized().y * power;
             
             _isRunFallAction = false;
+            
+            _touchParam._isTouchStart = false;
         }
             break;
     }
@@ -356,7 +368,6 @@ void Glass::startRespawn()
 {
     auto obj = getScene()->findGameObject("JudgePocket");
     auto judgePocket = dynamic_pointer_cast<JudgePocket>(obj);
-    judgePocket->moveRandom();
     
     auto trans = getTransform();
     auto scene = getDynamicScene<MainScene>();
@@ -377,8 +388,10 @@ void Glass::startRespawn()
         {
             scene->resetScore();
             scene->resetLeftGlassCount();
+            judgePocket->reset();
         }
     }
+    judgePocket->moveRandom();
     
     _state = State::RESPAWN;
     Vector3 setPos = _defaultPosition;

@@ -13,6 +13,7 @@ JudgePocket::JudgePocket():
 _defaultRadius(0.3f),
 _hightScoreRadius(0.05f),
 _radius(_defaultRadius),
+_minRadius(0.08f),
 _defaultColor(Color4(0.2f,0.8f,0.2f,0.5f)),
 _color(_defaultColor),
 _highScoreColor(Color4(0.94f,0.98f,0.13f,0.5f)),
@@ -84,6 +85,10 @@ void JudgePocket::updateCircleColor()
 
 void JudgePocket::moveRandom()
 {
+    _radius -= 0.002f;
+    if(_radius < _minRadius)
+        _radius = _minRadius;
+    
     auto trans = getTransform();
     Vector3 setPos = trans->getPosition();
     
@@ -124,4 +129,9 @@ bool JudgePocket::isInHighScorePocket(Vector3 pos)
     }
     
     return false;
+}
+
+void JudgePocket::reset()
+{
+    _radius = _defaultRadius;
 }

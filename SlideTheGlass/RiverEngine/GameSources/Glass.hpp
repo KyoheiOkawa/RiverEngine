@@ -26,6 +26,7 @@ public:
         Vector3 _touchStartGlassPos;
         float _frickTime;
         bool _isTouching;
+        bool _isTouchStart;
         
         const float _maxFrickTime = 0.5f;
         const float _slidePower = 0.008f;
