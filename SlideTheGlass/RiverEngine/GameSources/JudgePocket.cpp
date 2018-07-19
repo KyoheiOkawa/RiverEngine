@@ -85,6 +85,10 @@ void JudgePocket::updateCircleColor()
 
 void JudgePocket::moveRandom()
 {
+    auto action = getComponent<Action>();
+    if(action->getIsRunning())
+        return;
+    
     _radius -= 0.004f;
     if(_radius < _minRadius)
         _radius = _minRadius;
@@ -95,7 +99,6 @@ void JudgePocket::moveRandom()
     setPos.x = Random::getInstance()->range(-0.5f+_radius, 0.5f-_radius);
     setPos.z = Random::getInstance()->range(-1.1f+_radius*2, 0.0f+_radius);
     
-    auto action = getComponent<Action>();
     action->stop();
     action->actionClear();
     
