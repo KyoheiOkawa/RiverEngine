@@ -85,7 +85,7 @@ void JudgePocket::updateCircleColor()
 
 void JudgePocket::moveRandom()
 {
-    _radius -= 0.002f;
+    _radius -= 0.004f;
     if(_radius < _minRadius)
         _radius = _minRadius;
     

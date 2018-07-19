@@ -379,7 +379,6 @@ void Glass::startRespawn()
     else if(judgePocket->isInPocket(trans->getPosition()))
     {
         scene->addScore(1);
-        scene->incLeftGlass();
     }
     else
     {
