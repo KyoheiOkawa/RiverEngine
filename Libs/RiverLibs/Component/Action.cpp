@@ -49,6 +49,7 @@ MoveTo::MoveTo(const std::shared_ptr<GameObject>& gameObjectPtr,const Vector3 en
 ActionObj(gameObjectPtr),
 _endPos(endPos),
 _time(time),
+_timeCount(0.0f),
 _lerpRate(lerpRate)
 {
     
@@ -135,5 +136,6 @@ void Action::stop()
 
 void Action::actionClear()
 {
+    stop();
     _actions.clear();
 }

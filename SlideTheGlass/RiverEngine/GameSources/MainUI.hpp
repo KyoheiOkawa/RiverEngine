@@ -25,6 +25,8 @@ public:
     virtual bool init() override;
     virtual void update() override;
     virtual void draw() override;
+    
+    void setHighScore(unsigned int score);
 };
 
 #endif /* MainUI_hpp */

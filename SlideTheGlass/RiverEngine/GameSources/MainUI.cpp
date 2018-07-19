@@ -35,9 +35,13 @@ bool HighScoreUI::init()
     _wordSprite = Sprite::createWithTexture("HIGHSCORE_UI");
     _wordSprite->getTransform()->setPosition(Vector3(width/2.0f,height/2.0f-(height/4.0f)+20,0.0f));
     
-    _score = NumberSprite::create("NUMBERS_TX", 1000);
+    int highScore = UserDefaults::getInstance()->getInt("HighScore");
+    
+    _score = NumberSprite::create("NUMBERS_TX", (unsigned int)highScore);
     _score->getTransform()->setPosition(Vector3(width/2.0f,height/2.0f-(height/4.0f)+60.0f+20,0.0f));
     _score->getTransform()->setScale(Vector3(0.5f,0.5f,0.5f));
+    
+    addTag("HighScoreUI");
     
     return true;
 }
@@ -51,4 +55,14 @@ void HighScoreUI::draw()
 {
     _wordSprite->draw();
     _score->draw();
+}
+
+void HighScoreUI::setHighScore(unsigned int score)
+{
+    int highScore = UserDefaults::getInstance()->getInt("HighScore");
+    if((int)score > highScore)
+    {
+        UserDefaults::getInstance()->setInt((int)score, "HighScore");
+        _score->changeNumber(score);
+    }
 }

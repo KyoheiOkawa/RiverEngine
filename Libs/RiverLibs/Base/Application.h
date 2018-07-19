@@ -69,7 +69,7 @@ public:
     }
     
     float getDeltaTime(){
-        if(_deltaTime > 1.0f){
+        if(_deltaTime > 1.0f || _deltaTime < 0.0f){
             return 0;
         }
         

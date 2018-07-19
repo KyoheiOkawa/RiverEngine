@@ -9,6 +9,7 @@
 #include "Glass.hpp"
 #include "JudgePocket.hpp"
 #include "MainScene.hpp"
+#include "MainUI.hpp"
 
 Glass::Glass()
 {
@@ -371,14 +372,17 @@ void Glass::startRespawn()
     
     auto trans = getTransform();
     auto scene = getDynamicScene<MainScene>();
+    auto highScoreUI = dynamic_pointer_cast<HighScoreUI>(getScene()->findGameObject("HighScoreUI"));
     if(judgePocket->isInHighScorePocket(trans->getPosition()))
     {
         scene->addScore(10);
+        highScoreUI->setHighScore(scene->getScore());
         scene->incLeftGlass();
     }
     else if(judgePocket->isInPocket(trans->getPosition()))
     {
         scene->addScore(1);
+        highScoreUI->setHighScore(scene->getScore());
     }
     else
     {
