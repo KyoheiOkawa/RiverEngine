@@ -15,6 +15,7 @@ Random* Random::getInstance()
     if(_instance == nullptr)
     {
         _instance = new Random();
+        _instance->init();
     }
     
     return _instance;
