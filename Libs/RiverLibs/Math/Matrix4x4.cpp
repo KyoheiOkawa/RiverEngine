@@ -289,8 +289,8 @@ Matrix4x4 Matrix4x4::create2DAffine(const Vector3 pos, const Vector2 spriteSize,
     const GLfloat surfaceAspect = (GLfloat) screenSize.x / (GLfloat) screenSize.y;
     const Matrix4x4 aspect = Matrix4x4::createScale(1, surfaceAspect, 1);
     
-    const GLfloat xScale = (GLfloat)spriteSize.x / (GLfloat) screenSize.x * 2.0f;
-    const GLfloat yScale = (GLfloat)spriteSize.y / (GLfloat) screenSize.x * 2.0f;
+    const GLfloat xScale = ((GLfloat)spriteSize.x / (GLfloat) screenSize.x * 2.0f)*scale.x;
+    const GLfloat yScale = ((GLfloat)spriteSize.y / (GLfloat) screenSize.x * 2.0f)*scale.y;
     
     const Matrix4x4 scaleMat = Matrix4x4::createScale(xScale, yScale, 0);
     

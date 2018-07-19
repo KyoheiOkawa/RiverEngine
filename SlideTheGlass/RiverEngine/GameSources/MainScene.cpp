@@ -12,6 +12,7 @@
 #include "Glass.hpp"
 #include "STGWord.hpp"
 #include "JudgePocket.hpp"
+#include "MainUI.hpp"
 
 MainScene::MainScene()
 {
@@ -40,13 +41,14 @@ bool MainScene::init()
     if(!Scene::init())
         return false;
     
-    Director::getInstance()->registerTexture("TABLE_TX", "table.png");
-    Director::getInstance()->registerTexture("STG_TX", "STG.png");
-    Director::getInstance()->registerTexture("NUMBERS_TX", "Numbers.png");
-    Director::getInstance()->registerTexture("GLASS_SP", "GlassSprite.png");
-    Director::getInstance()->registerTexture("GLASS_NONE_SP", "GlassBatsu.png");
-    
     auto director = Director::getInstance();
+    director->registerTexture("TABLE_TX", "table.png");
+    director->registerTexture("STG_TX", "STG.png");
+    director->registerTexture("NUMBERS_TX", "Numbers.png");
+    director->registerTexture("GLASS_SP", "GlassSprite.png");
+    director->registerTexture("GLASS_NONE_SP", "GlassBatsu.png");
+    director->registerTexture("HIGHSCORE_UI", "highScore.png");
+    
     auto audioEngine = SimpleAudioEngine::getInstance();
     audioEngine->registerBgm("Assets/Why", "BGM_WHY");
     audioEngine->registerSe("Assets/cursor", "SE_CURSOR");
@@ -57,9 +59,12 @@ bool MainScene::init()
     table->getTransform()->setScale(Vector3(1.75f,1.75f,1.75f));
     table->getTransform()->setRotation(Quaternion(Vector3(0,1,0), Deg2Rad(270)));
     addGameObject(table);
+    
+    auto highScoreUI = HighScoreUI::create();
+    addGameObject(highScoreUI);
 
     auto stg = STGWord::create();
-    stg->getTransform()->setPosition(Vector3(0,1.25f,-1.5f));
+    stg->getTransform()->setPosition(Vector3(0,1.6f,-1.5f));
     stg->getTransform()->setScale(Vector3(0.5f,0.5f,0.5f));
     addGameObject(stg);
 
@@ -80,7 +85,6 @@ bool MainScene::init()
     {
         auto sp = Sprite::createWithTexture("GLASS_SP");
         sp->getTransform()->setPosition(Vector3(40.0f+80*i,height-70.0f,0.0f));
-        sp->getTransform()->setScale(Vector3(0.5f,0.5f,0.5f));
         addGameObject(sp);
         _leftGlassSprites.push_back(sp);
     }

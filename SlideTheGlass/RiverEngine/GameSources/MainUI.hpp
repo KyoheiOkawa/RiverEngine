@@ -9,6 +9,22 @@
 #ifndef MainUI_hpp
 #define MainUI_hpp
 
-#include <stdio.h>
+#include "river.h"
+
+class HighScoreUI : public GameObject
+{
+    shared_ptr<Sprite> _wordSprite;
+    shared_ptr<NumberSprite> _score;
+    
+public:
+    HighScoreUI();
+    virtual ~HighScoreUI(){};
+    
+    static std::shared_ptr<HighScoreUI> create();
+    
+    virtual bool init() override;
+    virtual void update() override;
+    virtual void draw() override;
+};
 
 #endif /* MainUI_hpp */
