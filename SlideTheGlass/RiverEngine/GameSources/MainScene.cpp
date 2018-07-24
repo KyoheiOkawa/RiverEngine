@@ -13,6 +13,7 @@
 #include "STGWord.hpp"
 #include "JudgePocket.hpp"
 #include "MainUI.hpp"
+#include "MainUICanvas.hpp"
 
 MainScene::MainScene()
 {
@@ -48,6 +49,7 @@ bool MainScene::init()
     director->registerTexture("GLASS_SP", "GlassSprite.png");
     director->registerTexture("GLASS_NONE_SP", "GlassBatsu.png");
     director->registerTexture("HIGHSCORE_UI", "highScore.png");
+    director->registerTexture("RANK_UI", "Rank.png");
     
     auto audioEngine = SimpleAudioEngine::getInstance();
     audioEngine->registerBgm("Assets/Why", "BGM_WHY");
@@ -88,6 +90,9 @@ bool MainScene::init()
         addGameObject(sp);
         _leftGlassSprites.push_back(sp);
     }
+    
+    auto uiCanvas = MainUICanvas::create();
+    addGameObject(uiCanvas);
     
     return true;
 }

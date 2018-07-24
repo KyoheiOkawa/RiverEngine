@@ -162,7 +162,8 @@ void Glass::draw()
 
 void Glass::onScreenTouched(TouchInfo &info)
 {
-    switch (info.type) {
+    switch (info.type)
+    {
         case TouchType::BEGAN:
             _touchParam._isTouching = true;
             break;
