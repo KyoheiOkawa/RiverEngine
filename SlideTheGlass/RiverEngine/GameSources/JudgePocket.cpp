@@ -43,6 +43,12 @@ bool JudgePocket::init()
     auto trans = getTransform();
     trans->setPosition(Vector3(0.1f,0.8f,0.0f));
     
+    auto userDef = UserDefaults::getInstance();
+    if(userDef->getBool("IsStart"))
+    {
+        _radius = userDef->getFloat("BefRadius");
+    }
+    
     auto action = addComponent<Action>();
     
     addTag("JudgePocket");
@@ -92,6 +98,7 @@ void JudgePocket::moveRandom()
     _radius -= 0.004f;
     if(_radius < _minRadius)
         _radius = _minRadius;
+    UserDefaults::getInstance()->setFloat(_radius, "BefRadius");
     
     auto trans = getTransform();
     Vector3 setPos = trans->getPosition();
@@ -137,4 +144,5 @@ bool JudgePocket::isInHighScorePocket(Vector3 pos)
 void JudgePocket::reset()
 {
     _radius = _defaultRadius;
+    UserDefaults::getInstance()->setFloat(_radius, "BefRadius");
 }

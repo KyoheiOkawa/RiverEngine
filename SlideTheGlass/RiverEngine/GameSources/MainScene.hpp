@@ -38,11 +38,13 @@ public:
     {
         _nowScore += score;
         _scoreNumber->changeNumber(_nowScore);
+        UserDefaults::getInstance()->setInt((int)_nowScore, "BefScore");
     }
     void resetScore()
     {
         _nowScore = 0;
         _scoreNumber->changeNumber(_nowScore);
+        UserDefaults::getInstance()->setInt((int)_nowScore, "BefScore");
     }
     unsigned int getScore(){return _nowScore;}
     
@@ -53,6 +55,7 @@ public:
         else
             _leftGlassCount--;
         
+        UserDefaults::getInstance()->setInt((int)_leftGlassCount, "BefLeftGlass");
         refleshLeftGlassSprites();
     }
     
@@ -62,12 +65,14 @@ public:
         if(_leftGlassCount > _maxLeftGlassCount)
             _leftGlassCount = _maxLeftGlassCount;
         
+        UserDefaults::getInstance()->setInt((int)_leftGlassCount, "BefLeftGlass");
         refleshLeftGlassSprites();
     }
     
     void resetLeftGlassCount()
     {
         _leftGlassCount = _maxLeftGlassCount;
+        UserDefaults::getInstance()->setInt((int)_leftGlassCount, "BefLeftGlass");
         refleshLeftGlassSprites();
     }
     

@@ -56,6 +56,18 @@ bool MainScene::init()
     audioEngine->registerSe("Assets/cursor", "SE_CURSOR");
     audioEngine->startBgm("BGM_WHY",1.0f,AL_TRUE);
     
+    auto userDef = UserDefaults::getInstance();
+    if(userDef->getBool("IsStart"))
+    {
+        _nowScore = (unsigned int)userDef->getInt("BefScore");
+        _leftGlassCount = (unsigned int)userDef->getInt("BefLeftGlass");
+    }
+    else
+    {
+        _nowScore = 0;
+        _leftGlassCount = 3;
+    }
+    
     auto table = Table::create();
     table->getTransform()->setPosition(Vector3(0,-0.5f,0));
     table->getTransform()->setScale(Vector3(1.75f,1.75f,1.75f));
@@ -82,6 +94,10 @@ bool MainScene::init()
     _scoreNumber->getTransform()->setPosition(Vector3(width/ 2.0f,70.0f,0.0f));
     addGameObject(_scoreNumber);
     _scoreNumber->setDrawLayer(5);
+    if(userDef->getBool("IsStart"))
+    {
+        _scoreNumber->changeNumber((unsigned int)userDef->getInt("BefScore"));
+    }
     
     for(int i = 0; i < _maxLeftGlassCount; i++)
     {
@@ -93,6 +109,11 @@ bool MainScene::init()
     
     auto uiCanvas = MainUICanvas::create();
     addGameObject(uiCanvas);
+    
+    if(!userDef->getBool("IsStart"))
+        userDef->setBool(true, "IsStart");
+    
+    refleshLeftGlassSprites();
     
     return true;
 }
