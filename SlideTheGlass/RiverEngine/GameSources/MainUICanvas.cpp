@@ -78,6 +78,8 @@ void MainUICanvas::onScreenTouched(TouchInfo& info)
         case TouchType::ENDED:
         {
             btTrans->setScale(Vector3(1.0f,1.0f,1.0f));
+            if(isInPoint(point, btPos, _rankButton->getSpriteSize()))
+                LeaderBoardUtil::getInstance()->showLeaderBoard();
             break;
         }
     }

@@ -31,6 +31,8 @@
     
     [self setView:glesView];
     [self performSelectorInBackground:@selector(es20appLoop:) withObject:self];
+    
+    [self authenticateLocalPlayer];
 }
 
 -(void) showAbortDialocOnMainThread:(id)message{
@@ -205,6 +207,23 @@
     
     Application* app = Application::getInstance();
     app->onScreenTouched(touchInfo);
+}
+
+- (void)authenticateLocalPlayer
+{
+    GKLocalPlayer* player = [GKLocalPlayer localPlayer];
+    player.authenticateHandler = ^(UIViewController* ui, NSError* error)
+    {
+        if(nil != ui)
+        {
+            [self presentViewController:ui animated:YES completion:nil];
+        }
+    };
+}
+
+- (void)gameCenterViewControllerDidFinish:(GKGameCenterViewController *)gameCenterViewController
+{
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 @end

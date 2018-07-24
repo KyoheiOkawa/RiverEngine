@@ -57,6 +57,8 @@
 		D6DD0D7F20557906003998B7 /* 3DTestObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6DD0D7D20557906003998B7 /* 3DTestObject.cpp */; };
 		D6E627F220F8867400208325 /* JudgePocket.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6E627F020F8867400208325 /* JudgePocket.cpp */; };
 		D6EE48EC2106B57E0077C536 /* MainUICanvas.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6EE48EA2106B57D0077C536 /* MainUICanvas.cpp */; };
+		D6EE48F42106E6EA0077C536 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D6EE48F32106E6EA0077C536 /* GameKit.framework */; };
+		D6EE48FA2106EE850077C536 /* LeaderBoardUtil.mm in Sources */ = {isa = PBXBuildFile; fileRef = D6EE48F82106EE850077C536 /* LeaderBoardUtil.mm */; };
 		D6F6FAF11EFE48490041A212 /* Assets in Resources */ = {isa = PBXBuildFile; fileRef = D6F6FAF01EFE48490041A212 /* Assets */; };
 		D6FED0F91F3B46A300E0C028 /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D6FED0F81F3B46A300E0C028 /* OpenAL.framework */; };
 /* End PBXBuildFile section */
@@ -177,6 +179,9 @@
 		D6E627F120F8867400208325 /* JudgePocket.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = JudgePocket.hpp; sourceTree = "<group>"; };
 		D6EE48EA2106B57D0077C536 /* MainUICanvas.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MainUICanvas.cpp; sourceTree = "<group>"; };
 		D6EE48EB2106B57E0077C536 /* MainUICanvas.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = MainUICanvas.hpp; sourceTree = "<group>"; };
+		D6EE48F32106E6EA0077C536 /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
+		D6EE48F82106EE850077C536 /* LeaderBoardUtil.mm */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; path = LeaderBoardUtil.mm; sourceTree = "<group>"; };
+		D6EE48F92106EE850077C536 /* LeaderBoardUtil.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = LeaderBoardUtil.hpp; sourceTree = "<group>"; };
 		D6F6FAF01EFE48490041A212 /* Assets */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Assets; sourceTree = "<group>"; };
 		D6FED0F81F3B46A300E0C028 /* OpenAL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenAL.framework; path = System/Library/Frameworks/OpenAL.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
@@ -186,6 +191,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D6EE48F42106E6EA0077C536 /* GameKit.framework in Frameworks */,
 				D6FED0F91F3B46A300E0C028 /* OpenAL.framework in Frameworks */,
 				D611094C1EC6BBC300B89DFE /* OpenGLES.framework in Frameworks */,
 				D611094A1EC6BBBA00B89DFE /* UIKit.framework in Frameworks */,
@@ -260,6 +266,7 @@
 		D61109481EC6BBB900B89DFE /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D6EE48F32106E6EA0077C536 /* GameKit.framework */,
 				D6FED0F81F3B46A300E0C028 /* OpenAL.framework */,
 				D611094B1EC6BBC300B89DFE /* OpenGLES.framework */,
 				D61109491EC6BBBA00B89DFE /* UIKit.framework */,
@@ -407,6 +414,8 @@
 				D687DFE8207902540034DCB3 /* UserDefaults.hpp */,
 				D634AEF620F4599300DC2E2D /* Util.cpp */,
 				D634AEF720F4599300DC2E2D /* Util.hpp */,
+				D6EE48F82106EE850077C536 /* LeaderBoardUtil.mm */,
+				D6EE48F92106EE850077C536 /* LeaderBoardUtil.hpp */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -503,7 +512,7 @@
 				TargetAttributes = {
 					D61109051EC6B5A000B89DFE = {
 						CreatedOnToolsVersion = 8.3.2;
-						DevelopmentTeam = 5NPG5R2A3R;
+						DevelopmentTeam = GV8A9H7JH2;
 						ProvisioningStyle = Automatic;
 					};
 					D61109211EC6B5A100B89DFE = {
@@ -581,6 +590,7 @@
 				D648B2D31F8E514E00C57D9C /* Director.cpp in Sources */,
 				D6C2FF2321001B9000963531 /* MainUI.cpp in Sources */,
 				D610EC6A20EB325400C9E7BF /* Glass.cpp in Sources */,
+				D6EE48FA2106EE850077C536 /* LeaderBoardUtil.mm in Sources */,
 				D6DB598C20FDBE4A00B9F09C /* Random.cpp in Sources */,
 				D648B2DF1F8E514E00C57D9C /* RawPixelImage.mm in Sources */,
 				D648B2D81F8E514E00C57D9C /* GameObject.cpp in Sources */,
@@ -766,12 +776,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 5NPG5R2A3R;
+				DEVELOPMENT_TEAM = GV8A9H7JH2;
 				"HEADER_SEARCH_PATHS[arch=*]" = ../Libs;
 				INFOPLIST_FILE = RiverEngine/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.KyoheiOkawa.SlideTheGlass;
+				PRODUCT_BUNDLE_IDENTIFIER = jp.dip.bigriver.slidetheglass3d;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -781,12 +791,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 5NPG5R2A3R;
+				DEVELOPMENT_TEAM = GV8A9H7JH2;
 				"HEADER_SEARCH_PATHS[arch=*]" = ../Libs;
 				INFOPLIST_FILE = RiverEngine/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.KyoheiOkawa.SlideTheGlass;
+				PRODUCT_BUNDLE_IDENTIFIER = jp.dip.bigriver.slidetheglass3d;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

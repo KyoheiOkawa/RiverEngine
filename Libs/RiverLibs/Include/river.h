@@ -36,6 +36,7 @@
 #include "Util.hpp"
 #include "FileUtils.hpp"
 #include "UserDefaults.hpp"
+#include "LeaderBoardUtil.hpp"
 #include "Component.hpp"
 #include "Transform.hpp"
 #include "SimpleAudioEngine.hpp"

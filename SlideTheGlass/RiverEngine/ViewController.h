@@ -7,11 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <GameKit/GameKit.h>
 #import "RiverLibs/Renderer/GLES20View.h"
 #import "RiverLibs/Base/Application.h"
 #import "RiverLibs/Renderer/support_gl.h"
 
-@interface ViewController : UIViewController
+@interface ViewController : UIViewController<GKGameCenterControllerDelegate>
 {
     GLES20View *glesView;
     
@@ -26,6 +27,7 @@
 
 -(void) showAbortDialog:(NSString*) message;
 
+-(void) authenticateLocalPlayer;
 
 @end
 
