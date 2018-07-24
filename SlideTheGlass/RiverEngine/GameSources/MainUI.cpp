@@ -64,5 +64,6 @@ void HighScoreUI::setHighScore(unsigned int score)
     {
         UserDefaults::getInstance()->setInt((int)score, "HighScore");
         _score->changeNumber(score);
+        LeaderBoardUtil::getInstance()->sendScore((int)score);
     }
 }

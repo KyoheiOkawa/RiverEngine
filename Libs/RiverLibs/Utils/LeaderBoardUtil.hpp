@@ -22,6 +22,7 @@ public:
     static LeaderBoardUtil* getInstance();
     
     void showLeaderBoard();
+    void sendScore(int score);
 };
 
 #endif /* LeaderBoardUtil_hpp */

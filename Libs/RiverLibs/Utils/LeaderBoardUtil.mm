@@ -33,3 +33,14 @@ void LeaderBoardUtil::showLeaderBoard()
         [view presentViewController:gcView animated:YES completion:nil];
     }
 }
+
+void LeaderBoardUtil::sendScore(int score)
+{
+    GKScore* gkScore = [[GKScore alloc] initWithLeaderboardIdentifier:@"stl_rank"];
+    gkScore.value = (int64_t)score;
+    [GKScore reportScores:@[gkScore] withCompletionHandler:^(NSError * error)
+    {
+        if(error)
+            printf("can't send score");
+    }];
+}
