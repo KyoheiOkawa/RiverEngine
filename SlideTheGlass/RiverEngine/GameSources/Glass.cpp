@@ -116,7 +116,6 @@ void Glass::draw()
     glEnable(GL_DEPTH_TEST);
     glEnableVertexAttribArray(attr_pos);
     glEnableVertexAttribArray(attr_normal);
-    assert(glGetError()==GL_NO_ERROR);
     
     glEnable(GL_CULL_FACE);
     glCullFace(GL_BACK);
@@ -133,32 +132,23 @@ void Glass::draw()
     world *= _meshTransform;
     
     glUniformMatrix4fv(unif_lookat, 1, GL_FALSE, lookAt.matrix);
-    assert(glGetError()==GL_NO_ERROR);
     glUniformMatrix4fv(unif_projection, 1, GL_FALSE, projection.matrix);
-    assert(glGetError()==GL_NO_ERROR);
     glUniformMatrix4fv(unif_world, 1, GL_FALSE, world.matrix);
-    assert(glGetError()==GL_NO_ERROR);
     glUniform4f(unif_color, 1.0f, 1.0f, 1.0f, 1.0f);
-    assert(glGetError()==GL_NO_ERROR);
     
     Vector3 light(-1.0f,-1.0f,-1.0f);
     light.normalize();
     glUniform3f(unif_lightDir, light.x, light.y, light.z);
-    assert(glGetError()==GL_NO_ERROR);
     
     glVertexAttribPointer(attr_pos, 3, GL_FLOAT, GL_FALSE, sizeof(PositionNormal), (GLvoid*)_mesh->GetVertexPointer());
-    assert(glGetError()==GL_NO_ERROR);
     glVertexAttribPointer(attr_normal, 3, GL_FLOAT, GL_FALSE, sizeof(PositionNormal), (GLvoid*)((GLubyte*)_mesh->GetVertexPointer() + sizeof(GLfloat)*3));
-    assert(glGetError()==GL_NO_ERROR);
     
     glDrawArrays(GL_TRIANGLES, 0, (GLsizei)_mesh->GetVertexCount());
-    assert(glGetError()==GL_NO_ERROR);
     
     glDisable(GL_DEPTH_TEST);
     glDisable(GL_CULL_FACE);
     glDisableVertexAttribArray(attr_pos);
     glDisableVertexAttribArray(attr_normal);
-    assert(glGetError()==GL_NO_ERROR);
     
     //PrimitiveDraws::drawPlaneCircle(trans->getPosition() + Vector3(0,0.1f,0), 0.25f, Color4(1,1,1,0.6f));
 }

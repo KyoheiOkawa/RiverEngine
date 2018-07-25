@@ -38,7 +38,6 @@ namespace PrimitiveDraws
         
         glEnable(GL_BLEND);
         glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-        assert(glGetError()==GL_NO_ERROR);
         
         Matrix4x4 lookAt,projection;
         Director::getInstance()->getScene()->GetMainCamera()->GetLookAtProjection(lookAt, projection);
@@ -53,18 +52,14 @@ namespace PrimitiveDraws
         glUniform4f(unif_color, color.r, color.g, color.b, color.a);
         
         glVertexAttribPointer(attr_pos, 3, GL_FLOAT, GL_FALSE, sizeof(PositionColor), (GLvoid*)mesh->GetVertexPointer());
-        assert(glGetError()==GL_NO_ERROR);
         glVertexAttribPointer(attr_color, 4, GL_UNSIGNED_BYTE, GL_FALSE, sizeof(PositionColor), (GLvoid*)((GLubyte*)mesh->GetVertexPointer() + sizeof(GLfloat)*3));
-        assert(glGetError()==GL_NO_ERROR);
         
         glDrawArrays(GL_TRIANGLE_FAN, 0, (GLsizei)mesh->GetVertexCount());
-        assert(glGetError()==GL_NO_ERROR);
         
         glDisable(GL_DEPTH_TEST);
         glDisableVertexAttribArray(attr_pos);
         glDisableVertexAttribArray(attr_color);
         
         glDisable(GL_BLEND);
-        assert(glGetError()==GL_NO_ERROR);
     }
 }

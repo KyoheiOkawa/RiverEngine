@@ -75,7 +75,6 @@ void Table::draw()
     glEnableVertexAttribArray(attr_pos);
     glEnableVertexAttribArray(attr_normal);
     glEnableVertexAttribArray(attr_uv);
-    assert(glGetError()==GL_NO_ERROR);
     
     Matrix4x4 lookAt,projection;
     Director::getInstance()->getScene()->GetMainCamera()->GetLookAtProjection(lookAt, projection);
@@ -88,34 +87,24 @@ void Table::draw()
     Matrix4x4 world = pos * scale * rot;
     
     glUniformMatrix4fv(unif_lookat, 1, GL_FALSE, lookAt.matrix);
-    assert(glGetError()==GL_NO_ERROR);
     glUniformMatrix4fv(unif_projection, 1, GL_FALSE, projection.matrix);
-    assert(glGetError()==GL_NO_ERROR);
     glUniformMatrix4fv(unif_world, 1, GL_FALSE, world.matrix);
-    assert(glGetError()==GL_NO_ERROR);
     glUniform4f(unif_color, 1.0f, 1.0f, 1.0f, 1.0f);
-    assert(glGetError()==GL_NO_ERROR);
     
     Vector3 light(-1.0f,-1.0f,1.0f);
     light.normalize();
     glUniform3f(unif_lightDir, light.x, light.y, light.z);
-    assert(glGetError()==GL_NO_ERROR);
     
     glVertexAttribPointer(attr_pos, 3, GL_FLOAT, GL_FALSE, sizeof(PositionNormalTexture), (GLvoid*)((GLubyte*)_mesh->GetVertexPointer()));
-    assert(glGetError()==GL_NO_ERROR);
     glVertexAttribPointer(attr_normal, 3, GL_FLOAT, GL_FALSE, sizeof(PositionNormalTexture), (GLvoid*)((GLubyte*)_mesh->GetVertexPointer() + sizeof(GLfloat)*3));
-    assert(glGetError()==GL_NO_ERROR);
     glVertexAttribPointer(attr_uv, 2, GL_FLOAT, GL_FALSE, sizeof(PositionNormalTexture), (GLvoid*)((GLubyte*)_mesh->GetVertexPointer() + sizeof(GLfloat)*6));
-    assert(glGetError()==GL_NO_ERROR);
     
     glBindTexture(GL_TEXTURE_2D, textureId);
 
     glDrawArrays(GL_TRIANGLES, 0, (GLsizei)_mesh->GetVertexCount());
-    assert(glGetError()==GL_NO_ERROR);
     
     glDisable(GL_DEPTH_TEST);
     glDisableVertexAttribArray(attr_pos);
     glDisableVertexAttribArray(attr_normal);
     glDisableVertexAttribArray(attr_uv);
-    assert(glGetError()==GL_NO_ERROR);
 }
