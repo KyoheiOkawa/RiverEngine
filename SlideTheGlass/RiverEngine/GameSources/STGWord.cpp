@@ -100,7 +100,7 @@ void STGWord::draw()
     glUniform4f(unif_color, 1.0f, 1.0f, 1.0f, 1.0f);
     assert(glGetError()==GL_NO_ERROR);
     
-    Vector3 light(-1.0f,-1.0f,-1.0f);
+    Vector3 light(-0.0f,-0.0f,-1.0f);
     light.normalize();
     glUniform3f(unif_lightDir, light.x, light.y, light.z);
     assert(glGetError()==GL_NO_ERROR);
