@@ -52,9 +52,19 @@ bool MainScene::init()
     director->registerTexture("RANK_UI", "Rank.png");
     
     auto audioEngine = SimpleAudioEngine::getInstance();
-    audioEngine->registerBgm("Assets/Why", "BGM_WHY");
-    audioEngine->registerSe("Assets/cursor", "SE_CURSOR");
-    audioEngine->startBgm("BGM_WHY",1.0f,AL_TRUE);
+    audioEngine->registerBgm("Assets/blend", "MAIN_BGM");
+    audioEngine->registerSe("Assets/glass_break", "GLASS_BREAK");
+    audioEngine->registerSe("Assets/GlassSlide", "GLASS_SLIDE");
+    audioEngine->registerSe("Assets/glassTakeOn", "GLASS_ON");
+    audioEngine->registerSe("Assets/Excellent", "EXCELLENT");
+    audioEngine->registerSe("Assets/Good", "GOOD");
+    audioEngine->registerSe("Assets/HighScore", "HIGH_SCORE");
+    audioEngine->registerSe("Assets/Nice", "NICE");
+    audioEngine->registerSe("Assets/OhMan", "OH_MAN");
+    audioEngine->registerSe("Assets/OhYeah", "OH_YEAH");
+    audioEngine->registerSe("Assets/OK", "OK");
+    audioEngine->registerSe("Assets/Oops", "OOPS");
+    audioEngine->startBgm("MAIN_BGM",0.5f,AL_TRUE);
     
     auto userDef = UserDefaults::getInstance();
     if(userDef->getBool("IsStart"))

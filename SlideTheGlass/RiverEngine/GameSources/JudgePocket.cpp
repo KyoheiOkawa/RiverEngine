@@ -13,7 +13,7 @@ JudgePocket::JudgePocket():
 _defaultRadius(0.3f),
 _hightScoreRadius(0.05f),
 _radius(_defaultRadius),
-_minRadius(0.08f),
+_minRadius(0.07f),
 _defaultColor(Color4(0.2f,0.8f,0.2f,0.5f)),
 _color(_defaultColor),
 _highScoreColor(Color4(0.94f,0.98f,0.13f,0.5f)),

@@ -23,4 +23,16 @@ struct PhysicParam
     }
 };
 
+const string SUCCESS_VOICES[] ={
+  "GOOD",
+  "NICE",
+  "OH_YEAH",
+  "OK"
+};
+
+const string MISS_VOICES[] ={
+    "OH_MAN",
+    "OOPS"
+};
+
 #endif /* Project_hpp */

@@ -86,7 +86,10 @@ void Glass::update()
         else
         {
             if(getTransform()->getPosition().y < -2.0f)
+            {
+                SimpleAudioEngine::getInstance()->startSe("GLASS_BREAK", 1.0f);
                 startRespawn();
+            }
         }
     }
     
@@ -242,6 +245,7 @@ void Glass::slideInput(TouchInfo& info)
             if(slideLen <= minLen)
                 break;
             
+            SimpleAudioEngine::getInstance()->startSe("GLASS_SLIDE", 1.0f);
             _state = State::SLIDE;
             
             float power = slideLen * _touchParam._slidePower;
@@ -306,6 +310,7 @@ void Glass::respawn()
         trans->setPosition(_defaultPosition);
         _physicParam._velocity = Vector3::ZERO();
         _state = State::STAY;
+        SimpleAudioEngine::getInstance()->startSe("GLASS_ON", 1.0f);
     }
 }
 
@@ -377,12 +382,27 @@ void Glass::startRespawn()
     if(judgePocket->isInHighScorePocket(trans->getPosition()))
     {
         scene->addScore(10);
+        
+        if(scene->getScore() > UserDefaults::getInstance()->getInt("HighScore"))
+            SimpleAudioEngine::getInstance()->startSe("HIGH_SCORE", 1.0f);
+        else
+            SimpleAudioEngine::getInstance()->startSe("EXCELLENT", 1.0f);
+        
         highScoreUI->setHighScore(scene->getScore());
         scene->incLeftGlass();
     }
     else if(judgePocket->isInPocket(trans->getPosition()))
     {
         scene->addScore(1);
+        
+        if(scene->getScore() > UserDefaults::getInstance()->getInt("HighScore"))
+            SimpleAudioEngine::getInstance()->startSe("HIGH_SCORE", 1.0f);
+        else
+        {
+            int rand = Random::getInstance()->range(0, 3);
+            SimpleAudioEngine::getInstance()->startSe(SUCCESS_VOICES[rand], 1.0f);
+        }
+        
         highScoreUI->setHighScore(scene->getScore());
     }
     else
@@ -394,6 +414,9 @@ void Glass::startRespawn()
             scene->resetLeftGlassCount();
             judgePocket->reset();
         }
+        
+        int rand = Random::getInstance()->range(0, 1);
+        SimpleAudioEngine::getInstance()->startSe(MISS_VOICES[rand], 1.0f);
     }
     judgePocket->moveRandom();
     
