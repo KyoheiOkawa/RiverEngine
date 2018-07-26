@@ -89,8 +89,8 @@ bool MainScene::init()
     addGameObject(highScoreUI);
 
     auto stg = STGWord::create();
-    stg->getTransform()->setPosition(Vector3(0,1.6f,-1.5f));
-    stg->getTransform()->setScale(Vector3(0.5f,0.5f,0.5f));
+    stg->getTransform()->setPosition(Vector3(0,1.3f,-1.5f));
+    stg->getTransform()->setScale(Vector3(0.4f,0.4f,0.4f));
     addGameObject(stg);
 
     auto glass = Glass::create();
@@ -102,7 +102,7 @@ bool MainScene::init()
     float width = Application::getInstance()->getSurfaceWidth();
     float height = Application::getInstance()->getSurfaceHeight();
     _scoreNumber = NumberSprite::create("NUMBERS_TX", 0);
-    _scoreNumber->getTransform()->setPosition(Vector3(width/ 2.0f,70.0f,0.0f));
+    _scoreNumber->getTransform()->setPosition(Vector3(width/ 2.0f,height / 8.0f,0.0f));
     addGameObject(_scoreNumber);
     _scoreNumber->setDrawLayer(5);
     if(userDef->getBool("IsStart"))
@@ -113,7 +113,8 @@ bool MainScene::init()
     for(int i = 0; i < _maxLeftGlassCount; i++)
     {
         auto sp = Sprite::createWithTexture("GLASS_SP");
-        sp->getTransform()->setPosition(Vector3(40.0f+80*i,height-70.0f,0.0f));
+        float d = height / 16.0f;
+        sp->getTransform()->setPosition(Vector3(50.0f+80*i,height-d,0.0f));
         addGameObject(sp);
         _leftGlassSprites.push_back(sp);
     }
@@ -134,7 +135,10 @@ bool MainScene::init()
     addGameObject(conf);
     
     if(!userDef->getBool("IsStart"))
+    {
+        userDef->setInt(3, "BefLeftGlass");
         userDef->setBool(true, "IsStart");
+    }
     
     refleshLeftGlassSprites();
     

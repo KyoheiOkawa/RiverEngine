@@ -228,6 +228,15 @@ void Glass::slideInput(TouchInfo& info)
             _touchParam._end.y = info.posY;
             
             Vector2 dir = _touchParam._end - _touchParam._fulcrum;
+            
+            float width = Application::getInstance()->getSurfaceWidth();
+            float height = Application::getInstance()->getSurfaceHeight();
+            float ratioX = 1136.0f / height;
+            float ratioY = 640.0f / width;
+            
+            dir.x *= ratioX;
+            dir.y *= ratioY;
+            
             float slideLen = dir.magnitude();
             
             //フリックした長さが短い場合は滑らせない
