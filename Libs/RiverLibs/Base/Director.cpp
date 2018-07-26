@@ -37,6 +37,7 @@ void Director::drawScene()
 void Director::createDefaultGLPrograms()
 {
     _programMap["PTSprite"] = GLProgram::createWithFile("Shaders/PTSprite", "Shaders/PTSprite");
+    _programMap["PSprite"] = GLProgram::createWithFile("Shaders/PSprite", "Shaders/PSprite");
     _programMap["PNStatic"] = GLProgram::createWithFile("Shaders/PNStatic", "Shaders/PNStatic");
     _programMap["PNTStatic"] = GLProgram::createWithFile("Shaders/PNTStatic", "Shaders/PNTStatic");
     _programMap["PCStatic"] = GLProgram::createWithFile("Shaders/PCStatic", "Shaders/PCStatic");

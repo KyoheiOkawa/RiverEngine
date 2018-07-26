@@ -49,6 +49,7 @@
 		D684F7FD203499A10032C3A6 /* MeshResource.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D684F7FB203499A10032C3A6 /* MeshResource.cpp */; };
 		D687DFE62071B6680034DCB3 /* Quaternion.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D687DFE42071B6680034DCB3 /* Quaternion.cpp */; };
 		D687DFE9207902540034DCB3 /* UserDefaults.mm in Sources */ = {isa = PBXBuildFile; fileRef = D687DFE7207902540034DCB3 /* UserDefaults.mm */; };
+		D68811AD21081D8200ADD3ED /* Confetti.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D68811AB21081D8200ADD3ED /* Confetti.cpp */; };
 		D69E04AF20EC72D100A0A789 /* STGWord.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D69E04AD20EC72D100A0A789 /* STGWord.cpp */; };
 		D6C2FF2321001B9000963531 /* MainUI.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6C2FF2121001B9000963531 /* MainUI.cpp */; };
 		D6D2D7C920F6E38000382DD6 /* PrimitiveDraws.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6D2D7C720F6E38000382DD6 /* PrimitiveDraws.cpp */; };
@@ -163,6 +164,8 @@
 		D687DFE52071B6680034DCB3 /* Quaternion.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Quaternion.hpp; sourceTree = "<group>"; };
 		D687DFE7207902540034DCB3 /* UserDefaults.mm */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; path = UserDefaults.mm; sourceTree = "<group>"; };
 		D687DFE8207902540034DCB3 /* UserDefaults.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = UserDefaults.hpp; sourceTree = "<group>"; };
+		D68811AB21081D8200ADD3ED /* Confetti.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Confetti.cpp; sourceTree = "<group>"; };
+		D68811AC21081D8200ADD3ED /* Confetti.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Confetti.hpp; sourceTree = "<group>"; };
 		D69E04AD20EC72D100A0A789 /* STGWord.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = STGWord.cpp; sourceTree = "<group>"; };
 		D69E04AE20EC72D100A0A789 /* STGWord.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = STGWord.hpp; sourceTree = "<group>"; };
 		D6C2FF2121001B9000963531 /* MainUI.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = MainUI.cpp; sourceTree = "<group>"; };
@@ -441,6 +444,8 @@
 				D6E627F120F8867400208325 /* JudgePocket.hpp */,
 				D6C2FF2121001B9000963531 /* MainUI.cpp */,
 				D6C2FF2221001B9000963531 /* MainUI.hpp */,
+				D68811AB21081D8200ADD3ED /* Confetti.cpp */,
+				D68811AC21081D8200ADD3ED /* Confetti.hpp */,
 			);
 			path = GameSources;
 			sourceTree = "<group>";
@@ -588,6 +593,7 @@
 				D69E04AF20EC72D100A0A789 /* STGWord.cpp in Sources */,
 				D648B2DB1F8E514E00C57D9C /* Vector2.cpp in Sources */,
 				D648B2D31F8E514E00C57D9C /* Director.cpp in Sources */,
+				D68811AD21081D8200ADD3ED /* Confetti.cpp in Sources */,
 				D6C2FF2321001B9000963531 /* MainUI.cpp in Sources */,
 				D610EC6A20EB325400C9E7BF /* Glass.cpp in Sources */,
 				D6EE48FA2106EE850077C536 /* LeaderBoardUtil.mm in Sources */,

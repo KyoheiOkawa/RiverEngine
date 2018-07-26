@@ -14,6 +14,7 @@
 #include "JudgePocket.hpp"
 #include "MainUI.hpp"
 #include "MainUICanvas.hpp"
+#include "Confetti.hpp"
 
 MainScene::MainScene()
 {
@@ -119,6 +120,14 @@ bool MainScene::init()
     
     auto uiCanvas = MainUICanvas::create();
     addGameObject(uiCanvas);
+    
+    ConfettiFragment::InitParam init;
+    init._color = Color4(1,1,1,0.5f);
+    init._scale = 256;
+    init._startPos = Vector3(width/2.0f,height/2.0f,0.0f);
+    
+    auto conf = ConfettiFragment::create(init);
+    addGameObject(conf);
     
     if(!userDef->getBool("IsStart"))
         userDef->setBool(true, "IsStart");

@@ -11,6 +11,11 @@
 
 #include "stdinc.h"
 
+struct Position
+{
+    GLfloat position[3];
+};
+
 struct PositionTexture
 {
     GLfloat position[3];
