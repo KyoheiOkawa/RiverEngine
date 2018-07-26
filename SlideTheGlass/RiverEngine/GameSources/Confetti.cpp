@@ -55,7 +55,26 @@ bool ConfettiFragment::init()
 
 void ConfettiFragment::update()
 {
+    auto delta = Application::getInstance()->getDeltaTime();
     
+    auto trans = getTransform();
+    Vector3 pos = trans->getPosition();
+    Vector3 scale = trans->getScale();
+    Quaternion rot = trans->getRotation();
+    
+    pos.x += _initParam._force.x * delta;
+    pos.y += _initParam._fallSpeed * delta;
+    
+    scale.x -= _initParam._smallSpeed * delta;
+    if(scale.x < 0.0f) scale.x = 0.0f;
+    scale.y -= _initParam._smallSpeed * delta;
+    if(scale.y < 0.0f) scale.y = 0.0f;
+    
+    rot.z += _initParam._angularVelocity;
+    
+    trans->setPosition(pos);
+    trans->setScale(scale);
+    trans->setRotation(rot);
 }
 
 void ConfettiFragment::draw()

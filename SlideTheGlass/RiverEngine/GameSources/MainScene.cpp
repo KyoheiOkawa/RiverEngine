@@ -123,8 +123,12 @@ bool MainScene::init()
     
     ConfettiFragment::InitParam init;
     init._color = Color4(1,1,1,0.5f);
-    init._scale = 256;
-    init._startPos = Vector3(width/2.0f,height/2.0f,0.0f);
+    init._scale = 64;
+    init._startPos = Vector3(width/2.0f,0.0f,0.0f);
+    init._fallSpeed = 256.0f;
+    init._force = Vector2(56,0);
+    init._angularVelocity = Deg2Rad(90);
+    init._smallSpeed = 16;
     
     auto conf = ConfettiFragment::create(init);
     addGameObject(conf);
