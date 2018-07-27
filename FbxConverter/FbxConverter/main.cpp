@@ -379,7 +379,7 @@ vector<Vector2> GetUVs(const FbxMesh* mesh,const std::vector<int> indices)
             
             uvVec.push_back({
                 static_cast<GLfloat>(uv[0]),
-                static_cast<GLfloat>(uv[1])
+                static_cast<GLfloat>(-uv[1])
             });
         }
         

@@ -186,7 +186,7 @@ bool TestObject2::init()
     
     unif_lightDir = _useProgram->getUnifLocation("unif_lightDir");
     
-    _testMesh = MeshResource<PositionNormal>::createWithFile("Assets/Table");
+    _testMesh = MeshResource<PositionNormalTexture>::createWithFile("Assets/Table");
     
     auto texInfo = Director::getInstance()->getRegesterdTextureInfo("TABLE_TX");
     textureId = texInfo->id;

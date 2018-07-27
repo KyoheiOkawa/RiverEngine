@@ -49,7 +49,7 @@ class TestObject2 : public GameObject
     GLint unif_lightDir;
     GLuint textureId;
     
-    shared_ptr<MeshResource<PositionNormal>> _testMesh;
+    shared_ptr<MeshResource<PositionNormalTexture>> _testMesh;
 public:
     TestObject2();
     virtual ~TestObject2();

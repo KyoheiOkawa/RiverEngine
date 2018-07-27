@@ -45,4 +45,25 @@ public:
     virtual void draw()override;
 };
 
+class ConfettiEmitter : public GameObject
+{
+    float _emitTime=0;
+    const float _emitInterval;
+    const float _emitIntervalRandomLength;
+    float _emitIntervalCount=0;
+    
+    void dropConfettiFrag();
+public:
+    ConfettiEmitter();
+    virtual ~ConfettiEmitter(){}
+    
+    static shared_ptr<ConfettiEmitter> create();
+    
+    virtual bool init()override;
+    virtual void update()override;
+    virtual void draw()override;
+    
+    void emit(float time);
+};
+
 #endif /* Confetti_hpp */

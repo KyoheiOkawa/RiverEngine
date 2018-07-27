@@ -25,6 +25,7 @@
 		D634AEF220F44C5E00DC2E2D /* MathMacro.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D634AEF120F44C5E00DC2E2D /* MathMacro.cpp */; };
 		D634AEF520F4554200DC2E2D /* NumberSprite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D634AEF320F4554200DC2E2D /* NumberSprite.cpp */; };
 		D634AEF820F4599300DC2E2D /* Util.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D634AEF620F4599300DC2E2D /* Util.cpp */; };
+		D641FA0D210AE4DA007EBCCA /* Picture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D641FA0B210AE4DA007EBCCA /* Picture.cpp */; };
 		D648B29E1F8E512D00C57D9C /* Shaders in Resources */ = {isa = PBXBuildFile; fileRef = D648B29D1F8E512D00C57D9C /* Shaders */; };
 		D648B2D11F8E514E00C57D9C /* SimpleAudioEngine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D648B2A21F8E514E00C57D9C /* SimpleAudioEngine.cpp */; };
 		D648B2D21F8E514E00C57D9C /* Application.mm in Sources */ = {isa = PBXBuildFile; fileRef = D648B2A61F8E514E00C57D9C /* Application.mm */; };
@@ -115,6 +116,8 @@
 		D634AEF420F4554200DC2E2D /* NumberSprite.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = NumberSprite.hpp; sourceTree = "<group>"; };
 		D634AEF620F4599300DC2E2D /* Util.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Util.cpp; sourceTree = "<group>"; };
 		D634AEF720F4599300DC2E2D /* Util.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Util.hpp; sourceTree = "<group>"; };
+		D641FA0B210AE4DA007EBCCA /* Picture.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Picture.cpp; sourceTree = "<group>"; };
+		D641FA0C210AE4DA007EBCCA /* Picture.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Picture.hpp; sourceTree = "<group>"; };
 		D648B29D1F8E512D00C57D9C /* Shaders */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Shaders; path = ../../Shaders; sourceTree = "<group>"; };
 		D648B2A21F8E514E00C57D9C /* SimpleAudioEngine.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SimpleAudioEngine.cpp; sourceTree = "<group>"; };
 		D648B2A31F8E514E00C57D9C /* SimpleAudioEngine.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = SimpleAudioEngine.hpp; sourceTree = "<group>"; };
@@ -446,6 +449,8 @@
 				D6C2FF2221001B9000963531 /* MainUI.hpp */,
 				D68811AB21081D8200ADD3ED /* Confetti.cpp */,
 				D68811AC21081D8200ADD3ED /* Confetti.hpp */,
+				D641FA0B210AE4DA007EBCCA /* Picture.cpp */,
+				D641FA0C210AE4DA007EBCCA /* Picture.hpp */,
 			);
 			path = GameSources;
 			sourceTree = "<group>";
@@ -627,6 +632,7 @@
 				D648B2D51F8E514E00C57D9C /* Scene.cpp in Sources */,
 				D648B2D91F8E514E00C57D9C /* Sprite.cpp in Sources */,
 				D610EC6720EB1EF400C9E7BF /* Table.cpp in Sources */,
+				D641FA0D210AE4DA007EBCCA /* Picture.cpp in Sources */,
 				D634AEF520F4554200DC2E2D /* NumberSprite.cpp in Sources */,
 				D600C08D205F02B5006749D9 /* Camera.cpp in Sources */,
 				D648B2E21F8E514E00C57D9C /* Vertex.cpp in Sources */,

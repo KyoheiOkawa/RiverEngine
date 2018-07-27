@@ -15,6 +15,7 @@
 #include "MainUI.hpp"
 #include "MainUICanvas.hpp"
 #include "Confetti.hpp"
+#include "Picture.hpp"
 
 MainScene::MainScene()
 {
@@ -51,6 +52,7 @@ bool MainScene::init()
     director->registerTexture("GLASS_NONE_SP", "GlassBatsu.png");
     director->registerTexture("HIGHSCORE_UI", "highScore.png");
     director->registerTexture("RANK_UI", "Rank.png");
+    director->registerTexture("PICTURE_TX", "pictureframe.png");
     
     auto audioEngine = SimpleAudioEngine::getInstance();
     audioEngine->registerBgm("Assets/blend", "MAIN_BGM");
@@ -78,6 +80,11 @@ bool MainScene::init()
         _nowScore = 0;
         _leftGlassCount = 3;
     }
+    
+    auto picture = Picture::create();
+    picture->getTransform()->setPosition(Vector3(0,1.3f,-3.5f));
+    picture->getTransform()->setScale(Vector3(2.5f,2.5f,2.5f));
+    addGameObject(picture);
     
     auto table = Table::create();
     table->getTransform()->setPosition(Vector3(0,-0.5f,0));
@@ -141,6 +148,8 @@ bool MainScene::init()
     }
     
     refleshLeftGlassSprites();
+    
+    LeaderBoardUtil::getInstance()->sendScore(userDef->getInt("HighScore"));
     
     return true;
 }

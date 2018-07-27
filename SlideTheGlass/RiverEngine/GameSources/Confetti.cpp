@@ -75,6 +75,10 @@ void ConfettiFragment::update()
     trans->setPosition(pos);
     trans->setScale(scale);
     trans->setRotation(rot);
+    
+    float height = Application::getInstance()->getSurfaceHeight();
+    if(pos.y > height + height / 4.0f)
+        getScene()->removeGameObject(getThis<GameObject>());
 }
 
 void ConfettiFragment::draw()
@@ -106,3 +110,52 @@ void ConfettiFragment::draw()
     glDisable(GL_BLEND);
     glDisableVertexAttribArray(_attr_pos);
 }
+
+ConfettiEmitter::ConfettiEmitter():
+_emitInterval(0.5f),
+_emitIntervalRandomLength(0.25f)
+{
+    
+}
+
+shared_ptr<ConfettiEmitter> create()
+{
+    shared_ptr<ConfettiEmitter> ret(new ConfettiEmitter());
+    if(ret && ret->init())
+    {
+        return ret;
+    }
+    
+    return nullptr;
+}
+
+bool ConfettiEmitter::init()
+{
+    GameObject::init();
+    
+    return true;
+}
+
+void ConfettiEmitter::update()
+{
+    if(_emitTime > 0)
+    {
+        float delta = Application::getInstance()->getDeltaTime();
+        _emitTime -= delta;
+        if(_emitTime < 0.0f)
+            _emitTime = 0.0f;
+        
+    }
+}
+
+void ConfettiEmitter::draw()
+{
+    
+}
+
+void ConfettiEmitter::dropConfettiFrag()
+{
+    
+}
+
+
