@@ -16,6 +16,7 @@
 #include "MainUICanvas.hpp"
 #include "Confetti.hpp"
 #include "Picture.hpp"
+#include "Wall.hpp"
 
 MainScene::MainScene()
 {
@@ -53,6 +54,7 @@ bool MainScene::init()
     director->registerTexture("HIGHSCORE_UI", "highScore.png");
     director->registerTexture("RANK_UI", "Rank.png");
     director->registerTexture("PICTURE_TX", "pictureframe.png");
+    director->registerTexture("WALL_TX", "Wall.png");
     
     auto audioEngine = SimpleAudioEngine::getInstance();
     audioEngine->registerBgm("Assets/blend", "MAIN_BGM");
@@ -81,6 +83,11 @@ bool MainScene::init()
         _leftGlassCount = 3;
     }
     
+    auto wall = Wall::create();
+    wall->getTransform()->setPosition(Vector3(0,-1.0f,-3.7f));
+    wall->getTransform()->setScale(Vector3(0.6f,0.6f,0.6f));
+    addGameObject(wall);
+    
     auto picture = Picture::create();
     picture->getTransform()->setPosition(Vector3(0,1.3f,-3.5f));
     picture->getTransform()->setScale(Vector3(2.5f,2.5f,2.5f));
@@ -95,10 +102,10 @@ bool MainScene::init()
     auto highScoreUI = HighScoreUI::create();
     addGameObject(highScoreUI);
 
-    auto stg = STGWord::create();
-    stg->getTransform()->setPosition(Vector3(0,1.3f,-1.5f));
-    stg->getTransform()->setScale(Vector3(0.4f,0.4f,0.4f));
-    addGameObject(stg);
+//    auto stg = STGWord::create();
+//    stg->getTransform()->setPosition(Vector3(0,1.3f,-1.5f));
+//    stg->getTransform()->setScale(Vector3(0.4f,0.4f,0.4f));
+//    addGameObject(stg);
 
     auto glass = Glass::create();
     addGameObject(glass);
