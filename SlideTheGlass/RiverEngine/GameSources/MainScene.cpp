@@ -89,7 +89,7 @@ bool MainScene::init()
     addGameObject(wall);
     
     auto picture = Picture::create();
-    picture->getTransform()->setPosition(Vector3(0,1.3f,-3.5f));
+    picture->getTransform()->setPosition(Vector3(0,1.5f,-3.5f));
     picture->getTransform()->setScale(Vector3(2.5f,2.5f,2.5f));
     addGameObject(picture);
     
@@ -115,8 +115,12 @@ bool MainScene::init()
     
     float width = Application::getInstance()->getSurfaceWidth();
     float height = Application::getInstance()->getSurfaceHeight();
+    float ratioX = height / 1136.0f;
+    float ratioY = width / 640.0f;
+    
     _scoreNumber = NumberSprite::create("NUMBERS_TX", 0);
-    _scoreNumber->getTransform()->setPosition(Vector3(width/ 2.0f,height / 8.0f,0.0f));
+    _scoreNumber->getTransform()->setPosition(Vector3(width/ 2.0f,height / 9.0f,0.0f));
+    _scoreNumber->getTransform()->setScale(Vector3(ratioX,ratioX,1));
     addGameObject(_scoreNumber);
     _scoreNumber->setDrawLayer(5);
     if(userDef->getBool("IsStart"))

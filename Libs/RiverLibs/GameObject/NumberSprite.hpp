@@ -31,6 +31,8 @@ class NumberSprite : public GameObject
     
     std::shared_ptr<MeshResource<PositionTexture>> _meshResource;
     
+    bool _is3DWorld;
+    
     unsigned int calcOddCenterIndex(unsigned int digit){return ((digit-1)/2);}
     void updateMeshResource();
 public:
@@ -45,10 +47,12 @@ public:
     static std::shared_ptr<NumberSprite> create(string texKey,unsigned int number);
     
     virtual bool init() override;
-    
     virtual void update() override;
-    
     virtual void draw() override;
+    
+    void setIs3DWorld(bool b){_is3DWorld = b;}
+    
+    bool getIs3DWorld(){return _is3DWorld;}
     
     unsigned int getNumber(){return _number;}
     void changeNumber(unsigned int num);

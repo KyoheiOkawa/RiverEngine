@@ -23,6 +23,8 @@ class Sprite : public GameObject
     GLint _unif_texture;
     GLuint _texture_id;
     
+    bool _is3DWorld;
+    
     std::shared_ptr<MeshResource<PositionTexture>> _meshResource;
 public:
     Sprite();
@@ -44,6 +46,10 @@ public:
     virtual void draw() override;
     
     void setTexture(std::string texKey);
+    
+    void setIs3DWorld(bool b){_is3DWorld = b;}
+    
+    bool getIs3DWorld(){return _is3DWorld;}
     
     Vector2 getSpriteSize(){
         return _spriteSize;

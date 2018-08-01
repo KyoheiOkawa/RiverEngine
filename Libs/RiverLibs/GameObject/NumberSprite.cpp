@@ -8,7 +8,8 @@
 
 #include "NumberSprite.hpp"
 
-NumberSprite::NumberSprite()
+NumberSprite::NumberSprite():
+_is3DWorld(false)
 {
     
 }
@@ -153,14 +154,30 @@ void NumberSprite::draw()
     
     auto app = Application::getInstance();
     
-    auto trans = getTransform();
-    auto pos = trans->getPosition();
-    auto scale = trans->getScale();
-    auto rotation = trans->getRotation();
+    Matrix4x4 matrix;
     
-    Vector3 pivot = trans->getPivot();
-    
-    Matrix4x4 matrix = Matrix4x4::create2DAffine(pos, _spriteSize , scale, rotation.z, Vector2(app->getSurfaceWidth(),app->getSurfaceHeight()), pivot);
+    if(!_is3DWorld)
+    {
+        auto trans = getTransform();
+        auto pos = trans->getPosition();
+        auto scale = trans->getScale();
+        auto rotation = trans->getRotation();
+        Vector3 pivot = trans->getPivot();
+        
+        matrix = Matrix4x4::create2DAffine(pos, _spriteSize , scale, rotation.z, Vector2(app->getSurfaceWidth(),app->getSurfaceHeight()), pivot);
+    }
+    else
+    {
+        Matrix4x4 lookAt,projection;
+        Director::getInstance()->getScene()->GetMainCamera()->GetLookAtProjection(lookAt, projection);
+        
+        Matrix4x4 pos,scale,rot;
+        auto trans = getTransform();
+        pos = Matrix4x4::createTranslate(trans->getPosition().x, trans->getPosition().y, trans->getPosition().z);
+        scale = Matrix4x4::createScale(trans->getScale().x, trans->getScale().y, trans->getScale().z);
+        rot = Matrix4x4::createRotate(trans->getRotation());
+        matrix = projection * lookAt * pos * scale * rot;
+    }
     
     glUniformMatrix4fv(_unif_matrix, 1, GL_FALSE, matrix.matrix);
     glUniform1i(_unif_texture, 0);
