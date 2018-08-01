@@ -58,6 +58,8 @@ bool Table::init()
     auto texInfo = Director::getInstance()->getRegesterdTextureInfo("TABLE_TX");
     textureId = texInfo->id;
     
+    addTag("Table");
+    
     return true;
 }
 

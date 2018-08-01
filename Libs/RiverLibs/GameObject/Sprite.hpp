@@ -38,6 +38,7 @@ public:
     static std::shared_ptr<Sprite> create();
     
     static std::shared_ptr<Sprite> createWithTexture(std::string texKey);
+    static std::shared_ptr<Sprite> createWithTextureID(int width, int height,GLuint texID);
     
     virtual bool init() override;
     
@@ -46,6 +47,7 @@ public:
     virtual void draw() override;
     
     void setTexture(std::string texKey);
+    void setTexture(int width,int height, GLuint texID);
     
     void setIs3DWorld(bool b){_is3DWorld = b;}
     

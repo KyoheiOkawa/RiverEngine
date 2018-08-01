@@ -15,6 +15,13 @@ _height(height)
     
 }
 
+OffScreenTexture::~OffScreenTexture()
+{
+    glDeleteTextures(1, &_colorTexture);
+    glDeleteRenderbuffers(1, &_depthBuffer);
+    glDeleteFramebuffers(1, &_frameBuffer);
+}
+
 bool OffScreenTexture::init()
 {
     glGetIntegerv(GL_FRAMEBUFFER_BINDING, &_defFrameBuffer);
@@ -60,4 +67,22 @@ bool OffScreenTexture::init()
     glBindFramebuffer(GL_FRAMEBUFFER, _defFrameBuffer);
     
     return true;
+}
+
+void OffScreenTexture::begin()
+{
+    glBindFramebuffer(GL_FRAMEBUFFER, _frameBuffer);
+    assert(glGetError()==GL_NO_ERROR);
+    
+    glViewport(0, 0, _width, _height);
+    
+    glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+}
+
+void OffScreenTexture::end()
+{
+    auto app = Application::getInstance();
+    glBindFramebuffer(GL_FRAMEBUFFER, _defFrameBuffer);
+    glViewport(0, 0, app->getSurfaceWidth(), app->getSurfaceHeight());
 }

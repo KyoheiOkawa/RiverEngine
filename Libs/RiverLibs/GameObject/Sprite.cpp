@@ -55,6 +55,22 @@ std::shared_ptr<Sprite> Sprite::createWithTexture(std::string texPath)
     return nullptr;
 }
 
+std::shared_ptr<Sprite> Sprite::createWithTextureID(int width, int height,GLuint texID)
+{
+    auto ret = std::shared_ptr<Sprite>(new Sprite);
+    
+    if(ret && ret->init())
+    {
+        ret->_spriteSize.x = width;
+        ret->_spriteSize.y = height;
+        ret->_texture_id = texID;
+        
+        return ret;
+    }
+    
+    return nullptr;
+}
+
 bool Sprite::init()
 {
     if(!GameObject::init())
@@ -149,4 +165,11 @@ void Sprite::setTexture(std::string texKey)
     
     _spriteSize.x = texInfo->width;
     _spriteSize.y = texInfo->height;
+}
+
+void Sprite::setTexture(int width, int height, GLuint texID)
+{
+    _texture_id = texID;
+    _spriteSize.x = width;
+    _spriteSize.y = height;
 }

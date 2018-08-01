@@ -20,6 +20,8 @@ class MainScene : public Scene
     const unsigned int _maxLeftGlassCount = 3;
     unsigned int _leftGlassCount = 3;
     vector<shared_ptr<Sprite>> _leftGlassSprites;
+    
+    shared_ptr<OffScreenTexture> _testOST;
 public:
     MainScene();
     virtual ~MainScene();

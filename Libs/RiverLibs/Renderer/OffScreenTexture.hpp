@@ -21,10 +21,16 @@ class OffScreenTexture : public ObjectInterface
     int _width,_height;
 public:
     OffScreenTexture(int width,int height);
-    virtual ~OffScreenTexture(){}
+    virtual ~OffScreenTexture();
     
     virtual bool init()override;
     
+    ///このテクスチャに対しての描画開始処理
+    void begin();
+    ///このテクスチャに対しての描画終了処理
+    void end();
+    
+    GLuint getTextureID(){return _colorTexture;}
 };
 
 #endif /* OffScreenTexture_hpp */

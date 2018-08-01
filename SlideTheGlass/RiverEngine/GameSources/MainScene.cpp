@@ -162,7 +162,12 @@ bool MainScene::init()
     
     LeaderBoardUtil::getInstance()->sendScore(userDef->getInt("HighScore"));
     
-    auto ost = ObjectFactory::create<OffScreenTexture>(512,512);
+//    _testOST = ObjectFactory::create<OffScreenTexture>(512,512);
+//    Quaternion ostQt;
+//    auto ostSprite = Sprite::createWithTextureID(512, 512, _testOST->getTextureID());
+//    addGameObject(ostSprite);
+//    ostSprite->getTransform()->setPosition(Vector3(width/2.0f,height/2.0f,0.0f));
+//    ostSprite->getTransform()->setRotation(ostQt);
     
     return true;
 }
@@ -175,6 +180,11 @@ void MainScene::update()
 void MainScene::draw()
 {
     Scene::draw();
+    
+//    _testOST->begin();
+//    findGameObject("Table")->draw();
+//    findGameObject("Glass")->draw();
+//    _testOST->end();
 }
 
 void MainScene::onScreenTouched(TouchInfo &touchInfo)
