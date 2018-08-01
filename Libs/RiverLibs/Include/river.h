@@ -33,6 +33,7 @@
 #include "GLProgram.hpp"
 #include "Vertex.hpp"
 #include "PrimitiveDraws.hpp"
+#include "OffScreenTexture.hpp"
 #include "Util.hpp"
 #include "FileUtils.hpp"
 #include "UserDefaults.hpp"

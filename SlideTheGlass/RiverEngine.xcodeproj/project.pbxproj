@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		D600C08D205F02B5006749D9 /* Camera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D600C08B205F02B5006749D9 /* Camera.cpp */; };
+		D60288CC2111B5A2001A0878 /* OffScreenTexture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D60288CA2111B5A2001A0878 /* OffScreenTexture.cpp */; };
 		D610EC6720EB1EF400C9E7BF /* Table.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D610EC6520EB1EF400C9E7BF /* Table.cpp */; };
 		D610EC6A20EB325400C9E7BF /* Glass.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D610EC6820EB325400C9E7BF /* Glass.cpp */; };
 		D610EC6D20EB383C00C9E7BF /* Project.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D610EC6B20EB383C00C9E7BF /* Project.cpp */; };
@@ -86,6 +87,8 @@
 /* Begin PBXFileReference section */
 		D600C08B205F02B5006749D9 /* Camera.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Camera.cpp; sourceTree = "<group>"; };
 		D600C08C205F02B5006749D9 /* Camera.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Camera.hpp; sourceTree = "<group>"; };
+		D60288CA2111B5A2001A0878 /* OffScreenTexture.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = OffScreenTexture.cpp; sourceTree = "<group>"; };
+		D60288CB2111B5A2001A0878 /* OffScreenTexture.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = OffScreenTexture.hpp; sourceTree = "<group>"; };
 		D610EC6520EB1EF400C9E7BF /* Table.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Table.cpp; sourceTree = "<group>"; };
 		D610EC6620EB1EF400C9E7BF /* Table.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Table.hpp; sourceTree = "<group>"; };
 		D610EC6820EB325400C9E7BF /* Glass.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Glass.cpp; sourceTree = "<group>"; };
@@ -410,6 +413,8 @@
 				D600C08C205F02B5006749D9 /* Camera.hpp */,
 				D6D2D7C720F6E38000382DD6 /* PrimitiveDraws.cpp */,
 				D6D2D7C820F6E38000382DD6 /* PrimitiveDraws.hpp */,
+				D60288CA2111B5A2001A0878 /* OffScreenTexture.cpp */,
+				D60288CB2111B5A2001A0878 /* OffScreenTexture.hpp */,
 			);
 			path = Renderer;
 			sourceTree = "<group>";
@@ -598,6 +603,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D60288CC2111B5A2001A0878 /* OffScreenTexture.cpp in Sources */,
 				D61109111EC6B5A100B89DFE /* ViewController.mm in Sources */,
 				D6D2D7C920F6E38000382DD6 /* PrimitiveDraws.cpp in Sources */,
 				D69E04AF20EC72D100A0A789 /* STGWord.cpp in Sources */,

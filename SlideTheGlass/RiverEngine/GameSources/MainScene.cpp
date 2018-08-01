@@ -162,6 +162,8 @@ bool MainScene::init()
     
     LeaderBoardUtil::getInstance()->sendScore(userDef->getInt("HighScore"));
     
+    auto ost = ObjectFactory::create<OffScreenTexture>(512,512);
+    
     return true;
 }
 
