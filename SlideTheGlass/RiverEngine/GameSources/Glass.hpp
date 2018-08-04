@@ -50,6 +50,9 @@ private:
     
     GLProgram* _useProgram;
     
+    shared_ptr<OffScreenTexture> _offScreenTex;
+    shared_ptr<Sprite> _testSp;
+    
     GLint attr_pos;
     GLint attr_normal;
     GLint attr_uv;
@@ -58,6 +61,7 @@ private:
     GLint unif_projection;
     GLint unif_world;
     GLint unif_lightDir;
+    GLint unif_eyePos;
     GLuint textureId;
     
     shared_ptr<MeshResource<PositionNormal>> _mesh;

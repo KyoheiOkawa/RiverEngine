@@ -38,7 +38,15 @@ bool Glass::init()
     if(!GameObject::init())
         return false;
     
-    _useProgram = Director::getInstance()->getGLProgram("PNStatic");
+    _useProgram = Director::getInstance()->getGLProgram("Glass");
+    
+    int width = Application::getInstance()->getSurfaceWidth();
+    int height = Application::getInstance()->getSurfaceHeight();
+    
+    _offScreenTex = ObjectFactory::create<OffScreenTexture>(width,height);
+    _testSp = Sprite::createWithTextureID(width, height, _offScreenTex->getTextureID());
+    _testSp->getTransform()->setPosition(Vector3(width/2.0f,height/2.0f,0.0f));
+    
     
     attr_pos = _useProgram->getAttribLocation("attr_pos");
     attr_normal = _useProgram->getAttribLocation("attr_normal");
@@ -48,6 +56,8 @@ bool Glass::init()
     unif_projection = _useProgram->getUnifLocation("unif_projection");
     unif_world = _useProgram->getUnifLocation("unif_world");
     unif_lightDir = _useProgram->getUnifLocation("unif_lightDir");
+    unif_eyePos = _useProgram->getUnifLocation("unif_eyePos");
+    textureId = _offScreenTex->getTextureID();
     _mesh = MeshResource<PositionNormal>::createWithFile("Assets/glass");
     
     _meshTransform = Matrix4x4::createScale(0.25f, 0.25f, 0.25f);
@@ -112,6 +122,14 @@ void Glass::draw()
 {
     auto app = Application::getInstance();
     
+    auto objects = getScene()->findGameObjects("GlassOST");
+    _offScreenTex->begin();
+    for(auto obj : objects)
+        obj->draw();
+    _offScreenTex->end();
+    
+    //_testSp->draw();
+    
     _useProgram->use();
     glEnable(GL_DEPTH_TEST);
     glEnableVertexAttribArray(attr_pos);
@@ -140,8 +158,13 @@ void Glass::draw()
     light.normalize();
     glUniform3f(unif_lightDir, light.x, light.y, light.z);
     
+    Vector3 eyePos = getScene()->GetMainCamera()->GetCameraPos();
+    glUniform4f(unif_eyePos, eyePos.x, eyePos.y, eyePos.z, 1.0f);
+    
     glVertexAttribPointer(attr_pos, 3, GL_FLOAT, GL_FALSE, sizeof(PositionNormal), (GLvoid*)_mesh->GetVertexPointer());
     glVertexAttribPointer(attr_normal, 3, GL_FLOAT, GL_FALSE, sizeof(PositionNormal), (GLvoid*)((GLubyte*)_mesh->GetVertexPointer() + sizeof(GLfloat)*3));
+    
+    glBindTexture(GL_TEXTURE_2D, textureId);
     
     glDrawArrays(GL_TRIANGLES, 0, (GLsizei)_mesh->GetVertexCount());
     

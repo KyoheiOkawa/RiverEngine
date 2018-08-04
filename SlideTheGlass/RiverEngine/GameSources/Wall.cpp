@@ -53,6 +53,8 @@ bool Wall::init()
     
     getTransform()->setPosition(Vector3(0.0f,-1.0f,0.0f));
     
+    addTag("GlassOST");
+    
     return true;
 }
 

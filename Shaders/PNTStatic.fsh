@@ -12,7 +12,7 @@ void main()
     
     mediump vec4 light;
     mediump float d = dot(normalize(v_normal),-unif_lightDir);
-    light = texColor * clamp(d,0.0,1.0) + texColor * vec4(0.2,0.2,0.2,0.0);
+    light = texColor * clamp(d,0.0,1.0) + texColor * vec4(0.4,0.4,0.4,0.0);
     light.w = unif_color.w;
     
     gl_FragColor = light;

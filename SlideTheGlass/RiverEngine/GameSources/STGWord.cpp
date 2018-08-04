@@ -58,6 +58,8 @@ bool STGWord::init()
     auto texInfo = Director::getInstance()->getRegesterdTextureInfo("STG_TX");
     textureId = texInfo->id;
     
+    addTag("GlassOST");
+    
     return true;
 }
 

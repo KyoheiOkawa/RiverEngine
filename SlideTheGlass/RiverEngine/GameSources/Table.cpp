@@ -59,6 +59,7 @@ bool Table::init()
     textureId = texInfo->id;
     
     addTag("Table");
+    addTag("GlassOST");
     
     return true;
 }

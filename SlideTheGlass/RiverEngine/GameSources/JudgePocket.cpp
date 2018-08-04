@@ -55,6 +55,8 @@ bool JudgePocket::init()
     
     moveRandom();
     
+    addTag("GlassOST");
+    
     return true;
 }
 

@@ -47,6 +47,7 @@ bool HighScoreUI::init()
     _score->getTransform()->setScale(Vector3(0.4f,0.4f,0.4f));
     
     addTag("HighScoreUI");
+    addTag("GlassOST");
     
     return true;
 }
