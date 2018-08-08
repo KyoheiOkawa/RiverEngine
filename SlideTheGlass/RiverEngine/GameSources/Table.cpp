@@ -53,7 +53,7 @@ bool Table::init()
     
     unif_lightDir = _useProgram->getUnifLocation("unif_lightDir");
     
-    _mesh = MeshResource<PositionNormalTexture>::createWithFile("Assets/table");
+    _mesh = MeshResource<PositionNormalTexture>::createWithFile("Assets/Table");
     
     auto texInfo = Director::getInstance()->getRegesterdTextureInfo("TABLE_TX");
     textureId = texInfo->id;
